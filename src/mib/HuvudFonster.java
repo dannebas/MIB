@@ -102,18 +102,16 @@ public class HuvudFonster extends javax.swing.JFrame {
             try {
                 String userID = txtUserName.getText();
                 String password = txtPassword.getText();
-             //   String fraga = "SELECT LOSENORD FROM AGENT WHERE AGENT_ID = " + userID;
                 String pass = idb.fetchSingle("select LOSENORD from AGENT where AGENT_ID = " + userID);
-                
-                if(pass.equals(password))
-                {
+
+                if (pass.equals(password)) {
                     JOptionPane.showMessageDialog(null, "Du har loggat in");
-                }
-                else{
+                    setVisible(false);
+
+                } else {
                     JOptionPane.showMessageDialog(null, "Fel lösenord");
                 }
-                
-                //System.out.println(idb.fetchSingle(fraga));
+
             } catch (InfException ex) {
                 JOptionPane.showMessageDialog(null, "Något gick fel");
             }
