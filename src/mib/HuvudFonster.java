@@ -103,13 +103,15 @@ public class HuvudFonster extends javax.swing.JFrame {
                 String userID = txtUserName.getText();
                 String password = txtPassword.getText();
                 String pass = idb.fetchSingle("select LOSENORD from AGENT where AGENT_ID = " + userID);
-
+                String userName = idb.fetchSingle("select NAMN from AGENT where AGENT_ID = " + userID);
                 if (pass.equals(password)) {
-                    JOptionPane.showMessageDialog(null, "Du har loggat in");
-                    setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Välkommen " + userName + ". Du har nu loggat in");
+                    //setVisible(false); //Gömmer inloggningsfönstret
 
+                    //lägg metodanrop för nästa fönster här.
                 } else {
-                    JOptionPane.showMessageDialog(null, "Fel lösenord");
+                    JOptionPane.showMessageDialog(null, "Fel lösenord, försök igen");
+                    txtPassword.requestFocusInWindow();
                 }
 
             } catch (InfException ex) {
