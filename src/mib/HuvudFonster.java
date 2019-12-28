@@ -5,7 +5,7 @@
  */
 package mib;
 
-import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -16,7 +16,7 @@ import oru.inf.InfException;
  */
 public class HuvudFonster extends javax.swing.JFrame {
 
-    private InfDB idb;
+    private final InfDB idb;
 
     /**
      * Creates new form HuvudFonster
@@ -41,9 +41,9 @@ public class HuvudFonster extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         lblPass = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         lblLogoHolder = new javax.swing.JLabel();
+        txtPass = new javax.swing.JPasswordField();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,8 +69,6 @@ public class HuvudFonster extends javax.swing.JFrame {
         lblPass.setBounds(70, 350, 80, 16);
         getContentPane().add(txtUserName);
         txtUserName.setBounds(210, 320, 110, 24);
-        getContentPane().add(txtPassword);
-        txtPassword.setBounds(210, 350, 110, 24);
 
         btnLogin.setText("Logga in");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +85,11 @@ public class HuvudFonster extends javax.swing.JFrame {
         getContentPane().add(lblLogoHolder);
         lblLogoHolder.setBounds(120, 0, 150, 300);
 
+        txtPass.setMinimumSize(new java.awt.Dimension(15, 24));
+        txtPass.setPreferredSize(new java.awt.Dimension(15, 24));
+        getContentPane().add(txtPass);
+        txtPass.setBounds(210, 350, 110, 24);
+
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/bg2.png"))); // NOI18N
         getContentPane().add(lblBackground);
         lblBackground.setBounds(0, 0, 400, 450);
@@ -101,17 +104,35 @@ public class HuvudFonster extends javax.swing.JFrame {
 
             try {
                 String userID = txtUserName.getText();
-                String password = txtPassword.getText();
-                String pass = idb.fetchSingle("select LOSENORD from AGENT where AGENT_ID = " + userID);
+                /* Följande rader är för att hantera lösenordet
+                som skrivs in i ett lösenordsfält och hämtas ut som en array av char.
+                Till hjälp skapas ett StringBuilderobjekt för att 
+                kunna konvertera arrayen till en sträng*/
+                char[] password = txtPass.getPassword();
+                StringBuilder sb = new StringBuilder("");
+                String convertedPassword = sb.append(password).toString(); //Själva konverteringen
+                //Hämtar det lagrade lösenordet från databasen.
+                String storedPassword = idb.fetchSingle("select LOSENORD from AGENT where AGENT_ID = " + userID);
                 String userName = idb.fetchSingle("select NAMN from AGENT where AGENT_ID = " + userID);
-                if (pass.equals(password)) {
+                String behorighet = idb.fetchSingle("select ADMINISTRATOR from AGENT where AGENT_ID = " + userID);
+                if (storedPassword.equals(convertedPassword)) {
                     JOptionPane.showMessageDialog(null, "Välkommen " + userName + ". Du har nu loggat in");
-                    //setVisible(false); //Gömmer inloggningsfönstret
+                    switch (behorighet) {
+                        case "J":
+                            System.out.println("Du är administratör");
+                            //metodanrop till adminsida
+                            break;
+                        case "N":
+                            System.out.println("Du är inte administratör");
+                            //metodanrop till agentsida
+                            break;
+                    }
 
-                    //lägg metodanrop för nästa fönster här.
+                    //setVisible(false); //Gömmer inloggningsfönstret
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Fel lösenord, försök igen");
-                    txtPassword.requestFocusInWindow();
+                    txtPass.requestFocusInWindow();
                 }
 
             } catch (InfException ex) {
@@ -130,7 +151,7 @@ public class HuvudFonster extends javax.swing.JFrame {
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUser;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }
