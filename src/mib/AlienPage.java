@@ -5,18 +5,33 @@
  */
 package mib;
 
+import oru.inf.InfDB;
+
 /**
  *
  * @author Daniel
  */
 public class AlienPage extends javax.swing.JFrame {
 
+    private final InfDB idb;
+    private Alien alien;
+    //private boolean inloggad;
+
     /**
      * Creates new form AlienPage
+     * @param idb databaskopplingen
+     * @param alien den alien som har loggat in.
      */
-    public AlienPage() {
+    public AlienPage(InfDB idb, Alien alien) {
         initComponents();
-    }
+        this.idb = idb;
+        this.alien = alien;
+       // inloggad = true;
+        lblValkommen.setText("Välkommen " + alien.getNamn() + "! Vad vill du göra idag?");
+        this.setLocationRelativeTo(null);
+        
+        }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,57 +42,88 @@ public class AlienPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        lblLogoHolder = new javax.swing.JLabel();
+        lblValkommen = new javax.swing.JLabel();
+        lblSok = new javax.swing.JLabel();
+        lblKontakt = new javax.swing.JLabel();
+        lblAndraLosen = new javax.swing.JLabel();
+        lblLoggaUt = new javax.swing.JLabel();
+        lblBackground = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(400, 475));
+        setResizable(false);
+        getContentPane().setLayout(null);
+
+        lblLogoHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/alienicon.png"))); // NOI18N
+        getContentPane().add(lblLogoHolder);
+        lblLogoHolder.setBounds(30, 10, 70, 100);
+
+        lblValkommen.setForeground(new java.awt.Color(204, 204, 204));
+        lblValkommen.setText("Välkommen... Vad vill du göra idag?");
+        getContentPane().add(lblValkommen);
+        lblValkommen.setBounds(110, 50, 200, 16);
+
+        lblSok.setForeground(new java.awt.Color(204, 204, 204));
+        lblSok.setText("Sök Aliens");
+        getContentPane().add(lblSok);
+        lblSok.setBounds(30, 200, 150, 16);
+
+        lblKontakt.setForeground(new java.awt.Color(204, 204, 204));
+        lblKontakt.setText("Kontakta din områdeschef");
+        getContentPane().add(lblKontakt);
+        lblKontakt.setBounds(30, 250, 160, 16);
+
+        lblAndraLosen.setForeground(new java.awt.Color(204, 204, 204));
+        lblAndraLosen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/passwordicon.png"))); // NOI18N
+        lblAndraLosen.setText("   Ändra lösenord");
+        lblAndraLosen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAndraLosenMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblAndraLosen);
+        lblAndraLosen.setBounds(30, 290, 150, 50);
+
+        lblLoggaUt.setForeground(new java.awt.Color(204, 204, 204));
+        lblLoggaUt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/logouticon.png"))); // NOI18N
+        lblLoggaUt.setText("   Logga ut");
+        lblLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLoggaUtMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblLoggaUt);
+        lblLoggaUt.setBounds(30, 350, 120, 50);
+
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/bg2.png"))); // NOI18N
+        getContentPane().add(lblBackground);
+        lblBackground.setBounds(0, 0, 400, 450);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlienPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlienPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlienPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlienPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void lblLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoggaUtMouseClicked
+        // TODO add your handling code here:
+        if(Validering.kollaUtloggning()){
+        setVisible(false);
+        new MainPage(idb).setVisible(true);
         }
-        //</editor-fold>
+        
+    }//GEN-LAST:event_lblLoggaUtMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AlienPage().setVisible(true);
-            }
-        });
-    }
+    private void lblAndraLosenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAndraLosenMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblAndraLosenMouseClicked
 
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblAndraLosen;
+    private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblKontakt;
+    private javax.swing.JLabel lblLoggaUt;
+    private javax.swing.JLabel lblLogoHolder;
+    private javax.swing.JLabel lblSok;
+    private javax.swing.JLabel lblValkommen;
     // End of variables declaration//GEN-END:variables
 }

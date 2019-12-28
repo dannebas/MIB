@@ -17,12 +17,14 @@ import oru.inf.InfException;
 public class LoginForm extends javax.swing.JFrame {
 
     private final InfDB idb;
-    private String info;
+    private final String info;
 
     /**
      * Creates new form HuvudFonster
      *
      * @param idb databaskopplingen
+     * @param info en sträng som håller information om vilken typ av användare
+     * som ska logga in.
      */
     public LoginForm(InfDB idb, String info) {
         initComponents();
@@ -84,10 +86,10 @@ public class LoginForm extends javax.swing.JFrame {
         btnLogin.setBounds(230, 380, 90, 32);
 
         lblLogoHolder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogoHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/head.png"))); // NOI18N
-        lblLogoHolder.setPreferredSize(new java.awt.Dimension(150, 300));
+        lblLogoHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/miblogo.png"))); // NOI18N
+        lblLogoHolder.setPreferredSize(new java.awt.Dimension(200, 116));
         getContentPane().add(lblLogoHolder);
-        lblLogoHolder.setBounds(120, 0, 150, 300);
+        lblLogoHolder.setBounds(90, 100, 220, 116);
 
         txtPass.setMinimumSize(new java.awt.Dimension(15, 24));
         txtPass.setPreferredSize(new java.awt.Dimension(15, 24));
@@ -142,7 +144,9 @@ public class LoginForm extends javax.swing.JFrame {
 
                             case "ALIEN":
                                 System.out.println("hej hej");
-                                //starta alien sida.
+                                Alien alienAttLoggaIn = new Alien(idb, userID);
+                                new AlienPage(idb, alienAttLoggaIn).setVisible(true);
+                                setVisible(false);
                                 break;
                         }
 

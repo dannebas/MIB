@@ -15,7 +15,7 @@ import oru.inf.InfDB;
  */
 public class MainPage extends javax.swing.JFrame {
 
-    private InfDB idb;
+    private final InfDB idb;
 
     /**
      * Creates new form MainPage
@@ -39,6 +39,7 @@ public class MainPage extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         lblAgentInlog = new javax.swing.JLabel();
         lblAlienInlog = new javax.swing.JLabel();
+        lblLogoHolder = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,6 +54,7 @@ public class MainPage extends javax.swing.JFrame {
         getContentPane().add(lblTitle);
         lblTitle.setBounds(120, 260, 160, 22);
 
+        lblAgentInlog.setForeground(new java.awt.Color(204, 204, 204));
         lblAgentInlog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
         lblAgentInlog.setText("Agent");
         lblAgentInlog.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -63,6 +65,7 @@ public class MainPage extends javax.swing.JFrame {
         getContentPane().add(lblAgentInlog);
         lblAgentInlog.setBounds(80, 320, 80, 80);
 
+        lblAlienInlog.setForeground(new java.awt.Color(204, 204, 204));
         lblAlienInlog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/alienicon.png"))); // NOI18N
         lblAlienInlog.setText("Alien");
         lblAlienInlog.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -72,6 +75,10 @@ public class MainPage extends javax.swing.JFrame {
         });
         getContentPane().add(lblAlienInlog);
         lblAlienInlog.setBounds(220, 320, 100, 80);
+
+        lblLogoHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/miblogo.png"))); // NOI18N
+        getContentPane().add(lblLogoHolder);
+        lblLogoHolder.setBounds(100, 110, 210, 130);
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/bg2.png"))); // NOI18N
         getContentPane().add(lblBackground);
@@ -97,6 +104,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblAgentInlog;
     private javax.swing.JLabel lblAlienInlog;
     private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblLogoHolder;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
