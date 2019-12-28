@@ -6,6 +6,7 @@
 package mib;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -25,6 +26,17 @@ public class Validering {
         return svar;
     }
 
+    public static boolean kollaLosenOrd(JPasswordField tf) {
+        boolean svar = true;
+
+        if (tf.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(null, "Du måste fylla i ett lösenord");
+            tf.requestFocus();
+            svar = false;
+        }
+        return svar;
+    }
+    
     public static boolean kollaHeltal(JTextField tf) {
         boolean svar = true;
 

@@ -5,6 +5,7 @@
  */
 package mib;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -103,45 +104,55 @@ public class LoginForm extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
 
-        if (Validering.kollaTextRutaTom(txtUserName) && Validering.kollaHeltal(txtUserName)) {
+        String userID = txtUserName.getText();
+        /* Följande rader är för att hantera lösenordet
+        som skrivs in i ett lösenordsfält och hämtas ut som en array av char.
+        Till hjälp skapas ett StringBuilderobjekt för att 
+        kunna konvertera arrayen till en sträng*/
+        char[] password = txtPass.getPassword();
+        StringBuilder sb = new StringBuilder("");
+        String convertedPassword = sb.append(password).toString(); //Själva konverteringen
+
+        if (Validering.kollaTextRutaTom(txtUserName) && Validering.kollaHeltal(txtUserName) && Validering.kollaLosenOrd(txtPass)) {
 
             try {
-                String userID = txtUserName.getText();
-                /* Följande rader är för att hantera lösenordet
-                som skrivs in i ett lösenordsfält och hämtas ut som en array av char.
-                Till hjälp skapas ett StringBuilderobjekt för att 
-                kunna konvertera arrayen till en sträng*/
-                char[] password = txtPass.getPassword();
-                StringBuilder sb = new StringBuilder("");
-                String convertedPassword = sb.append(password).toString(); //Själva konverteringen
-                //Hämtar det lagrade lösenordet från databasen.
-                String storedPassword = idb.fetchSingle("select LOSENORD from " + info + " where " + info + "_ID = " + userID);
-                String userName = idb.fetchSingle("select NAMN from " + info + " where " + info + "_ID = " + userID);
-                if (storedPassword.equals(convertedPassword)) {
-                    JOptionPane.showMessageDialog(null, "Välkommen " + userName + ". Du har nu loggat in");
-                    switch (info) {
-                        case "AGENT":
-                            String behorighet = idb.fetchSingle("select ADMINISTRATOR from AGENT where AGENT_ID = " + userID);
-                            switch (behorighet) {
-                                case "J":
-                                    System.out.println("Du är administratör");
-                                    //metodanrop till adminsida
-                                    break;
-                                case "N":
-                                    System.out.println("Du är inte administratör");
-                                    //metodanrop till agentsida
-                                    break;
-                            }
-                            break;
+                ArrayList<String> allusers = idb.fetchColumn("select " + info + "_ID from " + info);
+                if (allusers.contains(userID)) {
+                    //Hämtar det lagrade lösenordet från databasen.
+                    String storedPassword = idb.fetchSingle("select LOSENORD from " + info + " where " + info + "_ID = " + userID);
+                    String storedUser = idb.fetchSingle("select " + info + "_ID  from " + info + " where " + info + "_ID = " + userID);
+                    String userName = idb.fetchSingle("select NAMN from " + info + " where " + info + "_ID = " + userID);
 
-                        case "ALIEN":
-                            //starta alien sida.
-                            break;
+                    if (storedPassword.equals(convertedPassword)) {
+                        JOptionPane.showMessageDialog(null, "Välkommen " + userName + ". Du har nu loggat in");
+                        switch (info) {
+                            case "AGENT":
+                                String behorighet = idb.fetchSingle("select ADMINISTRATOR from AGENT where AGENT_ID = " + userID);
+                                switch (behorighet) {
+                                    case "J":
+                                        System.out.println("Du är administratör");
+                                        //metodanrop till adminsida
+                                        break;
+                                    case "N":
+                                        System.out.println("Du är inte administratör");
+                                        //metodanrop till agentsida
+                                        break;
+                                }
+                                break;
+
+                            case "ALIEN":
+                                System.out.println("hej hej");
+                                //starta alien sida.
+                                break;
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Fel lösenord, försök igen");
+                        txtPass.requestFocusInWindow();
                     }
-
                 } else {
-                    JOptionPane.showMessageDialog(null, "Fel lösenord, försök igen");
-                    txtPass.requestFocusInWindow();
+                    JOptionPane.showMessageDialog(null, "Fel användarnamn, försök igen");
+                    txtUserName.requestFocusInWindow();
                 }
 
             } catch (InfException ex) {
