@@ -5,7 +5,6 @@
  */
 package mib;
 
-
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -17,15 +16,19 @@ import oru.inf.InfException;
 public class LoginForm extends javax.swing.JFrame {
 
     private final InfDB idb;
+    private String info;
 
     /**
      * Creates new form HuvudFonster
      *
      * @param idb databaskopplingen
      */
-    public LoginForm(InfDB idb) {
+    public LoginForm(InfDB idb, String info) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.idb = idb;
+        this.info = info;
+
     }
 
     /**
@@ -112,24 +115,30 @@ public class LoginForm extends javax.swing.JFrame {
                 StringBuilder sb = new StringBuilder("");
                 String convertedPassword = sb.append(password).toString(); //Själva konverteringen
                 //Hämtar det lagrade lösenordet från databasen.
-                String storedPassword = idb.fetchSingle("select LOSENORD from AGENT where AGENT_ID = " + userID);
-                String userName = idb.fetchSingle("select NAMN from AGENT where AGENT_ID = " + userID);
-                String behorighet = idb.fetchSingle("select ADMINISTRATOR from AGENT where AGENT_ID = " + userID);
+                String storedPassword = idb.fetchSingle("select LOSENORD from " + info + " where " + info + "_ID = " + userID);
+                String userName = idb.fetchSingle("select NAMN from " + info + " where " + info + "_ID = " + userID);
                 if (storedPassword.equals(convertedPassword)) {
                     JOptionPane.showMessageDialog(null, "Välkommen " + userName + ". Du har nu loggat in");
-                    switch (behorighet) {
-                        case "J":
-                            System.out.println("Du är administratör");
-                            //metodanrop till adminsida
+                    switch (info) {
+                        case "AGENT":
+                            String behorighet = idb.fetchSingle("select ADMINISTRATOR from AGENT where AGENT_ID = " + userID);
+                            switch (behorighet) {
+                                case "J":
+                                    System.out.println("Du är administratör");
+                                    //metodanrop till adminsida
+                                    break;
+                                case "N":
+                                    System.out.println("Du är inte administratör");
+                                    //metodanrop till agentsida
+                                    break;
+                            }
                             break;
-                        case "N":
-                            System.out.println("Du är inte administratör");
-                            //metodanrop till agentsida
+
+                        case "ALIEN":
+                            //starta alien sida.
                             break;
                     }
 
-                    //setVisible(false); //Gömmer inloggningsfönstret
-                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Fel lösenord, försök igen");
                     txtPass.requestFocusInWindow();

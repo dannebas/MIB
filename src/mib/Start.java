@@ -27,7 +27,7 @@ public class Start {
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
         }
-        new LoginForm(idb).setVisible(true);
+        new MainPage(idb).setVisible(true);
     }
 
 }
