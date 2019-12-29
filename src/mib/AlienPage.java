@@ -42,36 +42,44 @@ public class AlienPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlBackground = new javax.swing.JPanel();
         lblLogoHolder = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
         lblSok = new javax.swing.JLabel();
         lblKontakt = new javax.swing.JLabel();
         lblAndraLosen = new javax.swing.JLabel();
         lblLoggaUt = new javax.swing.JLabel();
-        lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 475));
         setResizable(false);
-        getContentPane().setLayout(null);
+
+        pnlBackground.setBackground(new java.awt.Color(29, 29, 48));
+        pnlBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlBackground.setLayout(null);
 
         lblLogoHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/alienicon.png"))); // NOI18N
-        getContentPane().add(lblLogoHolder);
+        pnlBackground.add(lblLogoHolder);
         lblLogoHolder.setBounds(30, 10, 70, 100);
 
         lblValkommen.setForeground(new java.awt.Color(204, 204, 204));
         lblValkommen.setText("Välkommen... Vad vill du göra idag?");
-        getContentPane().add(lblValkommen);
+        pnlBackground.add(lblValkommen);
         lblValkommen.setBounds(110, 50, 200, 16);
 
         lblSok.setForeground(new java.awt.Color(204, 204, 204));
         lblSok.setText("Sök Aliens");
-        getContentPane().add(lblSok);
+        lblSok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSokMouseClicked(evt);
+            }
+        });
+        pnlBackground.add(lblSok);
         lblSok.setBounds(30, 200, 150, 16);
 
         lblKontakt.setForeground(new java.awt.Color(204, 204, 204));
         lblKontakt.setText("Kontakta din områdeschef");
-        getContentPane().add(lblKontakt);
+        pnlBackground.add(lblKontakt);
         lblKontakt.setBounds(30, 250, 160, 16);
 
         lblAndraLosen.setForeground(new java.awt.Color(204, 204, 204));
@@ -82,7 +90,7 @@ public class AlienPage extends javax.swing.JFrame {
                 lblAndraLosenMouseClicked(evt);
             }
         });
-        getContentPane().add(lblAndraLosen);
+        pnlBackground.add(lblAndraLosen);
         lblAndraLosen.setBounds(30, 290, 150, 50);
 
         lblLoggaUt.setForeground(new java.awt.Color(204, 204, 204));
@@ -93,12 +101,10 @@ public class AlienPage extends javax.swing.JFrame {
                 lblLoggaUtMouseClicked(evt);
             }
         });
-        getContentPane().add(lblLoggaUt);
+        pnlBackground.add(lblLoggaUt);
         lblLoggaUt.setBounds(30, 350, 120, 50);
 
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/bg2.png"))); // NOI18N
-        getContentPane().add(lblBackground);
-        lblBackground.setBounds(0, 0, 400, 450);
+        getContentPane().add(pnlBackground, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -116,14 +122,22 @@ public class AlienPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblAndraLosenMouseClicked
 
+    private void lblSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSokMouseClicked
+        // TODO add your handling code here:
+        
+        String namn = alien.getNamn();
+        System.out.println(namn);
+        
+    }//GEN-LAST:event_lblSokMouseClicked
+
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblAndraLosen;
-    private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblKontakt;
     private javax.swing.JLabel lblLoggaUt;
     private javax.swing.JLabel lblLogoHolder;
     private javax.swing.JLabel lblSok;
     private javax.swing.JLabel lblValkommen;
+    private javax.swing.JPanel pnlBackground;
     // End of variables declaration//GEN-END:variables
 }

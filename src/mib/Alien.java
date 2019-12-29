@@ -18,7 +18,6 @@ public class Alien {
     private final InfDB idb;
     private String id;
     private String namn;
-    //private String status;
     private String losenord;
 
     public Alien(InfDB idb, String id) {
@@ -26,7 +25,6 @@ public class Alien {
         this.idb = idb;
         this.id = id;
         try {
-            // status = idb.fetchSingle("select BESOKSSTATUS from ALIEN where ALIEN_ID = " + id);
             losenord = idb.fetchSingle("select LOSENORD from ALIEN where ALIEN_ID = " + id);
             namn = idb.fetchSingle("select NAMN from ALIEN where ALIEN_ID = " + id);
         } catch (InfException ex) {

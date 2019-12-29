@@ -5,17 +5,25 @@
  */
 package mib;
 
+import oru.inf.InfDB;
+
 /**
  *
  * @author Daniel
  */
 public class AgentPage extends javax.swing.JFrame {
 
+    private InfDB idb;
+    private Agent agent;
     /**
      * Creates new form AgentPage
      */
-    public AgentPage() {
+    public AgentPage(InfDB idb, Agent agent) {
         initComponents();
+        this.idb = idb;
+        this.agent = agent;
+        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -27,57 +35,108 @@ public class AgentPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        pnlBackground = new javax.swing.JPanel();
+        pnlAgentInfo = new javax.swing.JPanel();
+        pnlAgentMeny = new javax.swing.JPanel();
+        lblAgentLogo = new javax.swing.JLabel();
+        lblValkommen = new javax.swing.JLabel();
+        lblLoggaUt = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 475));
+        setResizable(false);
+
+        pnlBackground.setBackground(new java.awt.Color(29, 29, 48));
+        pnlBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlBackground.setLayout(null);
+
+        pnlAgentInfo.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAgentInfo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        javax.swing.GroupLayout pnlAgentInfoLayout = new javax.swing.GroupLayout(pnlAgentInfo);
+        pnlAgentInfo.setLayout(pnlAgentInfoLayout);
+        pnlAgentInfoLayout.setHorizontalGroup(
+            pnlAgentInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 374, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+        pnlAgentInfoLayout.setVerticalGroup(
+            pnlAgentInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 404, Short.MAX_VALUE)
         );
+
+        pnlBackground.add(pnlAgentInfo);
+        pnlAgentInfo.setBounds(400, 20, 380, 410);
+
+        pnlAgentMeny.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAgentMeny.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        lblAgentLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAgentLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
+
+        lblValkommen.setForeground(new java.awt.Color(204, 204, 204));
+        lblValkommen.setText("Välkommen... Vad vill du göra idag?");
+
+        lblLoggaUt.setForeground(new java.awt.Color(204, 204, 204));
+        lblLoggaUt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/logouticon.png"))); // NOI18N
+        lblLoggaUt.setText("   Logga ut");
+        lblLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLoggaUtMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlAgentMenyLayout = new javax.swing.GroupLayout(pnlAgentMeny);
+        pnlAgentMeny.setLayout(pnlAgentMenyLayout);
+        pnlAgentMenyLayout.setHorizontalGroup(
+            pnlAgentMenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAgentMenyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAgentMenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAgentMenyLayout.createSequentialGroup()
+                        .addComponent(lblAgentLogo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblValkommen, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))
+                    .addGroup(pnlAgentMenyLayout.createSequentialGroup()
+                        .addComponent(lblLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlAgentMenyLayout.setVerticalGroup(
+            pnlAgentMenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAgentMenyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAgentMenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblValkommen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblAgentLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
+                .addComponent(lblLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnlBackground.add(pnlAgentMeny);
+        pnlAgentMeny.setBounds(20, 20, 360, 410);
+
+        getContentPane().add(pnlBackground, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgentPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgentPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgentPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgentPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void lblLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoggaUtMouseClicked
+        // TODO add your handling code here:
+        if(Validering.kollaUtloggning()){
+            setVisible(false);
+            new MainPage(idb).setVisible(true);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgentPage().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_lblLoggaUtMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblAgentLogo;
+    private javax.swing.JLabel lblLoggaUt;
+    private javax.swing.JLabel lblValkommen;
+    private javax.swing.JPanel pnlAgentInfo;
+    private javax.swing.JPanel pnlAgentMeny;
+    private javax.swing.JPanel pnlBackground;
     // End of variables declaration//GEN-END:variables
 }

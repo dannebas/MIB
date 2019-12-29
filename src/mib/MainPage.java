@@ -36,25 +36,58 @@ public class MainPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlBackground = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
-        lblAgentInlog = new javax.swing.JLabel();
-        lblAlienInlog = new javax.swing.JLabel();
         lblLogoHolder = new javax.swing.JLabel();
-        lblBackground = new javax.swing.JLabel();
+        pnlAlienButton = new javax.swing.JPanel();
+        lblAlienInlog = new javax.swing.JLabel();
+        pnlAgentButton = new javax.swing.JPanel();
+        lblAgentInlog = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 475));
         setPreferredSize(new java.awt.Dimension(400, 450));
         setResizable(false);
-        getContentPane().setLayout(null);
+
+        pnlBackground.setBackground(new java.awt.Color(29, 29, 48));
+        pnlBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlBackground.setLayout(null);
 
         lblTitle.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(204, 204, 204));
         lblTitle.setText("MIB SEKTOR SKANDINAVIEN");
-        getContentPane().add(lblTitle);
+        pnlBackground.add(lblTitle);
         lblTitle.setBounds(120, 260, 160, 22);
 
+        lblLogoHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/miblogo.png"))); // NOI18N
+        pnlBackground.add(lblLogoHolder);
+        lblLogoHolder.setBounds(100, 110, 210, 130);
+
+        pnlAlienButton.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAlienButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlAlienButton.setLayout(new java.awt.BorderLayout());
+
+        lblAlienInlog.setForeground(new java.awt.Color(204, 204, 204));
+        lblAlienInlog.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAlienInlog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/alienicon.png"))); // NOI18N
+        lblAlienInlog.setText("Alien");
+        lblAlienInlog.setPreferredSize(new java.awt.Dimension(78, 80));
+        lblAlienInlog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAlienInlogMouseClicked(evt);
+            }
+        });
+        pnlAlienButton.add(lblAlienInlog, java.awt.BorderLayout.CENTER);
+
+        pnlBackground.add(pnlAlienButton);
+        pnlAlienButton.setBounds(220, 310, 120, 100);
+
+        pnlAgentButton.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAgentButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlAgentButton.setLayout(new java.awt.BorderLayout());
+
         lblAgentInlog.setForeground(new java.awt.Color(204, 204, 204));
+        lblAgentInlog.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAgentInlog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
         lblAgentInlog.setText("Agent");
         lblAgentInlog.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,27 +95,12 @@ public class MainPage extends javax.swing.JFrame {
                 lblAgentInlogMouseClicked(evt);
             }
         });
-        getContentPane().add(lblAgentInlog);
-        lblAgentInlog.setBounds(80, 320, 80, 80);
+        pnlAgentButton.add(lblAgentInlog, java.awt.BorderLayout.CENTER);
 
-        lblAlienInlog.setForeground(new java.awt.Color(204, 204, 204));
-        lblAlienInlog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/alienicon.png"))); // NOI18N
-        lblAlienInlog.setText("Alien");
-        lblAlienInlog.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAlienInlogMouseClicked(evt);
-            }
-        });
-        getContentPane().add(lblAlienInlog);
-        lblAlienInlog.setBounds(220, 320, 100, 80);
+        pnlBackground.add(pnlAgentButton);
+        pnlAgentButton.setBounds(70, 310, 120, 100);
 
-        lblLogoHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/miblogo.png"))); // NOI18N
-        getContentPane().add(lblLogoHolder);
-        lblLogoHolder.setBounds(100, 110, 210, 130);
-
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/bg2.png"))); // NOI18N
-        getContentPane().add(lblBackground);
-        lblBackground.setBounds(0, 0, 400, 450);
+        getContentPane().add(pnlBackground, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -103,8 +121,10 @@ public class MainPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblAgentInlog;
     private javax.swing.JLabel lblAlienInlog;
-    private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblLogoHolder;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlAgentButton;
+    private javax.swing.JPanel pnlAlienButton;
+    private javax.swing.JPanel pnlBackground;
     // End of variables declaration//GEN-END:variables
 }

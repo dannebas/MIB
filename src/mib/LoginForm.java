@@ -43,37 +43,46 @@ public class LoginForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlBackground = new javax.swing.JPanel();
+        lblLogoHolder = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
         lblPass = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
-        lblLogoHolder = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
-        lblBackground = new javax.swing.JLabel();
+        pnlLoginPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 475));
         setSize(new java.awt.Dimension(400, 450));
-        getContentPane().setLayout(null);
+
+        pnlBackground.setBackground(new java.awt.Color(29, 29, 48));
+        pnlBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlBackground.setLayout(null);
+
+        lblLogoHolder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogoHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/miblogo.png"))); // NOI18N
+        pnlBackground.add(lblLogoHolder);
+        lblLogoHolder.setBounds(90, 100, 220, 116);
 
         lblTitle.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(204, 204, 204));
         lblTitle.setText("MIB SEKTOR SKANDINAVIEN");
-        getContentPane().add(lblTitle);
+        pnlBackground.add(lblTitle);
         lblTitle.setBounds(120, 260, 160, 22);
 
         lblUser.setForeground(new java.awt.Color(204, 204, 204));
         lblUser.setText("Användarnamn:");
-        getContentPane().add(lblUser);
+        pnlBackground.add(lblUser);
         lblUser.setBounds(70, 320, 100, 16);
 
         lblPass.setForeground(new java.awt.Color(204, 204, 204));
         lblPass.setText("Lösenord:");
         lblPass.setAlignmentY(0.0F);
-        getContentPane().add(lblPass);
+        pnlBackground.add(lblPass);
         lblPass.setBounds(70, 350, 80, 16);
-        getContentPane().add(txtUserName);
+        pnlBackground.add(txtUserName);
         txtUserName.setBounds(210, 320, 110, 24);
 
         btnLogin.setText("Logga in");
@@ -82,30 +91,26 @@ public class LoginForm extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin);
+        pnlBackground.add(btnLogin);
         btnLogin.setBounds(230, 380, 90, 32);
-
-        lblLogoHolder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogoHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/miblogo.png"))); // NOI18N
-        lblLogoHolder.setPreferredSize(new java.awt.Dimension(200, 116));
-        getContentPane().add(lblLogoHolder);
-        lblLogoHolder.setBounds(90, 100, 220, 116);
 
         txtPass.setMinimumSize(new java.awt.Dimension(15, 24));
         txtPass.setPreferredSize(new java.awt.Dimension(15, 24));
-        getContentPane().add(txtPass);
+        pnlBackground.add(txtPass);
         txtPass.setBounds(210, 350, 110, 24);
 
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/bg2.png"))); // NOI18N
-        getContentPane().add(lblBackground);
-        lblBackground.setBounds(0, 0, 400, 450);
+        pnlLoginPanel.setBackground(new java.awt.Color(29, 29, 48));
+        pnlLoginPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlLoginPanel.setLayout(null);
+        pnlBackground.add(pnlLoginPanel);
+        pnlLoginPanel.setBounds(60, 310, 270, 110);
+
+        getContentPane().add(pnlBackground, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-
         String userID = txtUserName.getText();
         /* Följande rader är för att hantera lösenordet
         som skrivs in i ett lösenordsfält och hämtas ut som en array av char.
@@ -114,9 +119,7 @@ public class LoginForm extends javax.swing.JFrame {
         char[] password = txtPass.getPassword();
         StringBuilder sb = new StringBuilder("");
         String convertedPassword = sb.append(password).toString(); //Själva konverteringen
-
         if (Validering.kollaTextRutaTom(txtUserName) && Validering.kollaHeltal(txtUserName) && Validering.kollaLosenOrd(txtPass)) {
-
             try {
                 ArrayList<String> allusers = idb.fetchColumn("select " + info + "_ID from " + info);
                 if (allusers.contains(userID)) {
@@ -133,7 +136,9 @@ public class LoginForm extends javax.swing.JFrame {
                                 switch (behorighet) {
                                     case "J":
                                         System.out.println("Du är administratör");
-                                        //metodanrop till adminsida
+                                        Agent agentAttLoggaIn = new Agent(idb, userID);
+                                        new AgentPage(idb, agentAttLoggaIn).setVisible(true);
+                                        this.dispose();
                                         break;
                                     case "N":
                                         System.out.println("Du är inte administratör");
@@ -143,7 +148,6 @@ public class LoginForm extends javax.swing.JFrame {
                                 break;
 
                             case "ALIEN":
-                                System.out.println("hej hej");
                                 Alien alienAttLoggaIn = new Alien(idb, userID);
                                 new AlienPage(idb, alienAttLoggaIn).setVisible(true);
                                 setVisible(false);
@@ -170,11 +174,12 @@ public class LoginForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblLogoHolder;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlLoginPanel;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
