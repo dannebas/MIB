@@ -37,5 +37,7 @@ public class Alien {
 
         return namn;
     }
+    
+    
 
 }

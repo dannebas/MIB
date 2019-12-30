@@ -12,7 +12,9 @@ import oru.inf.InfException;
 
 /**
  *
- * @author Daniel
+ * @author Daniel Lindau
+ * @version 0.1b
+ *
  */
 public class LoginForm extends javax.swing.JFrame {
 
@@ -31,7 +33,6 @@ public class LoginForm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.idb = idb;
         this.info = info;
-
     }
 
     /**
@@ -125,27 +126,25 @@ public class LoginForm extends javax.swing.JFrame {
                 if (allusers.contains(userID)) {
                     //Hämtar det lagrade lösenordet från databasen.
                     String storedPassword = idb.fetchSingle("select LOSENORD from " + info + " where " + info + "_ID = " + userID);
-                    String storedUser = idb.fetchSingle("select " + info + "_ID  from " + info + " where " + info + "_ID = " + userID);
                     String userName = idb.fetchSingle("select NAMN from " + info + " where " + info + "_ID = " + userID);
 
                     if (storedPassword.equals(convertedPassword)) {
                         JOptionPane.showMessageDialog(null, "Välkommen " + userName + ". Du har nu loggat in");
                         switch (info) {
                             case "AGENT":
-                                String behorighet = idb.fetchSingle("select ADMINISTRATOR from AGENT where AGENT_ID = " + userID);
-                                switch (behorighet) {
-                                    case "J":
-                                        System.out.println("Du är administratör");
-                                        Agent agentAttLoggaIn = new Agent(idb, userID);
-                                        new AgentPage(idb, agentAttLoggaIn).setVisible(true);
-                                        this.dispose();
-                                        break;
-                                    case "N":
+                                            /*String behorighet = idb.fetchSingle("select ADMINISTRATOR from AGENT where AGENT_ID = " + userID);
+                                            switch (behorighet) {
+                                            case "J":
+                                            System.out.println("Du är administratör");*/
+
+                                Agent agentAttLoggaIn = new Agent(idb, userID);
+                                new AgentPage(idb, agentAttLoggaIn).setVisible(true);
+                                this.dispose();
+                                break;
+                                           /*case "N":
                                         System.out.println("Du är inte administratör");
                                         //metodanrop till agentsida
-                                        break;
-                                }
-                                break;
+                                        break*/
 
                             case "ALIEN":
                                 Alien alienAttLoggaIn = new Alien(idb, userID);

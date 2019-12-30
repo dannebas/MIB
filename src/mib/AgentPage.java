@@ -9,21 +9,27 @@ import oru.inf.InfDB;
 
 /**
  *
- * @author Daniel
+ * @author Daniel Lindau
  */
 public class AgentPage extends javax.swing.JFrame {
 
-    private InfDB idb;
-    private Agent agent;
+    private final InfDB idb;
+    private final Agent agent;
+
     /**
      * Creates new form AgentPage
+     *
+     * @param idb databaskopplingen
+     * @param agent ett objekt av klassen Agent som representerar den agent som
+     * loggat in.
      */
     public AgentPage(InfDB idb, Agent agent) {
         initComponents();
         this.idb = idb;
         this.agent = agent;
+        lblValkommen.setText("Inloggad som: " + agent.getNamn() + ".");
         this.setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -37,10 +43,15 @@ public class AgentPage extends javax.swing.JFrame {
 
         pnlBackground = new javax.swing.JPanel();
         pnlAgentInfo = new javax.swing.JPanel();
-        pnlAgentMeny = new javax.swing.JPanel();
+        pnlMeny = new javax.swing.JPanel();
+        lblLoggaUt = new javax.swing.JLabel();
+        lblAndraLosen = new javax.swing.JLabel();
+        lblAgenter = new javax.swing.JLabel();
+        lblAliens = new javax.swing.JLabel();
+        lblUtrustning = new javax.swing.JLabel();
+        lblMeny = new javax.swing.JLabel();
         lblAgentLogo = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
-        lblLoggaUt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 475));
@@ -57,7 +68,7 @@ public class AgentPage extends javax.swing.JFrame {
         pnlAgentInfo.setLayout(pnlAgentInfoLayout);
         pnlAgentInfoLayout.setHorizontalGroup(
             pnlAgentInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGap(0, 614, Short.MAX_VALUE)
         );
         pnlAgentInfoLayout.setVerticalGroup(
             pnlAgentInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,56 +76,66 @@ public class AgentPage extends javax.swing.JFrame {
         );
 
         pnlBackground.add(pnlAgentInfo);
-        pnlAgentInfo.setBounds(400, 20, 380, 410);
+        pnlAgentInfo.setBounds(160, 20, 620, 410);
 
-        pnlAgentMeny.setBackground(new java.awt.Color(29, 29, 48));
-        pnlAgentMeny.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        lblAgentLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAgentLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
-
-        lblValkommen.setForeground(new java.awt.Color(204, 204, 204));
-        lblValkommen.setText("Välkommen... Vad vill du göra idag?");
+        pnlMeny.setBackground(new java.awt.Color(29, 29, 48));
+        pnlMeny.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlMeny.setMinimumSize(new java.awt.Dimension(150, 200));
+        pnlMeny.setPreferredSize(new java.awt.Dimension(150, 200));
+        pnlMeny.setLayout(null);
 
         lblLoggaUt.setForeground(new java.awt.Color(204, 204, 204));
-        lblLoggaUt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/logouticon.png"))); // NOI18N
-        lblLoggaUt.setText("   Logga ut");
+        lblLoggaUt.setText("Logga ut");
         lblLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblLoggaUtMouseClicked(evt);
             }
         });
+        pnlMeny.add(lblLoggaUt);
+        lblLoggaUt.setBounds(10, 110, 100, 20);
 
-        javax.swing.GroupLayout pnlAgentMenyLayout = new javax.swing.GroupLayout(pnlAgentMeny);
-        pnlAgentMeny.setLayout(pnlAgentMenyLayout);
-        pnlAgentMenyLayout.setHorizontalGroup(
-            pnlAgentMenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAgentMenyLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlAgentMenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlAgentMenyLayout.createSequentialGroup()
-                        .addComponent(lblAgentLogo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblValkommen, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))
-                    .addGroup(pnlAgentMenyLayout.createSequentialGroup()
-                        .addComponent(lblLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pnlAgentMenyLayout.setVerticalGroup(
-            pnlAgentMenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAgentMenyLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlAgentMenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblValkommen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblAgentLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
-                .addComponent(lblLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        lblAndraLosen.setForeground(new java.awt.Color(204, 204, 204));
+        lblAndraLosen.setText("Ändra lösenord");
+        lblAndraLosen.setMaximumSize(new java.awt.Dimension(50, 15));
+        lblAndraLosen.setMinimumSize(new java.awt.Dimension(50, 15));
+        lblAndraLosen.setPreferredSize(new java.awt.Dimension(50, 15));
+        lblAndraLosen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAndraLosenMouseClicked(evt);
+            }
+        });
+        pnlMeny.add(lblAndraLosen);
+        lblAndraLosen.setBounds(10, 90, 100, 20);
 
-        pnlBackground.add(pnlAgentMeny);
-        pnlAgentMeny.setBounds(20, 20, 360, 410);
+        lblAgenter.setText("Agenter");
+        pnlMeny.add(lblAgenter);
+        lblAgenter.setBounds(10, 30, 100, 20);
+
+        lblAliens.setText("Aliens");
+        pnlMeny.add(lblAliens);
+        lblAliens.setBounds(10, 50, 100, 20);
+
+        lblUtrustning.setText("Utrustning");
+        pnlMeny.add(lblUtrustning);
+        lblUtrustning.setBounds(10, 70, 100, 20);
+
+        lblMeny.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        lblMeny.setText("MENY");
+        pnlMeny.add(lblMeny);
+        lblMeny.setBounds(10, 10, 41, 16);
+
+        pnlBackground.add(pnlMeny);
+        pnlMeny.setBounds(20, 140, 120, 140);
+
+        lblAgentLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAgentLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
+        pnlBackground.add(lblAgentLogo);
+        lblAgentLogo.setBounds(30, 20, 41, 80);
+
+        lblValkommen.setForeground(new java.awt.Color(204, 204, 204));
+        lblValkommen.setText("Inloggad");
+        pnlBackground.add(lblValkommen);
+        lblValkommen.setBounds(30, 100, 90, 40);
 
         getContentPane().add(pnlBackground, java.awt.BorderLayout.CENTER);
 
@@ -122,21 +143,30 @@ public class AgentPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoggaUtMouseClicked
-        // TODO add your handling code here:
-        if(Validering.kollaUtloggning()){
-            setVisible(false);
+
+        if (Validering.kollaUtloggning()) {
+            this.dispose();
             new MainPage(idb).setVisible(true);
         }
 
     }//GEN-LAST:event_lblLoggaUtMouseClicked
 
+    private void lblAndraLosenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAndraLosenMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblAndraLosenMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblAgentLogo;
+    private javax.swing.JLabel lblAgenter;
+    private javax.swing.JLabel lblAliens;
+    private javax.swing.JLabel lblAndraLosen;
     private javax.swing.JLabel lblLoggaUt;
+    private javax.swing.JLabel lblMeny;
+    private javax.swing.JLabel lblUtrustning;
     private javax.swing.JLabel lblValkommen;
     private javax.swing.JPanel pnlAgentInfo;
-    private javax.swing.JPanel pnlAgentMeny;
     private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlMeny;
     // End of variables declaration//GEN-END:variables
 }

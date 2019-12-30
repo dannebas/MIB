@@ -112,7 +112,7 @@ public class AlienPage extends javax.swing.JFrame {
     private void lblLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoggaUtMouseClicked
         // TODO add your handling code here:
         if(Validering.kollaUtloggning()){
-        setVisible(false);
+        this.dispose();
         new MainPage(idb).setVisible(true);
         }
         

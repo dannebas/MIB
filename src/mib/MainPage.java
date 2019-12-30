@@ -57,11 +57,11 @@ public class MainPage extends javax.swing.JFrame {
         lblTitle.setForeground(new java.awt.Color(204, 204, 204));
         lblTitle.setText("MIB SEKTOR SKANDINAVIEN");
         pnlBackground.add(lblTitle);
-        lblTitle.setBounds(120, 260, 160, 22);
+        lblTitle.setBounds(120, 180, 160, 22);
 
         lblLogoHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/miblogo.png"))); // NOI18N
         pnlBackground.add(lblLogoHolder);
-        lblLogoHolder.setBounds(100, 110, 210, 130);
+        lblLogoHolder.setBounds(100, 30, 210, 130);
 
         pnlAlienButton.setBackground(new java.awt.Color(29, 29, 48));
         pnlAlienButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
