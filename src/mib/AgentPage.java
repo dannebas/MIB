@@ -29,7 +29,10 @@ public class AgentPage extends javax.swing.JFrame {
         this.agent = agent;
         lblValkommen.setText("Inloggad som: " + agent.getNamn() + ".");
         this.setLocationRelativeTo(null);
-
+        pnlHuvudMeny.setVisible(true);
+        pnlAlienMeny.setVisible(false);
+        //pnlAgentmeny.setVisible(false);
+        //pnlUtrustningMeny.setVisible(false);
     }
 
     /**
@@ -42,16 +45,35 @@ public class AgentPage extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlBackground = new javax.swing.JPanel();
-        pnlAgentInfo = new javax.swing.JPanel();
-        pnlMeny = new javax.swing.JPanel();
+        pnlAlienRegistrering = new javax.swing.JPanel();
+        lblNamn = new javax.swing.JLabel();
+        txtAlienNamn = new javax.swing.JTextField();
+        txtAlienTelefon = new javax.swing.JTextField();
+        lblLosenord = new javax.swing.JLabel();
+        jXDateAnkomstDatum = new org.jdesktop.swingx.JXDatePicker();
+        lblAnkomstDatum = new javax.swing.JLabel();
+        txtAlienLosenord = new javax.swing.JTextField();
+        lblTelefon = new javax.swing.JLabel();
+        lblRegistreraTitel = new javax.swing.JLabel();
+        jcbAlienOmrade = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jcbAnsvarigAgent = new javax.swing.JComboBox<>();
+        lblAnsvarigAgent = new javax.swing.JLabel();
+        btnRegistrera = new javax.swing.JButton();
+        pnlHuvudMeny = new javax.swing.JPanel();
         lblLoggaUt = new javax.swing.JLabel();
         lblAndraLosen = new javax.swing.JLabel();
         lblAgenter = new javax.swing.JLabel();
         lblAliens = new javax.swing.JLabel();
         lblUtrustning = new javax.swing.JLabel();
-        lblMeny = new javax.swing.JLabel();
         lblAgentLogo = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
+        lblMeny = new javax.swing.JLabel();
+        pnlAlienMeny = new javax.swing.JPanel();
+        lblTillbaka = new javax.swing.JLabel();
+        lblSok = new javax.swing.JLabel();
+        lblRegistrera = new javax.swing.JLabel();
+        lblListaAlla = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 475));
@@ -61,28 +83,68 @@ public class AgentPage extends javax.swing.JFrame {
         pnlBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         pnlBackground.setLayout(null);
 
-        pnlAgentInfo.setBackground(new java.awt.Color(29, 29, 48));
-        pnlAgentInfo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlAlienRegistrering.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAlienRegistrering.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlAlienRegistrering.setLayout(null);
 
-        javax.swing.GroupLayout pnlAgentInfoLayout = new javax.swing.GroupLayout(pnlAgentInfo);
-        pnlAgentInfo.setLayout(pnlAgentInfoLayout);
-        pnlAgentInfoLayout.setHorizontalGroup(
-            pnlAgentInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 614, Short.MAX_VALUE)
-        );
-        pnlAgentInfoLayout.setVerticalGroup(
-            pnlAgentInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
-        );
+        lblNamn.setText("Namn:");
+        pnlAlienRegistrering.add(lblNamn);
+        lblNamn.setBounds(20, 60, 36, 16);
+        pnlAlienRegistrering.add(txtAlienNamn);
+        txtAlienNamn.setBounds(120, 60, 100, 24);
+        pnlAlienRegistrering.add(txtAlienTelefon);
+        txtAlienTelefon.setBounds(120, 90, 100, 24);
 
-        pnlBackground.add(pnlAgentInfo);
-        pnlAgentInfo.setBounds(160, 20, 620, 410);
+        lblLosenord.setText("Lösenord:");
+        pnlAlienRegistrering.add(lblLosenord);
+        lblLosenord.setBounds(20, 120, 70, 16);
+        pnlAlienRegistrering.add(jXDateAnkomstDatum);
+        jXDateAnkomstDatum.setBounds(120, 210, 145, 24);
 
-        pnlMeny.setBackground(new java.awt.Color(29, 29, 48));
-        pnlMeny.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlMeny.setMinimumSize(new java.awt.Dimension(150, 200));
-        pnlMeny.setPreferredSize(new java.awt.Dimension(150, 200));
-        pnlMeny.setLayout(null);
+        lblAnkomstDatum.setText("Ankomstdatum:");
+        pnlAlienRegistrering.add(lblAnkomstDatum);
+        lblAnkomstDatum.setBounds(20, 210, 90, 16);
+        pnlAlienRegistrering.add(txtAlienLosenord);
+        txtAlienLosenord.setBounds(120, 120, 100, 24);
+
+        lblTelefon.setText("Telefon:");
+        pnlAlienRegistrering.add(lblTelefon);
+        lblTelefon.setBounds(20, 90, 50, 16);
+
+        lblRegistreraTitel.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        lblRegistreraTitel.setForeground(new java.awt.Color(204, 204, 204));
+        lblRegistreraTitel.setText("Registrera ny alien");
+        pnlAlienRegistrering.add(lblRegistreraTitel);
+        lblRegistreraTitel.setBounds(20, 10, 180, 40);
+
+        jcbAlienOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlAlienRegistrering.add(jcbAlienOmrade);
+        jcbAlienOmrade.setBounds(120, 150, 100, 26);
+
+        jLabel1.setText("Område:");
+        pnlAlienRegistrering.add(jLabel1);
+        jLabel1.setBounds(20, 150, 60, 16);
+
+        jcbAnsvarigAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlAlienRegistrering.add(jcbAnsvarigAgent);
+        jcbAnsvarigAgent.setBounds(120, 180, 100, 26);
+
+        lblAnsvarigAgent.setText("Ansvarig agent:");
+        pnlAlienRegistrering.add(lblAnsvarigAgent);
+        lblAnsvarigAgent.setBounds(20, 180, 88, 16);
+
+        btnRegistrera.setText("Spara");
+        pnlAlienRegistrering.add(btnRegistrera);
+        btnRegistrera.setBounds(140, 240, 90, 32);
+
+        pnlBackground.add(pnlAlienRegistrering);
+        pnlAlienRegistrering.setBounds(160, 20, 620, 410);
+
+        pnlHuvudMeny.setBackground(new java.awt.Color(29, 29, 48));
+        pnlHuvudMeny.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlHuvudMeny.setMinimumSize(new java.awt.Dimension(150, 200));
+        pnlHuvudMeny.setPreferredSize(new java.awt.Dimension(150, 200));
+        pnlHuvudMeny.setLayout(null);
 
         lblLoggaUt.setForeground(new java.awt.Color(204, 204, 204));
         lblLoggaUt.setText("Logga ut");
@@ -91,8 +153,8 @@ public class AgentPage extends javax.swing.JFrame {
                 lblLoggaUtMouseClicked(evt);
             }
         });
-        pnlMeny.add(lblLoggaUt);
-        lblLoggaUt.setBounds(10, 110, 100, 20);
+        pnlHuvudMeny.add(lblLoggaUt);
+        lblLoggaUt.setBounds(10, 90, 100, 20);
 
         lblAndraLosen.setForeground(new java.awt.Color(204, 204, 204));
         lblAndraLosen.setText("Ändra lösenord");
@@ -104,28 +166,31 @@ public class AgentPage extends javax.swing.JFrame {
                 lblAndraLosenMouseClicked(evt);
             }
         });
-        pnlMeny.add(lblAndraLosen);
-        lblAndraLosen.setBounds(10, 90, 100, 20);
+        pnlHuvudMeny.add(lblAndraLosen);
+        lblAndraLosen.setBounds(10, 70, 100, 20);
 
+        lblAgenter.setForeground(new java.awt.Color(204, 204, 204));
         lblAgenter.setText("Agenter");
-        pnlMeny.add(lblAgenter);
-        lblAgenter.setBounds(10, 30, 100, 20);
+        pnlHuvudMeny.add(lblAgenter);
+        lblAgenter.setBounds(10, 10, 100, 20);
 
+        lblAliens.setForeground(new java.awt.Color(204, 204, 204));
         lblAliens.setText("Aliens");
-        pnlMeny.add(lblAliens);
-        lblAliens.setBounds(10, 50, 100, 20);
+        lblAliens.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAliensMouseClicked(evt);
+            }
+        });
+        pnlHuvudMeny.add(lblAliens);
+        lblAliens.setBounds(10, 30, 100, 20);
 
+        lblUtrustning.setForeground(new java.awt.Color(204, 204, 204));
         lblUtrustning.setText("Utrustning");
-        pnlMeny.add(lblUtrustning);
-        lblUtrustning.setBounds(10, 70, 100, 20);
+        pnlHuvudMeny.add(lblUtrustning);
+        lblUtrustning.setBounds(10, 50, 100, 20);
 
-        lblMeny.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lblMeny.setText("MENY");
-        pnlMeny.add(lblMeny);
-        lblMeny.setBounds(10, 10, 41, 16);
-
-        pnlBackground.add(pnlMeny);
-        pnlMeny.setBounds(20, 140, 120, 140);
+        pnlBackground.add(pnlHuvudMeny);
+        pnlHuvudMeny.setBounds(20, 310, 120, 120);
 
         lblAgentLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAgentLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
@@ -136,6 +201,53 @@ public class AgentPage extends javax.swing.JFrame {
         lblValkommen.setText("Inloggad");
         pnlBackground.add(lblValkommen);
         lblValkommen.setBounds(30, 100, 90, 40);
+
+        lblMeny.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        lblMeny.setForeground(new java.awt.Color(204, 204, 204));
+        lblMeny.setText("MENY");
+        pnlBackground.add(lblMeny);
+        lblMeny.setBounds(30, 290, 41, 16);
+
+        pnlAlienMeny.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAlienMeny.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlAlienMeny.setMinimumSize(new java.awt.Dimension(150, 200));
+        pnlAlienMeny.setLayout(null);
+
+        lblTillbaka.setForeground(new java.awt.Color(204, 204, 204));
+        lblTillbaka.setText("Tillbaka");
+        lblTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblTillbakaMouseClicked(evt);
+            }
+        });
+        pnlAlienMeny.add(lblTillbaka);
+        lblTillbaka.setBounds(10, 80, 100, 20);
+
+        lblSok.setForeground(new java.awt.Color(204, 204, 204));
+        lblSok.setText("Sök och ändra");
+        lblSok.setMaximumSize(new java.awt.Dimension(50, 15));
+        lblSok.setMinimumSize(new java.awt.Dimension(50, 15));
+        lblSok.setPreferredSize(new java.awt.Dimension(50, 15));
+        lblSok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSokMouseClicked(evt);
+            }
+        });
+        pnlAlienMeny.add(lblSok);
+        lblSok.setBounds(10, 40, 100, 20);
+
+        lblRegistrera.setForeground(new java.awt.Color(204, 204, 204));
+        lblRegistrera.setText("Regístrera ny");
+        pnlAlienMeny.add(lblRegistrera);
+        lblRegistrera.setBounds(10, 20, 100, 20);
+
+        lblListaAlla.setForeground(new java.awt.Color(204, 204, 204));
+        lblListaAlla.setText("Lista alla");
+        pnlAlienMeny.add(lblListaAlla);
+        lblListaAlla.setBounds(10, 60, 100, 20);
+
+        pnlBackground.add(pnlAlienMeny);
+        pnlAlienMeny.setBounds(20, 310, 120, 120);
 
         getContentPane().add(pnlBackground, java.awt.BorderLayout.CENTER);
 
@@ -155,18 +267,51 @@ public class AgentPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblAndraLosenMouseClicked
 
+    private void lblSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSokMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSokMouseClicked
+
+    private void lblAliensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAliensMouseClicked
+        pnlHuvudMeny.setVisible(false);
+        pnlAlienMeny.setVisible(true);
+    }//GEN-LAST:event_lblAliensMouseClicked
+
+    private void lblTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTillbakaMouseClicked
+        pnlHuvudMeny.setVisible(true);
+        pnlAlienMeny.setVisible(false);
+    }//GEN-LAST:event_lblTillbakaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistrera;
+    private javax.swing.JLabel jLabel1;
+    private org.jdesktop.swingx.JXDatePicker jXDateAnkomstDatum;
+    private javax.swing.JComboBox<String> jcbAlienOmrade;
+    private javax.swing.JComboBox<String> jcbAnsvarigAgent;
     private javax.swing.JLabel lblAgentLogo;
     private javax.swing.JLabel lblAgenter;
     private javax.swing.JLabel lblAliens;
     private javax.swing.JLabel lblAndraLosen;
+    private javax.swing.JLabel lblAnkomstDatum;
+    private javax.swing.JLabel lblAnsvarigAgent;
+    private javax.swing.JLabel lblListaAlla;
     private javax.swing.JLabel lblLoggaUt;
+    private javax.swing.JLabel lblLosenord;
     private javax.swing.JLabel lblMeny;
+    private javax.swing.JLabel lblNamn;
+    private javax.swing.JLabel lblRegistrera;
+    private javax.swing.JLabel lblRegistreraTitel;
+    private javax.swing.JLabel lblSok;
+    private javax.swing.JLabel lblTelefon;
+    private javax.swing.JLabel lblTillbaka;
     private javax.swing.JLabel lblUtrustning;
     private javax.swing.JLabel lblValkommen;
-    private javax.swing.JPanel pnlAgentInfo;
+    private javax.swing.JPanel pnlAlienMeny;
+    private javax.swing.JPanel pnlAlienRegistrering;
     private javax.swing.JPanel pnlBackground;
-    private javax.swing.JPanel pnlMeny;
+    private javax.swing.JPanel pnlHuvudMeny;
+    private javax.swing.JTextField txtAlienLosenord;
+    private javax.swing.JTextField txtAlienNamn;
+    private javax.swing.JTextField txtAlienTelefon;
     // End of variables declaration//GEN-END:variables
 }

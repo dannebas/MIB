@@ -45,10 +45,13 @@ public class AlienPage extends javax.swing.JFrame {
         pnlBackground = new javax.swing.JPanel();
         lblLogoHolder = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
-        lblSok = new javax.swing.JLabel();
-        lblKontakt = new javax.swing.JLabel();
-        lblAndraLosen = new javax.swing.JLabel();
-        lblLoggaUt = new javax.swing.JLabel();
+        pnlMeny = new javax.swing.JPanel();
+        lblLoggaUt1 = new javax.swing.JLabel();
+        lblAndraLosen1 = new javax.swing.JLabel();
+        lblAgenter = new javax.swing.JLabel();
+        lblAliens = new javax.swing.JLabel();
+        lblMeny = new javax.swing.JLabel();
+        pnlAgentInfo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 475));
@@ -63,81 +66,102 @@ public class AlienPage extends javax.swing.JFrame {
         lblLogoHolder.setBounds(30, 10, 70, 100);
 
         lblValkommen.setForeground(new java.awt.Color(204, 204, 204));
-        lblValkommen.setText("Välkommen... Vad vill du göra idag?");
+        lblValkommen.setText("Välkommen... ");
         pnlBackground.add(lblValkommen);
-        lblValkommen.setBounds(110, 50, 200, 16);
+        lblValkommen.setBounds(30, 120, 90, 16);
 
-        lblSok.setForeground(new java.awt.Color(204, 204, 204));
-        lblSok.setText("Sök Aliens");
-        lblSok.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlMeny.setBackground(new java.awt.Color(29, 29, 48));
+        pnlMeny.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlMeny.setMinimumSize(new java.awt.Dimension(150, 200));
+        pnlMeny.setLayout(null);
+
+        lblLoggaUt1.setForeground(new java.awt.Color(204, 204, 204));
+        lblLoggaUt1.setText("Logga ut");
+        lblLoggaUt1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSokMouseClicked(evt);
+                lblLoggaUt1MouseClicked(evt);
             }
         });
-        pnlBackground.add(lblSok);
-        lblSok.setBounds(30, 200, 150, 16);
+        pnlMeny.add(lblLoggaUt1);
+        lblLoggaUt1.setBounds(10, 110, 100, 20);
 
-        lblKontakt.setForeground(new java.awt.Color(204, 204, 204));
-        lblKontakt.setText("Kontakta din områdeschef");
-        pnlBackground.add(lblKontakt);
-        lblKontakt.setBounds(30, 250, 160, 16);
-
-        lblAndraLosen.setForeground(new java.awt.Color(204, 204, 204));
-        lblAndraLosen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/passwordicon.png"))); // NOI18N
-        lblAndraLosen.setText("   Ändra lösenord");
-        lblAndraLosen.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblAndraLosen1.setForeground(new java.awt.Color(204, 204, 204));
+        lblAndraLosen1.setText("Ändra lösenord");
+        lblAndraLosen1.setMaximumSize(new java.awt.Dimension(50, 15));
+        lblAndraLosen1.setMinimumSize(new java.awt.Dimension(50, 15));
+        lblAndraLosen1.setPreferredSize(new java.awt.Dimension(50, 15));
+        lblAndraLosen1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAndraLosenMouseClicked(evt);
+                lblAndraLosen1MouseClicked(evt);
             }
         });
-        pnlBackground.add(lblAndraLosen);
-        lblAndraLosen.setBounds(30, 290, 150, 50);
+        pnlMeny.add(lblAndraLosen1);
+        lblAndraLosen1.setBounds(10, 90, 100, 20);
 
-        lblLoggaUt.setForeground(new java.awt.Color(204, 204, 204));
-        lblLoggaUt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/logouticon.png"))); // NOI18N
-        lblLoggaUt.setText("   Logga ut");
-        lblLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblLoggaUtMouseClicked(evt);
-            }
-        });
-        pnlBackground.add(lblLoggaUt);
-        lblLoggaUt.setBounds(30, 350, 120, 50);
+        lblAgenter.setForeground(new java.awt.Color(204, 204, 204));
+        lblAgenter.setText("Kontakta agent");
+        pnlMeny.add(lblAgenter);
+        lblAgenter.setBounds(10, 70, 100, 20);
+
+        lblAliens.setForeground(new java.awt.Color(204, 204, 204));
+        lblAliens.setText("Sök andra aliens");
+        pnlMeny.add(lblAliens);
+        lblAliens.setBounds(10, 50, 100, 20);
+
+        lblMeny.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        lblMeny.setForeground(new java.awt.Color(204, 204, 204));
+        lblMeny.setText("MENY");
+        pnlMeny.add(lblMeny);
+        lblMeny.setBounds(10, 10, 41, 16);
+
+        pnlBackground.add(pnlMeny);
+        pnlMeny.setBounds(20, 290, 120, 140);
+
+        pnlAgentInfo.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAgentInfo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        javax.swing.GroupLayout pnlAgentInfoLayout = new javax.swing.GroupLayout(pnlAgentInfo);
+        pnlAgentInfo.setLayout(pnlAgentInfoLayout);
+        pnlAgentInfoLayout.setHorizontalGroup(
+            pnlAgentInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 614, Short.MAX_VALUE)
+        );
+        pnlAgentInfoLayout.setVerticalGroup(
+            pnlAgentInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 404, Short.MAX_VALUE)
+        );
+
+        pnlBackground.add(pnlAgentInfo);
+        pnlAgentInfo.setBounds(160, 20, 620, 410);
 
         getContentPane().add(pnlBackground, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoggaUtMouseClicked
-        // TODO add your handling code here:
-        if(Validering.kollaUtloggning()){
-        this.dispose();
-        new MainPage(idb).setVisible(true);
+    private void lblLoggaUt1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoggaUt1MouseClicked
+
+        if (Validering.kollaUtloggning()) {
+            this.dispose();
+            new MainPage(idb).setVisible(true);
         }
-        
-    }//GEN-LAST:event_lblLoggaUtMouseClicked
+    }//GEN-LAST:event_lblLoggaUt1MouseClicked
 
-    private void lblAndraLosenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAndraLosenMouseClicked
+    private void lblAndraLosen1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAndraLosen1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblAndraLosenMouseClicked
-
-    private void lblSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSokMouseClicked
-        // TODO add your handling code here:
-        
-        String namn = alien.getNamn();
-        System.out.println(namn);
-        
-    }//GEN-LAST:event_lblSokMouseClicked
+    }//GEN-LAST:event_lblAndraLosen1MouseClicked
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lblAndraLosen;
-    private javax.swing.JLabel lblKontakt;
-    private javax.swing.JLabel lblLoggaUt;
+    private javax.swing.JLabel lblAgenter;
+    private javax.swing.JLabel lblAliens;
+    private javax.swing.JLabel lblAndraLosen1;
+    private javax.swing.JLabel lblLoggaUt1;
     private javax.swing.JLabel lblLogoHolder;
-    private javax.swing.JLabel lblSok;
+    private javax.swing.JLabel lblMeny;
     private javax.swing.JLabel lblValkommen;
+    private javax.swing.JPanel pnlAgentInfo;
     private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlMeny;
     // End of variables declaration//GEN-END:variables
 }
