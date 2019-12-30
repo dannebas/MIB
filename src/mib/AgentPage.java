@@ -5,13 +5,17 @@
  */
 package mib;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
  * @author Daniel Lindau
  */
-public class AgentPage extends javax.swing.JFrame {
+public final class AgentPage extends javax.swing.JFrame {
 
     private final InfDB idb;
     private final Agent agent;
@@ -31,6 +35,9 @@ public class AgentPage extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         pnlHuvudMeny.setVisible(true);
         pnlAlienMeny.setVisible(false);
+
+        fyllComboBoxAgenter();
+        fyllComboBoxOmraden();
         //pnlAgentmeny.setVisible(false);
         //pnlUtrustningMeny.setVisible(false);
     }
@@ -87,6 +94,7 @@ public class AgentPage extends javax.swing.JFrame {
         pnlAlienRegistrering.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnlAlienRegistrering.setLayout(null);
 
+        lblNamn.setForeground(new java.awt.Color(204, 204, 204));
         lblNamn.setText("Namn:");
         pnlAlienRegistrering.add(lblNamn);
         lblNamn.setBounds(20, 60, 36, 16);
@@ -95,18 +103,21 @@ public class AgentPage extends javax.swing.JFrame {
         pnlAlienRegistrering.add(txtAlienTelefon);
         txtAlienTelefon.setBounds(120, 90, 100, 24);
 
+        lblLosenord.setForeground(new java.awt.Color(204, 204, 204));
         lblLosenord.setText("Lösenord:");
         pnlAlienRegistrering.add(lblLosenord);
         lblLosenord.setBounds(20, 120, 70, 16);
         pnlAlienRegistrering.add(jXDateAnkomstDatum);
         jXDateAnkomstDatum.setBounds(120, 210, 145, 24);
 
+        lblAnkomstDatum.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatum.setText("Ankomstdatum:");
         pnlAlienRegistrering.add(lblAnkomstDatum);
         lblAnkomstDatum.setBounds(20, 210, 90, 16);
         pnlAlienRegistrering.add(txtAlienLosenord);
         txtAlienLosenord.setBounds(120, 120, 100, 24);
 
+        lblTelefon.setForeground(new java.awt.Color(204, 204, 204));
         lblTelefon.setText("Telefon:");
         pnlAlienRegistrering.add(lblTelefon);
         lblTelefon.setBounds(20, 90, 50, 16);
@@ -117,18 +128,18 @@ public class AgentPage extends javax.swing.JFrame {
         pnlAlienRegistrering.add(lblRegistreraTitel);
         lblRegistreraTitel.setBounds(20, 10, 180, 40);
 
-        jcbAlienOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlAlienRegistrering.add(jcbAlienOmrade);
-        jcbAlienOmrade.setBounds(120, 150, 100, 26);
+        jcbAlienOmrade.setBounds(120, 150, 120, 26);
 
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Område:");
         pnlAlienRegistrering.add(jLabel1);
         jLabel1.setBounds(20, 150, 60, 16);
 
-        jcbAnsvarigAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlAlienRegistrering.add(jcbAnsvarigAgent);
-        jcbAnsvarigAgent.setBounds(120, 180, 100, 26);
+        jcbAnsvarigAgent.setBounds(120, 180, 120, 26);
 
+        lblAnsvarigAgent.setForeground(new java.awt.Color(204, 204, 204));
         lblAnsvarigAgent.setText("Ansvarig agent:");
         pnlAlienRegistrering.add(lblAnsvarigAgent);
         lblAnsvarigAgent.setBounds(20, 180, 88, 16);
@@ -281,6 +292,45 @@ public class AgentPage extends javax.swing.JFrame {
         pnlAlienMeny.setVisible(false);
     }//GEN-LAST:event_lblTillbakaMouseClicked
 
+    public void fyllComboBoxOmraden() {
+
+        try {
+            ArrayList<HashMap<String, String>> allaOmraden = idb.fetchRows("select * from OMRADE");
+            String omrade = "";
+            for (HashMap<String, String> ettOmrade : allaOmraden) {
+                String id = ettOmrade.get("OMRADES_ID");
+                String benamning = ettOmrade.get("BENAMNING");
+
+                omrade = id + " " + benamning;
+
+                jcbAlienOmrade.addItem(omrade);
+
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+
+        }
+    }
+
+    public void fyllComboBoxAgenter() {
+
+        try {
+            ArrayList<HashMap<String, String>> allaAgenter = idb.fetchRows("select AGENT_ID, NAMN from AGENT");
+            String agent = "";
+            for (HashMap<String, String> enAgent : allaAgenter) {
+                String id = enAgent.get("AGENT_ID");
+                String namn = enAgent.get("NAMN");
+
+                agent = id + " " + namn;
+
+                jcbAnsvarigAgent.addItem(agent);
+
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrera;
