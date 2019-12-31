@@ -5,10 +5,14 @@
  */
 package mib;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.JXDatePicker;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -37,7 +41,7 @@ public final class AgentPage extends javax.swing.JFrame {
         pnlHuvudMeny.setVisible(true);
         pnlAlienMeny.setVisible(false);
         pnlAlienRegistrering.setVisible(false);
-        
+
         //pnlAgentmeny.setVisible(false);
         //pnlUtrustningMeny.setVisible(false);
     }
@@ -77,14 +81,15 @@ public final class AgentPage extends javax.swing.JFrame {
         txtAlienLosenord = new javax.swing.JTextField();
         lblTelefon = new javax.swing.JLabel();
         lblRegistreraTitel = new javax.swing.JLabel();
-        jcbAlienOmrade = new javax.swing.JComboBox<>();
-        lblOmrade = new javax.swing.JLabel();
+        jcbAlienPlats = new javax.swing.JComboBox<>();
+        lblPlats = new javax.swing.JLabel();
         jcbAnsvarigAgent = new javax.swing.JComboBox<>();
         lblAnsvarigAgent = new javax.swing.JLabel();
-        btnRegistrera = new javax.swing.JButton();
+        btnSparaAlien = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 475));
+        setPreferredSize(new java.awt.Dimension(800, 475));
         setResizable(false);
 
         pnlBackground.setBackground(new java.awt.Color(29, 29, 48));
@@ -242,7 +247,7 @@ public final class AgentPage extends javax.swing.JFrame {
         pnlAlienRegistrering.add(lblLosenord);
         lblLosenord.setBounds(20, 120, 70, 16);
         pnlAlienRegistrering.add(jXDateAnkomstDatum);
-        jXDateAnkomstDatum.setBounds(120, 210, 145, 24);
+        jXDateAnkomstDatum.setBounds(120, 210, 133, 24);
 
         lblAnkomstDatum.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatum.setText("Ankomstdatum:");
@@ -262,13 +267,13 @@ public final class AgentPage extends javax.swing.JFrame {
         pnlAlienRegistrering.add(lblRegistreraTitel);
         lblRegistreraTitel.setBounds(20, 10, 180, 40);
 
-        pnlAlienRegistrering.add(jcbAlienOmrade);
-        jcbAlienOmrade.setBounds(120, 150, 120, 26);
+        pnlAlienRegistrering.add(jcbAlienPlats);
+        jcbAlienPlats.setBounds(120, 150, 120, 26);
 
-        lblOmrade.setForeground(new java.awt.Color(204, 204, 204));
-        lblOmrade.setText("Område:");
-        pnlAlienRegistrering.add(lblOmrade);
-        lblOmrade.setBounds(20, 150, 60, 16);
+        lblPlats.setForeground(new java.awt.Color(204, 204, 204));
+        lblPlats.setText("Plats:");
+        pnlAlienRegistrering.add(lblPlats);
+        lblPlats.setBounds(20, 150, 60, 16);
 
         pnlAlienRegistrering.add(jcbAnsvarigAgent);
         jcbAnsvarigAgent.setBounds(120, 180, 120, 26);
@@ -278,9 +283,14 @@ public final class AgentPage extends javax.swing.JFrame {
         pnlAlienRegistrering.add(lblAnsvarigAgent);
         lblAnsvarigAgent.setBounds(20, 180, 88, 16);
 
-        btnRegistrera.setText("Spara");
-        pnlAlienRegistrering.add(btnRegistrera);
-        btnRegistrera.setBounds(140, 240, 90, 32);
+        btnSparaAlien.setText("Spara");
+        btnSparaAlien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSparaAlienMouseClicked(evt);
+            }
+        });
+        pnlAlienRegistrering.add(btnSparaAlien);
+        btnSparaAlien.setBounds(140, 240, 90, 32);
 
         pnlBackground.add(pnlAlienRegistrering);
         pnlAlienRegistrering.setBounds(160, 20, 620, 410);
@@ -320,14 +330,30 @@ public final class AgentPage extends javax.swing.JFrame {
     private void lblRegistreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistreraMouseClicked
         pnlMain.setVisible(false);
         pnlAlienRegistrering.setVisible(true);
-        jcbAlienOmrade.removeAllItems();
+        jcbAlienPlats.removeAllItems();
         jcbAnsvarigAgent.removeAllItems();
-        fyllComboBox(jcbAlienOmrade, "OMRADES_ID", "BENAMNING", "OMRADE");
+        fyllComboBox(jcbAlienPlats, "PLATS_ID", "BENAMNING", "PLATS");
         fyllComboBox(jcbAnsvarigAgent, "AGENT_ID", "NAMN", "AGENT");
+        jXDateAnkomstDatum.getEditor().setEditable(false);
+        Date dagensDatum = new Date();
+        jXDateAnkomstDatum.setDate(dagensDatum);
+
     }//GEN-LAST:event_lblRegistreraMouseClicked
 
-     public void fyllComboBox(JComboBox jcb, String kolumn1, String kolumn2, String tabell) {
+    private void btnSparaAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSparaAlienMouseClicked
 
+        sparaAlien();
+
+    }//GEN-LAST:event_btnSparaAlienMouseClicked
+
+    /**
+     * Den här metoden används för att fylla på med värden till comboboxar
+     *
+     * @param jcb ComboBoxen som ska få värden
+     * @param kolumn1
+     *
+     */
+    public void fyllComboBox(JComboBox jcb, String kolumn1, String kolumn2, String tabell) {
         String sokStrang = "select " + kolumn1 + ", " + kolumn2 + " from " + tabell;
         try {
             ArrayList<HashMap<String, String>> allaObjekt = idb.fetchRows(sokStrang);
@@ -335,61 +361,63 @@ public final class AgentPage extends javax.swing.JFrame {
             for (HashMap<String, String> ettObjekt : allaObjekt) {
                 item = ettObjekt.get(kolumn1) + " " + ettObjekt.get(kolumn2);
                 jcb.addItem(item);
-
             }
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Det gick inte att hämta värden till comboboxen");
-
-        }
-    }
-     
-     /*
-    public void fyllComboBoxOmraden() {
-
-        try {
-            ArrayList<HashMap<String, String>> allaOmraden = idb.fetchRows("select * from OMRADE");
-            String omrade = "";
-            for (HashMap<String, String> ettOmrade : allaOmraden) {
-                String id = ettOmrade.get("OMRADES_ID");
-                String benamning = ettOmrade.get("BENAMNING");
-
-                omrade = id + " " + benamning;
-
-                jcbAlienOmrade.addItem(omrade);
-
-            }
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-
         }
     }
 
-   
+    public String getFranComboBox(JComboBox jcb, int n) {
 
-    public void fyllComboBoxAgenter() {
+        String item[] = jcb.getSelectedItem().toString().split(" ");
+        String svar = item[n];
 
-        try {
-            ArrayList<HashMap<String, String>> allaAgenter = idb.fetchRows("select AGENT_ID, NAMN from AGENT");
-            String agent = "";
-            for (HashMap<String, String> enAgent : allaAgenter) {
-                String id = enAgent.get("AGENT_ID");
-                String namn = enAgent.get("NAMN");
+        return svar;
+    }
 
-                agent = id + " " + namn;
+    public void sparaAlien() {
 
-                jcbAnsvarigAgent.addItem(agent);
+        String namn = txtAlienNamn.getText();
+        String telefon = txtAlienTelefon.getText();
+        String losenord = txtAlienLosenord.getText();
+        String plats = getFranComboBox(jcbAlienPlats, 0);
+        String ansvarigAgent = getFranComboBox(jcbAnsvarigAgent, 0);
+        String datum = getDatum(jXDateAnkomstDatum);
 
+        if (Validering.kollaTextRutaTom(txtAlienNamn)
+                && Validering.kollaTextRutaTom(txtAlienTelefon)
+                && Validering.kollaTextRutaTom(txtAlienLosenord)) {
+
+            try {
+                int nextIndex = Integer.parseInt(idb.getAutoIncrement("ALIEN", "ALIEN_ID"));
+
+                String insert = "insert into ALIEN values (" + nextIndex + ", '" + datum + "', " + "'" + losenord + "', " + "'" + namn + "', " + "'" + telefon + "', " + plats + ", " + ansvarigAgent + ")";
+                System.out.println(insert);
+                idb.insert(insert);
+                JOptionPane.showMessageDialog(null, "Alien sparad");
+                txtAlienNamn.setText(null);
+                txtAlienTelefon.setText(null);
+                txtAlienLosenord.setText(null);
+
+            } catch (InfException ex) {
+                JOptionPane.showMessageDialog(null, "Det gick inte att spara.");
             }
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
 
         }
-    }*/
+    }
+
+    public String getDatum(JXDatePicker jXD) {
+        Date valtDatum = jXD.getDate();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String datum = dateFormat.format(valtDatum);
+        return datum;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegistrera;
+    private javax.swing.JButton btnSparaAlien;
     private org.jdesktop.swingx.JXDatePicker jXDateAnkomstDatum;
-    private javax.swing.JComboBox<String> jcbAlienOmrade;
+    private javax.swing.JComboBox<String> jcbAlienPlats;
     private javax.swing.JComboBox<String> jcbAnsvarigAgent;
     private javax.swing.JLabel lblAgentLogo;
     private javax.swing.JLabel lblAgenter;
@@ -402,7 +430,7 @@ public final class AgentPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblLosenord;
     private javax.swing.JLabel lblMeny;
     private javax.swing.JLabel lblNamn;
-    private javax.swing.JLabel lblOmrade;
+    private javax.swing.JLabel lblPlats;
     private javax.swing.JLabel lblRegistrera;
     private javax.swing.JLabel lblRegistreraTitel;
     private javax.swing.JLabel lblSok;
