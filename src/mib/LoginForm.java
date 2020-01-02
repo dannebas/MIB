@@ -74,12 +74,12 @@ public class LoginForm extends javax.swing.JFrame {
         lblTitle.setBounds(120, 260, 160, 22);
 
         lblUser.setForeground(new java.awt.Color(204, 204, 204));
-        lblUser.setText("AnvÃ¤ndarnamn:");
+        lblUser.setText("Användarnamn:");
         pnlBackground.add(lblUser);
         lblUser.setBounds(70, 320, 100, 16);
 
         lblPass.setForeground(new java.awt.Color(204, 204, 204));
-        lblPass.setText("LÃ¶senord:");
+        lblPass.setText("Lösenord:");
         lblPass.setAlignmentY(0.0F);
         pnlBackground.add(lblPass);
         lblPass.setBounds(70, 350, 80, 16);
