@@ -129,7 +129,7 @@ public final class AgentPage extends javax.swing.JFrame {
         lblLoggaUt.setBounds(10, 90, 100, 20);
 
         lblAndraLosen.setForeground(new java.awt.Color(204, 204, 204));
-        lblAndraLosen.setText("Ã„ndra lÃ¶senord");
+        lblAndraLosen.setText("Ändra lösenord");
         lblAndraLosen.setMaximumSize(new java.awt.Dimension(50, 15));
         lblAndraLosen.setMinimumSize(new java.awt.Dimension(50, 15));
         lblAndraLosen.setPreferredSize(new java.awt.Dimension(50, 15));
@@ -180,7 +180,7 @@ public final class AgentPage extends javax.swing.JFrame {
         lblTillbaka.setBounds(10, 80, 100, 20);
 
         lblSok.setForeground(new java.awt.Color(204, 204, 204));
-        lblSok.setText("SÃ¶k och Ã¤ndra");
+        lblSok.setText("Sök och ändra");
         lblSok.setMaximumSize(new java.awt.Dimension(50, 15));
         lblSok.setMinimumSize(new java.awt.Dimension(50, 15));
         lblSok.setPreferredSize(new java.awt.Dimension(50, 15));
@@ -193,7 +193,7 @@ public final class AgentPage extends javax.swing.JFrame {
         lblSok.setBounds(10, 40, 100, 20);
 
         lblRegistrera.setForeground(new java.awt.Color(204, 204, 204));
-        lblRegistrera.setText("RegÃ­strera ny");
+        lblRegistrera.setText("Regístrera ny");
         lblRegistrera.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblRegistreraMouseClicked(evt);
@@ -243,11 +243,11 @@ public final class AgentPage extends javax.swing.JFrame {
         txtAlienTelefon.setBounds(120, 90, 100, 24);
 
         lblLosenord.setForeground(new java.awt.Color(204, 204, 204));
-        lblLosenord.setText("LÃ¶senord:");
+        lblLosenord.setText("Lösenord:");
         pnlAlienRegistrering.add(lblLosenord);
         lblLosenord.setBounds(20, 120, 70, 16);
         pnlAlienRegistrering.add(jXDateAnkomstDatum);
-        jXDateAnkomstDatum.setBounds(120, 210, 133, 24);
+        jXDateAnkomstDatum.setBounds(120, 210, 141, 24);
 
         lblAnkomstDatum.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatum.setText("Ankomstdatum:");
@@ -347,23 +347,26 @@ public final class AgentPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSparaAlienMouseClicked
 
     /**
-     * Den hÃ¤r metoden anvÃ¤nds fÃ¶r att fylla pÃ¥ med vÃ¤rden till comboboxar
-     *
-     * @param jcb ComboBoxen som ska fÃ¥ vÃ¤rden
-     * @param kolumn1
+     * Den här metoden används för att fylla på med värden till comboboxar
+     * 
+     * 
+     * @param jcb ComboBoxen som ska få värden
+     * @param kolumn1 första kolumnen
+     * @param kolumn2 andra kolumnen
+     * @param tabell från vilken databastabell ska kolumnerna hämtas.
      *
      */
     public void fyllComboBox(JComboBox jcb, String kolumn1, String kolumn2, String tabell) {
         String sokStrang = "select " + kolumn1 + ", " + kolumn2 + " from " + tabell;
         try {
             ArrayList<HashMap<String, String>> allaObjekt = idb.fetchRows(sokStrang);
-            String item = "";
+            String item;
             for (HashMap<String, String> ettObjekt : allaObjekt) {
                 item = ettObjekt.get(kolumn1) + " " + ettObjekt.get(kolumn2);
                 jcb.addItem(item);
             }
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Det gick inte att hÃ¤mta vÃ¤rden till comboboxen");
+            JOptionPane.showMessageDialog(null, "Det gick inte att hämta värden till comboboxen");
         }
     }
 

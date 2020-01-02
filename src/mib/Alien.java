@@ -28,7 +28,7 @@ public class Alien {
             losenord = idb.fetchSingle("select LOSENORD from ALIEN where ALIEN_ID = " + id);
             namn = idb.fetchSingle("select NAMN from ALIEN where ALIEN_ID = " + id);
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "NÃ¥got gick fel.");
+            JOptionPane.showMessageDialog(null, "Nåot gick fel.");
         }
 
     }

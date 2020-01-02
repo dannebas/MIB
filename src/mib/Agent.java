@@ -33,7 +33,7 @@ public class Agent {
             telefon = idb.fetchSingle("select TELEFON from AGENT where AGENT_ID = " + id);
 
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "NÃ¥got gick fel.");
+            JOptionPane.showMessageDialog(null, "Något gick fel.");
         }
     }
 

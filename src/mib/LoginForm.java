@@ -25,7 +25,7 @@ public class LoginForm extends javax.swing.JFrame {
      * Creates new form HuvudFonster
      *
      * @param idb databaskopplingen
-     * @param info en sträng som håller information om vilken typ av användare
+     * @param info en str�ng som h�ller information om vilken typ av anv�ndare
      * som ska logga in.
      */
     public LoginForm(InfDB idb, String info) {
@@ -113,23 +113,23 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String userID = txtUserName.getText();
-        /* Följande rader är för att hantera lösenordet
-        som skrivs in i ett lösenordsfält och hämtas ut som en array av char.
-        Till hjälp skapas ett StringBuilderobjekt för att 
-        kunna konvertera arrayen till en sträng*/
+        /* F�ljande rader �r f�r att hantera l�senordet
+        som skrivs in i ett l�senordsf�lt och h�mtas ut som en array av char.
+        Till hj�lp skapas ett StringBuilderobjekt f�r att 
+        kunna konvertera arrayen till en str�ng*/
         char[] password = txtPass.getPassword();
         StringBuilder sb = new StringBuilder("");
-        String convertedPassword = sb.append(password).toString(); //Själva konverteringen
+        String convertedPassword = sb.append(password).toString(); //Sj�lva konverteringen
         if (Validering.kollaTextRutaTom(txtUserName) && Validering.kollaHeltal(txtUserName) && Validering.kollaLosenOrd(txtPass)) {
             try {
                 ArrayList<String> allusers = idb.fetchColumn("select " + info + "_ID from " + info);
                 if (allusers.contains(userID)) {
-                    //Hämtar det lagrade lösenordet från databasen.
+                    //H�mtar det lagrade l�senordet från databasen.
                     String storedPassword = idb.fetchSingle("select LOSENORD from " + info + " where " + info + "_ID = " + userID);
                     String userName = idb.fetchSingle("select NAMN from " + info + " where " + info + "_ID = " + userID);
 
                     if (storedPassword.equals(convertedPassword)) {
-                        JOptionPane.showMessageDialog(null, "Välkommen " + userName + ". Du har nu loggat in");
+                        JOptionPane.showMessageDialog(null, "V�lkommen " + userName + ". Du har nu loggat in");
                         switch (info) {
                             case "AGENT":
                                             /*String behorighet = idb.fetchSingle("select ADMINISTRATOR from AGENT where AGENT_ID = " + userID);
@@ -154,16 +154,16 @@ public class LoginForm extends javax.swing.JFrame {
                         }
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "Fel lösenord, försök igen");
+                        JOptionPane.showMessageDialog(null, "Fel l�senord, f�rs�k igen");
                         txtPass.requestFocusInWindow();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Fel användarnamn, försök igen");
+                    JOptionPane.showMessageDialog(null, "Fel anv�ndarnamn, f�rs�k igen");
                     txtUserName.requestFocusInWindow();
                 }
 
             } catch (InfException ex) {
-                JOptionPane.showMessageDialog(null, "Något gick fel");
+                JOptionPane.showMessageDialog(null, "N�got gick fel");
             }
 
         }

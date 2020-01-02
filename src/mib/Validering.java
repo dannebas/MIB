@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+
 /**
  *
  * @author Daniel
@@ -19,7 +20,7 @@ public class Validering {
         boolean svar = true;
 
         if (tf.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Du mÃ¥ste fylla i alla fÃ¤lt");
+            JOptionPane.showMessageDialog(null, "Du måste fylla i alla fält");
             tf.requestFocus();
             svar = false;
         }
@@ -30,7 +31,7 @@ public class Validering {
         boolean svar = true;
 
         if (tf.getPassword().length == 0) {
-            JOptionPane.showMessageDialog(null, "Du mÃ¥ste fylla i ett lÃ¶senord");
+            JOptionPane.showMessageDialog(null, "Du måste fylla i ett lösenord");
             tf.requestFocus();
             svar = false;
         }
@@ -44,7 +45,7 @@ public class Validering {
             Integer.parseInt(tf.getText());
             tf.requestFocus();
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "VÃ¤nligen ange ett heltal");
+            JOptionPane.showMessageDialog(null, "Vänligen ange ett heltal");
             svar = false;
         }
         return svar;
@@ -54,11 +55,11 @@ public class Validering {
         boolean svar = false;
         String[] val = {"Ja", "Nej"};
         int n = JOptionPane.showOptionDialog(null,
-                                        "Ã„r du sÃ¤ker pÃ¥ att du vill logga ut?", 
-                                        "Logga ut", 
-                                        JOptionPane.YES_NO_OPTION,
-                                        JOptionPane.QUESTION_MESSAGE,
-                                        null, val, val[0]);
+                "Är du säker på att du vill logga ut?",
+                "Logga ut",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, val, val[0]);
         if (n == JOptionPane.YES_OPTION) {
             svar = true;
         } else if (n == JOptionPane.NO_OPTION) {
@@ -66,4 +67,5 @@ public class Validering {
         }
         return svar;
     }
+
 }
