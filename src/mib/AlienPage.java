@@ -45,7 +45,7 @@ public class AlienPage extends javax.swing.JFrame {
         pnlBackground = new javax.swing.JPanel();
         lblLogoHolder = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
-        pnlMeny = new javax.swing.JPanel();
+        pnlHuvudMenyAlien = new javax.swing.JPanel();
         lblLoggaUt1 = new javax.swing.JLabel();
         lblAndraLosen1 = new javax.swing.JLabel();
         lblAgenter = new javax.swing.JLabel();
@@ -70,10 +70,10 @@ public class AlienPage extends javax.swing.JFrame {
         pnlBackground.add(lblValkommen);
         lblValkommen.setBounds(30, 120, 90, 16);
 
-        pnlMeny.setBackground(new java.awt.Color(29, 29, 48));
-        pnlMeny.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlMeny.setMinimumSize(new java.awt.Dimension(150, 200));
-        pnlMeny.setLayout(null);
+        pnlHuvudMenyAlien.setBackground(new java.awt.Color(29, 29, 48));
+        pnlHuvudMenyAlien.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlHuvudMenyAlien.setMinimumSize(new java.awt.Dimension(150, 200));
+        pnlHuvudMenyAlien.setLayout(null);
 
         lblLoggaUt1.setForeground(new java.awt.Color(204, 204, 204));
         lblLoggaUt1.setText("Logga ut");
@@ -82,7 +82,7 @@ public class AlienPage extends javax.swing.JFrame {
                 lblLoggaUt1MouseClicked(evt);
             }
         });
-        pnlMeny.add(lblLoggaUt1);
+        pnlHuvudMenyAlien.add(lblLoggaUt1);
         lblLoggaUt1.setBounds(10, 110, 100, 20);
 
         lblAndraLosen1.setForeground(new java.awt.Color(204, 204, 204));
@@ -95,27 +95,27 @@ public class AlienPage extends javax.swing.JFrame {
                 lblAndraLosen1MouseClicked(evt);
             }
         });
-        pnlMeny.add(lblAndraLosen1);
+        pnlHuvudMenyAlien.add(lblAndraLosen1);
         lblAndraLosen1.setBounds(10, 90, 100, 20);
 
         lblAgenter.setForeground(new java.awt.Color(204, 204, 204));
         lblAgenter.setText("Kontakta agent");
-        pnlMeny.add(lblAgenter);
+        pnlHuvudMenyAlien.add(lblAgenter);
         lblAgenter.setBounds(10, 70, 100, 20);
 
         lblAliens.setForeground(new java.awt.Color(204, 204, 204));
         lblAliens.setText("Sök andra aliens");
-        pnlMeny.add(lblAliens);
+        pnlHuvudMenyAlien.add(lblAliens);
         lblAliens.setBounds(10, 50, 100, 20);
 
         lblMeny.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         lblMeny.setForeground(new java.awt.Color(204, 204, 204));
         lblMeny.setText("MENY");
-        pnlMeny.add(lblMeny);
+        pnlHuvudMenyAlien.add(lblMeny);
         lblMeny.setBounds(10, 10, 41, 16);
 
-        pnlBackground.add(pnlMeny);
-        pnlMeny.setBounds(20, 290, 120, 140);
+        pnlBackground.add(pnlHuvudMenyAlien);
+        pnlHuvudMenyAlien.setBounds(20, 290, 120, 140);
 
         pnlAgentInfo.setBackground(new java.awt.Color(29, 29, 48));
         pnlAgentInfo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -162,6 +162,6 @@ public class AlienPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblValkommen;
     private javax.swing.JPanel pnlAgentInfo;
     private javax.swing.JPanel pnlBackground;
-    private javax.swing.JPanel pnlMeny;
+    private javax.swing.JPanel pnlHuvudMenyAlien;
     // End of variables declaration//GEN-END:variables
 }

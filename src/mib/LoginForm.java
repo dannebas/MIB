@@ -133,24 +133,14 @@ public class LoginForm extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "V�lkommen " + userName + ". Du har nu loggat in");
                         switch (info) {
                             case "AGENT":
-                                            /*String behorighet = idb.fetchSingle("select ADMINISTRATOR from AGENT where AGENT_ID = " + userID);
-                                            switch (behorighet) {
-                                            case "J":
-                                            System.out.println("Du är administratör");*/
-
-                                Agent agentAttLoggaIn = new Agent(idb, userID);
-                                new AgentPage(idb, agentAttLoggaIn).setVisible(true);
+                                User anvandare = new User(idb, userID, "AGENT");
+                                new UserPage(idb, anvandare).setVisible(true);
                                 this.dispose();
                                 break;
-                                           /*case "N":
-                                        System.out.println("Du är inte administratör");
-                                        //metodanrop till agentsida
-                                        break*/
-
                             case "ALIEN":
-                                Alien alienAttLoggaIn = new Alien(idb, userID);
-                                new AlienPage(idb, alienAttLoggaIn).setVisible(true);
-                                setVisible(false);
+                                anvandare = new User(idb, userID, "ALIEN");
+                                new UserPage(idb,anvandare).setVisible(true);
+                                this.dispose();
                                 break;
                         }
 
