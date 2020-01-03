@@ -50,9 +50,9 @@ public class LoginForm extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         lblPass = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
-        btnLogin = new javax.swing.JButton();
         txtPass = new javax.swing.JPasswordField();
         pnlLoginPanel = new javax.swing.JPanel();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 475));
@@ -76,24 +76,15 @@ public class LoginForm extends javax.swing.JFrame {
         lblUser.setForeground(new java.awt.Color(204, 204, 204));
         lblUser.setText("Användarnamn:");
         pnlBackground.add(lblUser);
-        lblUser.setBounds(70, 320, 100, 16);
+        lblUser.setBounds(70, 320, 100, 20);
 
         lblPass.setForeground(new java.awt.Color(204, 204, 204));
         lblPass.setText("Lösenord:");
         lblPass.setAlignmentY(0.0F);
         pnlBackground.add(lblPass);
-        lblPass.setBounds(70, 350, 80, 16);
+        lblPass.setBounds(70, 350, 80, 20);
         pnlBackground.add(txtUserName);
         txtUserName.setBounds(210, 320, 110, 24);
-
-        btnLogin.setText("Logga in");
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
-        pnlBackground.add(btnLogin);
-        btnLogin.setBounds(230, 380, 90, 32);
 
         txtPass.setMinimumSize(new java.awt.Dimension(15, 24));
         txtPass.setPreferredSize(new java.awt.Dimension(15, 24));
@@ -103,6 +94,16 @@ public class LoginForm extends javax.swing.JFrame {
         pnlLoginPanel.setBackground(new java.awt.Color(29, 29, 48));
         pnlLoginPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnlLoginPanel.setLayout(null);
+
+        btnLogin.setText("Logga in");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        pnlLoginPanel.add(btnLogin);
+        btnLogin.setBounds(170, 70, 90, 24);
+
         pnlBackground.add(pnlLoginPanel);
         pnlLoginPanel.setBounds(60, 310, 270, 110);
 

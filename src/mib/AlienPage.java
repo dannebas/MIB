@@ -66,7 +66,7 @@ public class AlienPage extends javax.swing.JFrame {
         lblLogoHolder.setBounds(30, 10, 70, 100);
 
         lblValkommen.setForeground(new java.awt.Color(204, 204, 204));
-        lblValkommen.setText("VÃ¤lkommen... ");
+        lblValkommen.setText("Välkommen... ");
         pnlBackground.add(lblValkommen);
         lblValkommen.setBounds(30, 120, 90, 16);
 
@@ -86,7 +86,7 @@ public class AlienPage extends javax.swing.JFrame {
         lblLoggaUt1.setBounds(10, 110, 100, 20);
 
         lblAndraLosen1.setForeground(new java.awt.Color(204, 204, 204));
-        lblAndraLosen1.setText("Ã„ndra lÃ¶senord");
+        lblAndraLosen1.setText("Ändra lösenord");
         lblAndraLosen1.setMaximumSize(new java.awt.Dimension(50, 15));
         lblAndraLosen1.setMinimumSize(new java.awt.Dimension(50, 15));
         lblAndraLosen1.setPreferredSize(new java.awt.Dimension(50, 15));
@@ -104,7 +104,7 @@ public class AlienPage extends javax.swing.JFrame {
         lblAgenter.setBounds(10, 70, 100, 20);
 
         lblAliens.setForeground(new java.awt.Color(204, 204, 204));
-        lblAliens.setText("SÃ¶k andra aliens");
+        lblAliens.setText("Sök andra aliens");
         pnlMeny.add(lblAliens);
         lblAliens.setBounds(10, 50, 100, 20);
 

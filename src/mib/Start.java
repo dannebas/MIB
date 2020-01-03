@@ -23,7 +23,7 @@ public class Start {
     public static void main(String[] args) {
 
         try {
-            idb = new InfDB("\\db\\MIBDB.FDB");
+            idb = new InfDB("c:\\db\\MIBDB.FDB");
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
         }
