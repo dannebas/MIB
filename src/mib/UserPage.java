@@ -1097,6 +1097,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnlListaAliens.setVisible(false);
         pnlAlienSokOchAndra.setVisible(false);
         pnlAlienRegistrering.setVisible(false);
+        pnlAgentRegistrering.setVisible(false);
+        pnlAgentSokOchAndra.setVisible(false);
     }//GEN-LAST:event_lblAndraLosenAgentMouseClicked
 
     private void andraLosenord() {
@@ -1182,8 +1184,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
             } catch (ParseException ex) {
                 JOptionPane.showMessageDialog(null, "Kunde inte hämta datum");
             }
-            
-            switch (admin){
+
+            switch (admin) {
                 case "J":
                     chkAgentAdminAndra.setSelected(true);
                     break;
@@ -1191,7 +1193,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
                     chkAgentAdminAndra.setSelected(false);
                     break;
             }
-            
+
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
@@ -1478,6 +1480,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private void lblRegistreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistreraMouseClicked
         pnlEmpty.setVisible(false);
         pnlAgentRegistrering.setVisible(false);
+        pnlAgentSokOchAndra.setVisible(false);
         pnlAlienSokOchAndra.setVisible(false);
         pnlAlienRegistrering.setVisible(true);
         pnlListaAliens.setVisible(false);
@@ -1606,6 +1609,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnlListaAliens.setVisible(false);
         pnlAlienSokOchAndra.setVisible(false);
         pnlAlienRegistrering.setVisible(false);
+        pnlAgentSokOchAndra.setVisible(true);
+        pnlAgentRegistrering.setVisible(false);
 
     }//GEN-LAST:event_lblAndraLosenAlienMouseClicked
 
@@ -1616,6 +1621,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnlAlienSokOchAndra.setVisible(false);
         pnlAlienRegistrering.setVisible(false);
         pnlAgentRegistrering.setVisible(false);
+        pnlAgentSokOchAndra.setVisible(true);
         pnlListaAliens.setVisible(true);
 
         jXDFranDatum.getEditor().setEditable(false);
@@ -1827,8 +1833,44 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     }//GEN-LAST:event_btnSokAgentActionPerformed
 
     private void btnAgentSparaAndraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgentSparaAndraMouseClicked
-        // TODO add your handling code here:
+        andraAgent();
     }//GEN-LAST:event_btnAgentSparaAndraMouseClicked
+
+    private void andraAgent() {
+        String id = txtAgentIdAndra.getText();
+        String namn = txtAgentNamnAndra.getText();
+        String telefon = txtAgentTelefonAndra.getText();
+        String losenord = txtAgentLosenordAndra.getText();
+        String omrade = getFranComboBox(jcbAgentOmradeAndra, 0);
+        String datum = getDatum(jXDateAnstDatumAndra);
+        String admin = "";
+        if (chkAgentAdminAndra.isSelected()) {
+            admin = "J";
+        } else {
+            admin = "N";
+        }
+
+        if (Validering.kollaTextRutaTom(txtAgentNamnAndra)
+                && Validering.kollaTextRutaTom(txtAgentTelefonAndra)
+                && Validering.kollaTextRutaTom(txtAgentLosenordAndra)) {
+            try {
+
+                String update = "update AGENT set ANSTALLNINGSDATUM = '" + datum + "', LOSENORD ='" + losenord + "', NAMN='" + namn + "', TELEFON ='" + telefon + "', OMRADE=" + omrade + ", ADMINISTRATOR='" + admin + "' where AGENT_ID=" + id;
+                System.out.println(update);
+                idb.update(update);
+
+                JOptionPane.showMessageDialog(null, "Agent uppdaterad");
+                txtAgentNamnAndra.setText(null);
+                txtAgentTelefonAndra.setText(null);
+                txtAgentLosenordAndra.setText(null);
+                txtAgentIdAndra.setText(null);
+
+            } catch (InfException ex) {
+                JOptionPane.showMessageDialog(null, "Det gick inte att uppdatera informationen.");
+            }
+
+        }
+    }
 
     private void btnRaderaAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRaderaAgentMouseClicked
         // TODO add your handling code here:
