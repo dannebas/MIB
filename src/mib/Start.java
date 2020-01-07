@@ -28,6 +28,7 @@ public class Start {
             JOptionPane.showMessageDialog(null, "Databasfel!");
         }
         new MainPage(idb).setVisible(true);
+        
     }
 
 }

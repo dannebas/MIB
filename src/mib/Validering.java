@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-
 /**
  *
  * @author Daniel
@@ -57,6 +56,23 @@ public class Validering {
         int n = JOptionPane.showOptionDialog(null,
                 "Är du säker på att du vill logga ut?",
                 "Logga ut",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, val, val[0]);
+        if (n == JOptionPane.YES_OPTION) {
+            svar = true;
+        } else if (n == JOptionPane.NO_OPTION) {
+            svar = false;
+        }
+        return svar;
+    }
+
+    public static boolean kollaRadering() {
+        boolean svar = false;
+        String[] val = {"Ja", "Nej"};
+        int n = JOptionPane.showOptionDialog(null,
+                "Är du säker på att du vill radera?",
+                "Radera",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null, val, val[0]);
