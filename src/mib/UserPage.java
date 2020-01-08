@@ -57,6 +57,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
 
             case "ALIEN":
                 setMenuVisibility(pnlHuvudMenyAlien);
+                setPanelVisibility(pnlAlienStart);
+                lblAliensOmradesChef.setText("");
                 break;
         }
         /*pnlEmpty.setVisible(true);
@@ -172,8 +174,6 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnlHuvudMenyAlien = new javax.swing.JPanel();
         lblLoggaUtAlien = new javax.swing.JLabel();
         lblAndraLosenAlien = new javax.swing.JLabel();
-        lblAgenter1 = new javax.swing.JLabel();
-        lblAliens1 = new javax.swing.JLabel();
         pnlListaAliens = new javax.swing.JPanel();
         jScrListaAliens = new javax.swing.JScrollPane();
         jlListaAliens = new javax.swing.JList<>();
@@ -232,6 +232,15 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         btnRaderaAgent = new javax.swing.JButton();
         lblRaderaAgent = new javax.swing.JLabel();
         pnlSokOmradesChef = new javax.swing.JPanel();
+        pnlAlienStart = new javax.swing.JPanel();
+        lblAlienStartTitel = new javax.swing.JLabel();
+        pnlAliensOmradesChef = new javax.swing.JPanel();
+        lblOmradesChefBild = new javax.swing.JLabel();
+        lblAliensOmradesChef = new javax.swing.JLabel();
+        jScrAlienListaOmrade = new javax.swing.JScrollPane();
+        jlAliensIMittOmrade = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        lblOmradesChefTitel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 475));
@@ -727,7 +736,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
 
         pnlHuvudMenyAlien.setBackground(new java.awt.Color(29, 29, 48));
         pnlHuvudMenyAlien.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlHuvudMenyAlien.setMinimumSize(new java.awt.Dimension(150, 200));
+        pnlHuvudMenyAlien.setMinimumSize(new java.awt.Dimension(120, 60));
+        pnlHuvudMenyAlien.setPreferredSize(new java.awt.Dimension(120, 60));
         pnlHuvudMenyAlien.setLayout(null);
 
         lblLoggaUtAlien.setForeground(new java.awt.Color(204, 204, 204));
@@ -738,7 +748,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
             }
         });
         pnlHuvudMenyAlien.add(lblLoggaUtAlien);
-        lblLoggaUtAlien.setBounds(10, 70, 100, 20);
+        lblLoggaUtAlien.setBounds(10, 30, 100, 20);
 
         lblAndraLosenAlien.setForeground(new java.awt.Color(204, 204, 204));
         lblAndraLosenAlien.setText("Ändra lösenord");
@@ -751,20 +761,10 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
             }
         });
         pnlHuvudMenyAlien.add(lblAndraLosenAlien);
-        lblAndraLosenAlien.setBounds(10, 50, 100, 20);
-
-        lblAgenter1.setForeground(new java.awt.Color(204, 204, 204));
-        lblAgenter1.setText("Kontakta agent");
-        pnlHuvudMenyAlien.add(lblAgenter1);
-        lblAgenter1.setBounds(10, 30, 100, 20);
-
-        lblAliens1.setForeground(new java.awt.Color(204, 204, 204));
-        lblAliens1.setText("Sök andra aliens");
-        pnlHuvudMenyAlien.add(lblAliens1);
-        lblAliens1.setBounds(10, 10, 100, 20);
+        lblAndraLosenAlien.setBounds(10, 10, 100, 20);
 
         pnlBackground.add(pnlHuvudMenyAlien);
-        pnlHuvudMenyAlien.setBounds(20, 310, 120, 120);
+        pnlHuvudMenyAlien.setBounds(20, 330, 120, 60);
 
         pnlListaAliens.setBackground(new java.awt.Color(29, 29, 48));
         pnlListaAliens.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1098,6 +1098,74 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnlBackground.add(pnlSokOmradesChef);
         pnlSokOmradesChef.setBounds(160, 20, 620, 410);
 
+        pnlAlienStart.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAlienStart.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlAlienStart.setForeground(new java.awt.Color(204, 204, 204));
+        pnlAlienStart.setMinimumSize(new java.awt.Dimension(620, 410));
+        pnlAlienStart.setLayout(null);
+
+        lblAlienStartTitel.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        lblAlienStartTitel.setForeground(new java.awt.Color(204, 204, 204));
+        lblAlienStartTitel.setText("Huvudsida");
+        pnlAlienStart.add(lblAlienStartTitel);
+        lblAlienStartTitel.setBounds(20, 10, 180, 40);
+
+        pnlAliensOmradesChef.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAliensOmradesChef.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        lblOmradesChefBild.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOmradesChefBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
+
+        lblAliensOmradesChef.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        lblAliensOmradesChef.setForeground(new java.awt.Color(204, 204, 204));
+        lblAliensOmradesChef.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAliensOmradesChef.setText("agentnamn");
+
+        javax.swing.GroupLayout pnlAliensOmradesChefLayout = new javax.swing.GroupLayout(pnlAliensOmradesChef);
+        pnlAliensOmradesChef.setLayout(pnlAliensOmradesChefLayout);
+        pnlAliensOmradesChefLayout.setHorizontalGroup(
+            pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAliensOmradesChefLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblOmradesChefBild, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAliensOmradesChef, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+        pnlAliensOmradesChefLayout.setVerticalGroup(
+            pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAliensOmradesChefLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(lblOmradesChefBild, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAliensOmradesChef)
+                .addContainerGap(82, Short.MAX_VALUE))
+        );
+
+        pnlAlienStart.add(pnlAliensOmradesChef);
+        pnlAliensOmradesChef.setBounds(350, 110, 180, 250);
+
+        jlAliensIMittOmrade.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrAlienListaOmrade.setViewportView(jlAliensIMittOmrade);
+
+        pnlAlienStart.add(jScrAlienListaOmrade);
+        jScrAlienListaOmrade.setBounds(100, 110, 160, 250);
+
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Aliens i ditt område:");
+        pnlAlienStart.add(jLabel3);
+        jLabel3.setBounds(120, 80, 120, 16);
+
+        lblOmradesChefTitel.setForeground(new java.awt.Color(204, 204, 204));
+        lblOmradesChefTitel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOmradesChefTitel.setText("Din områdeschef:");
+        pnlAlienStart.add(lblOmradesChefTitel);
+        lblOmradesChefTitel.setBounds(390, 80, 100, 16);
+
+        pnlBackground.add(pnlAlienStart);
+        pnlAlienStart.setBounds(160, 20, 620, 410);
+
         getContentPane().add(pnlBackground, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -1125,6 +1193,12 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnl.setVisible(true);
 
     }
+
+    private void getOmradesChef() {
+
+        String namnOmradesChef;
+
+    }
     private void lblLoggaUtAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoggaUtAgentMouseClicked
 
         if (Validering.kollaUtloggning()) {
@@ -1142,16 +1216,20 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
 
     private void andraLosenord() {
         if (Validering.kollaTextRutaTom(txtNuvarandeLosenord) && Validering.kollaTextRutaTom(txtNyttLosenord)) {
-            try {
-                String gammaltLosenord = idb.fetchSingle("select LOSENORD from " + anvandarTyp + " where " + anvandarTyp + "_ID = " + anvandare.getId());
-                if (txtNuvarandeLosenord.getText().equals(gammaltLosenord)) {
-                    idb.update("Update " + anvandarTyp + " set LOSENORD = '" + txtNyttLosenord.getText() + "'" + " where " + anvandarTyp + "_ID = " + anvandare.getId());
-                    JOptionPane.showMessageDialog(null, "Du har ändrat ditt lösenord.");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Fel lösenord.");
+            if (txtNyttLosenord.getText().length() <= 6) {
+                try {
+                    String gammaltLosenord = idb.fetchSingle("select LOSENORD from " + anvandarTyp + " where " + anvandarTyp + "_ID = " + anvandare.getId());
+                    if (txtNuvarandeLosenord.getText().equals(gammaltLosenord)) {
+                        idb.update("Update " + anvandarTyp + " set LOSENORD = '" + txtNyttLosenord.getText() + "'" + " where " + anvandarTyp + "_ID = " + anvandare.getId());
+                        JOptionPane.showMessageDialog(null, "Du har ändrat ditt lösenord.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Fel lösenord.");
+                    }
+                } catch (InfException ex) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel.");
                 }
-            } catch (InfException ex) {
-                JOptionPane.showMessageDialog(null, "Något gick fel.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Ditt lösenord får max vara 6 tecken långt.");
             }
         }
     }
@@ -1317,9 +1395,11 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         try {
             if (kollaBoglodite()) {
                 boglodites = idb.fetchColumn("select ALIEN_ID from BOGLODITE");
-            } else if (kollaSquid()) {
+            }
+            if (kollaSquid()) {
                 squids = idb.fetchColumn("select ALIEN_ID from SQUID");
-            } else if (kollaWorm()) {
+            }
+            if (kollaWorm()) {
                 worms = idb.fetchColumn("select ALIEN_ID from WORM");
             }
 
@@ -2085,8 +2165,10 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JCheckBox chkAgentAdminAndra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrAgentLista;
     private javax.swing.JScrollPane jScrAlienLista;
+    private javax.swing.JScrollPane jScrAlienListaOmrade;
     private javax.swing.JScrollPane jScrListaAliens;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -2108,6 +2190,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JComboBox<String> jcbAnsvarigAgentAndra;
     private javax.swing.JList<String> jlAgentLista;
     private javax.swing.JList<String> jlAlienLista;
+    private javax.swing.JList<String> jlAliensIMittOmrade;
     private javax.swing.JList<String> jlListaAliens;
     private javax.swing.JLabel lblAdministratorAndra;
     private javax.swing.JLabel lblAgentAndraNamn;
@@ -2128,12 +2211,12 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JLabel lblAgentTelefonAndra;
     private javax.swing.JLabel lblAgentTillbaka;
     private javax.swing.JLabel lblAgenter;
-    private javax.swing.JLabel lblAgenter1;
     private javax.swing.JLabel lblAlienAndraId;
     private javax.swing.JLabel lblAlienInformation;
     private javax.swing.JLabel lblAlienPlatsAndra;
+    private javax.swing.JLabel lblAlienStartTitel;
     private javax.swing.JLabel lblAliens;
-    private javax.swing.JLabel lblAliens1;
+    private javax.swing.JLabel lblAliensOmradesChef;
     private javax.swing.JLabel lblAndraLosenAgent;
     private javax.swing.JLabel lblAndraLosenAlien;
     private javax.swing.JLabel lblAndraLosenTitel;
@@ -2164,6 +2247,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JLabel lblNamn;
     private javax.swing.JLabel lblNuvarandeLosen;
     private javax.swing.JLabel lblNyttLosenord;
+    private javax.swing.JLabel lblOmradesChefBild;
+    private javax.swing.JLabel lblOmradesChefTitel;
     private javax.swing.JLabel lblPlats;
     private javax.swing.JLabel lblRaderaAgent;
     private javax.swing.JLabel lblRaderaAlien;
@@ -2191,6 +2276,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JPanel pnlAlienMeny;
     private javax.swing.JPanel pnlAlienRegistrering;
     private javax.swing.JPanel pnlAlienSokOchAndra;
+    private javax.swing.JPanel pnlAlienStart;
+    private javax.swing.JPanel pnlAliensOmradesChef;
     private javax.swing.JPanel pnlAndraLosen;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlEmpty;
