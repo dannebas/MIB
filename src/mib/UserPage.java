@@ -98,6 +98,7 @@ public final class UserPage extends javax.swing.JFrame {
         lblMeny = new javax.swing.JLabel();
         lblAnvandaresNamn = new javax.swing.JLabel();
         pnlEmpty = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         pnlAlienStart = new javax.swing.JPanel();
         lblAlienStartTitel = new javax.swing.JLabel();
         pnlAliensOmradesChef = new javax.swing.JPanel();
@@ -312,17 +313,11 @@ public final class UserPage extends javax.swing.JFrame {
         pnlEmpty.setBackground(new java.awt.Color(29, 29, 48));
         pnlEmpty.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnlEmpty.setForeground(new java.awt.Color(204, 204, 204));
+        pnlEmpty.setLayout(null);
 
-        javax.swing.GroupLayout pnlEmptyLayout = new javax.swing.GroupLayout(pnlEmpty);
-        pnlEmpty.setLayout(pnlEmptyLayout);
-        pnlEmptyLayout.setHorizontalGroup(
-            pnlEmptyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 614, Short.MAX_VALUE)
-        );
-        pnlEmptyLayout.setVerticalGroup(
-            pnlEmptyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/miblogo.png"))); // NOI18N
+        pnlEmpty.add(jLabel3);
+        jLabel3.setBounds(210, 110, 210, 190);
 
         pnlBackground.add(pnlEmpty);
         pnlEmpty.setBounds(160, 20, 620, 410);
@@ -699,7 +694,7 @@ public final class UserPage extends javax.swing.JFrame {
 
         lblSokTitel.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         lblSokTitel.setForeground(new java.awt.Color(204, 204, 204));
-        lblSokTitel.setText("Sök och ändra");
+        lblSokTitel.setText("Sök och ändra aliens");
         pnlAlienSokOchAndra.add(lblSokTitel);
         lblSokTitel.setBounds(20, 10, 180, 40);
 
@@ -1148,7 +1143,7 @@ public final class UserPage extends javax.swing.JFrame {
 
         lblAgentSokTitel.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         lblAgentSokTitel.setForeground(new java.awt.Color(204, 204, 204));
-        lblAgentSokTitel.setText("Sök och ändra");
+        lblAgentSokTitel.setText("Sök och ändra agenter");
         pnlAgentSokOchAndra.add(lblAgentSokTitel);
         lblAgentSokTitel.setBounds(20, 10, 180, 40);
 
@@ -1695,13 +1690,13 @@ public final class UserPage extends javax.swing.JFrame {
         ArrayList<String> squids = new ArrayList<>();
         ArrayList<String> worms = new ArrayList<>();
         try {
-            if (kollaBoglodite()) {
+            if (kollaTabellTom("ALIEN_ID", "BOGLODITE")) {
                 boglodites = idb.fetchColumn("select ALIEN_ID from BOGLODITE");
             }
-            if (kollaSquid()) {
+            if (kollaTabellTom("ALIEN_ID", "SQUID")) {
                 squids = idb.fetchColumn("select ALIEN_ID from SQUID");
             }
-            if (kollaWorm()) {
+            if (kollaTabellTom("ALIEN_ID", "WORM")) {
                 worms = idb.fetchColumn("select ALIEN_ID from WORM");
             }
 
@@ -1721,45 +1716,6 @@ public final class UserPage extends javax.swing.JFrame {
 
         return ras;
 
-    }
-
-    private boolean kollaBoglodite() {
-
-        try {
-            ArrayList<String> boglodites = idb.fetchColumn("select ALIEN_ID from BOGLODITE");
-            if (boglodites.size() > 0) {
-                return true;
-            }
-        } catch (InfException | NullPointerException ex) {
-            return false;
-        }
-        return false;
-    }
-
-    private boolean kollaSquid() {
-
-        try {
-            ArrayList<String> squids = idb.fetchColumn("select ALIEN_ID from SQUID");
-            if (squids.size() > 0) {
-                return true;
-            }
-        } catch (InfException | NullPointerException ex) {
-            return false;
-        }
-        return false;
-    }
-
-    private boolean kollaWorm() {
-
-        try {
-            ArrayList<String> worms = idb.fetchColumn("select ALIEN_ID from WORM");
-            if (worms.size() > 0) {
-                return true;
-            }
-        } catch (InfException | NullPointerException ex) {
-            return false;
-        }
-        return false;
     }
 
     private void andraAlienInfo() {
@@ -1887,7 +1843,7 @@ public final class UserPage extends javax.swing.JFrame {
                         case "Boglodite":
                             if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                 int antal = Integer.parseInt(txtAntalAndra.getText());
-                                idb.update("update BOGLODITE set ANTAL_BOOGIES =" + antal + " where ALIEN_ID=" + id + ")");
+                                idb.update("update BOGLODITE set ANTAL_BOOGIES =" + antal + " where ALIEN_ID=" + id);
                                 idb.update(update);
                                 JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                             }
@@ -1895,7 +1851,7 @@ public final class UserPage extends javax.swing.JFrame {
                         case "Squid":
                             if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                 int antal = Integer.parseInt(txtAntalAndra.getText());
-                                idb.update("update SQUID set ANTAL_ARMAR = " + antal + " where ALIEN_ID =" + id + ")");
+                                idb.update("update SQUID set ANTAL_ARMAR = " + antal + " where ALIEN_ID =" + id);
                                 idb.update(update);
                                 JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                             }
@@ -1924,7 +1880,6 @@ public final class UserPage extends javax.swing.JFrame {
 
         }
     }
-
 
     private void lblAliensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAliensMouseClicked
         setMenuVisibility(pnlAlienMeny);
@@ -2163,10 +2118,12 @@ public final class UserPage extends javax.swing.JFrame {
 
                 int nextIndexAgent = Integer.parseInt(idb.getAutoIncrement("AGENT", "AGENT_ID"));
 
-                String insert = "insert into AGENT values (" + nextIndexAgent + ", '" + namn + "', " + "'" + telefon + "', " + "'" + datum + "', " + "'" + admin + "', '" + losenord + "', " + omrade + ")";
-
-                idb.insert(insert);
-
+                String insert1 = "insert into AGENT values (" + nextIndexAgent + ", '" + namn + "', " + "'" + telefon + "', " + "'" + datum + "', " + "'" + admin + "', '" + losenord + "', " + omrade + ")";
+                System.out.println(insert1);
+                String insert2 = "insert into FALTAGENT values (" + nextIndexAgent + ")";
+                System.out.println(insert2);
+                idb.insert(insert1);
+                idb.insert(insert2);
                 JOptionPane.showMessageDialog(null, "Agent sparad");
                 txtAgentNamn.setText(null);
                 txtAgentTelefon.setText(null);
@@ -2179,7 +2136,7 @@ public final class UserPage extends javax.swing.JFrame {
         }
 
     }
-    
+
     private void lblAgentTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAgentTillbakaMouseClicked
         setMenuVisibility(pnlHuvudMeny);
     }//GEN-LAST:event_lblAgentTillbakaMouseClicked
@@ -2283,7 +2240,6 @@ public final class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRaderaAgentMouseClicked
 
     private void raderaAgent() {
-
         String valdAgent = jlAgentLista.getSelectedValue().split(" ")[0];
         ArrayList<String> kontorsChefAgentId;
         ArrayList<String> omradesChefAgentId;
@@ -2292,31 +2248,23 @@ public final class UserPage extends javax.swing.JFrame {
             kontorsChefAgentId = idb.fetchColumn("select agent_id from kontorschef");
             omradesChefAgentId = idb.fetchColumn("select agent_id from omradeschef");
             alienAgentId = idb.fetchColumn("select ansvarig_agent from alien");
-            if (omradesChefAgentId.contains(valdAgent)) {
-                JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne är en områdeschef.");
-            } else {
-                if (kontorsChefAgentId.contains(valdAgent)) {
+            if (Validering.kollaRadering()) {
+                if (omradesChefAgentId.contains(valdAgent)) {
+                    JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne är en områdeschef.");
+                } else if (kontorsChefAgentId.contains(valdAgent)) {
                     JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne är en kontorschef.");
+                } else if (alienAgentId.contains(valdAgent)) {
+                    JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne ansvarar för minst en alien.");
                 } else {
-                    if (alienAgentId.contains(valdAgent)) {
-                        JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne ansvarar för minst en alien.");
-                    }
-                
-                if (Validering.kollaRadering()) {
                     idb.delete("delete from faltagent where agent_id = " + valdAgent);
                     idb.delete("delete from agent where agent_id = " + valdAgent);
+                    JOptionPane.showMessageDialog(null, "Agenten är nu raderad.");
                 }
-                JOptionPane.showMessageDialog(null, "Agenten är nu raderad.");
             }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel2.");
         }
     }
-    catch (InfException ex
-
-    
-        ) {
-            JOptionPane.showMessageDialog(null, "Något gick fel2.");
-    }
-}
 
     private void jcbUtrustningsKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbUtrustningsKategoriActionPerformed
         String typAvUtrustning = jcbUtrustningsKategori.getSelectedItem().toString();
@@ -2384,13 +2332,13 @@ public final class UserPage extends javax.swing.JFrame {
         ArrayList<String> vapen = new ArrayList<>();
         ArrayList<String> kommunikation = new ArrayList<>();
         try {
-            if (kollaOmTabellInnehållerRader("UTRUSTNINGS_ID", "TEKNIK")) {
+            if (kollaTabellTom("UTRUSTNINGS_ID", "TEKNIK")) {
                 teknik = idb.fetchColumn("select UTRUSTNINGS_ID from TEKNIK");
             }
-            if (kollaOmTabellInnehållerRader("UTRUSTNINGS_ID", "VAPEN")) {
+            if (kollaTabellTom("UTRUSTNINGS_ID", "VAPEN")) {
                 vapen = idb.fetchColumn("select UTRUSTNINGS_ID from VAPEN");
             }
-            if (kollaOmTabellInnehållerRader("UTRUSTNINGS_ID", "KOMMUNIKATION")) {
+            if (kollaTabellTom("UTRUSTNINGS_ID", "KOMMUNIKATION")) {
                 kommunikation = idb.fetchColumn("select UTRUSTNINGS_ID from KOMMUNIKATION");
             }
 
@@ -2409,7 +2357,7 @@ public final class UserPage extends javax.swing.JFrame {
         return typ;
     }
 
-    private boolean kollaOmTabellInnehållerRader(String id, String tabell) {
+    private boolean kollaTabellTom(String id, String tabell) {
         try {
             ArrayList<String> allaIdn = idb.fetchColumn("select " + id + " from " + tabell);
             if (allaIdn.size() > 0) {
@@ -2714,6 +2662,7 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkAgentAdminAndra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrAgentLista;
     private javax.swing.JScrollPane jScrAlienLista;
     private javax.swing.JScrollPane jScrAlienListaOmrade;

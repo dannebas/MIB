@@ -23,7 +23,9 @@ public class Start {
     public static void main(String[] args) {
 
         try {
-            idb = new InfDB("c:\\db\\MIBDB.FDB");
+            String aktuellMapp = System.getProperty("user.dir");
+            String sokvagDatabas = aktuellMapp + ("\\db\\MIBDB.FDB"); 
+            idb = new InfDB(sokvagDatabas);
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
         }
