@@ -11,13 +11,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import org.jdesktop.swingx.JXDatePicker;
@@ -28,7 +29,7 @@ import oru.inf.InfException;
  *
  * @author Daniel Lindau
  */
-public final class UserPage extends javax.swing.JFrame implements ListSelectionListener {
+public final class UserPage extends javax.swing.JFrame {
 
     private final InfDB idb;
     private final User anvandare;
@@ -47,21 +48,26 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         this.anvandare = anvandare;
         lblAnvandaresNamn.setText(anvandare.getNamn());
         this.setLocationRelativeTo(null);
-
         this.anvandarTyp = anvandare.getTyp();
 
         switch (anvandarTyp) {
             case "AGENT":
                 setMenuVisibility(pnlHuvudMeny);
+                setPanelVisibility(pnlEmpty);
                 break;
 
             case "ALIEN":
                 setMenuVisibility(pnlHuvudMenyAlien);
                 setPanelVisibility(pnlAlienStart);
-                lblAliensOmradesChef.setText("");
+                lblAliensOmradesChef.setText(getOmradesChef());
+                listaAliensIMittOmrade();
                 break;
         }
-        /*pnlEmpty.setVisible(true);
+
+        /*jlAgentLista.addListSelectionListener(this);
+        jlAlienLista.addListSelectionListener(this);
+
+        pnlEmpty.setVisible(true);
         pnlAlienMeny.setVisible(false);
         pnlAgentMeny.setVisible(false);
         pnlAgentRegistrering.setVisible(false);
@@ -72,7 +78,6 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnlAgentSokOchAndra.setVisible(false);
         pnlSokOmradesChef.setVisible(false);
          */
-        setPanelVisibility(pnlEmpty);
         //pnlUtrustningMeny.setVisible(false);
     }
 
@@ -91,6 +96,15 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         lblMeny = new javax.swing.JLabel();
         lblAnvandaresNamn = new javax.swing.JLabel();
         pnlEmpty = new javax.swing.JPanel();
+        pnlAlienStart = new javax.swing.JPanel();
+        lblAlienStartTitel = new javax.swing.JLabel();
+        pnlAliensOmradesChef = new javax.swing.JPanel();
+        lblOmradesChefBild = new javax.swing.JLabel();
+        lblAliensOmradesChef = new javax.swing.JLabel();
+        jScrAlienListaOmrade = new javax.swing.JScrollPane();
+        jlAliensIMittOmrade = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        lblOmradesChefTitel = new javax.swing.JLabel();
         pnlAgentRegistrering = new javax.swing.JPanel();
         lblAgentNamn = new javax.swing.JLabel();
         txtAgentNamn = new javax.swing.JTextField();
@@ -114,7 +128,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         lblUtrustning = new javax.swing.JLabel();
         pnlAlienMeny = new javax.swing.JPanel();
         lblTillbaka = new javax.swing.JLabel();
-        lblSok = new javax.swing.JLabel();
+        lblAlienSokOchAndra = new javax.swing.JLabel();
         lblRegistrera = new javax.swing.JLabel();
         lblListaAlla = new javax.swing.JLabel();
         pnlAlienSokOchAndra = new javax.swing.JPanel();
@@ -232,15 +246,21 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         btnRaderaAgent = new javax.swing.JButton();
         lblRaderaAgent = new javax.swing.JLabel();
         pnlSokOmradesChef = new javax.swing.JPanel();
-        pnlAlienStart = new javax.swing.JPanel();
-        lblAlienStartTitel = new javax.swing.JLabel();
-        pnlAliensOmradesChef = new javax.swing.JPanel();
-        lblOmradesChefBild = new javax.swing.JLabel();
-        lblAliensOmradesChef = new javax.swing.JLabel();
-        jScrAlienListaOmrade = new javax.swing.JScrollPane();
-        jlAliensIMittOmrade = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
-        lblOmradesChefTitel = new javax.swing.JLabel();
+        pnlUtrustningRegistrering = new javax.swing.JPanel();
+        jcbUtrustningsKategori = new javax.swing.JComboBox<>();
+        lblUtrustningTitel = new javax.swing.JLabel();
+        lblUtrustnigVal = new javax.swing.JLabel();
+        txtSpecifikation = new javax.swing.JTextField();
+        txtUtrustningBenamning = new javax.swing.JTextField();
+        lblBenamning = new javax.swing.JLabel();
+        lblSpecifikation = new javax.swing.JLabel();
+        btnSparaUtrustning = new javax.swing.JButton();
+        lblUtrustningKategori = new javax.swing.JLabel();
+        pnlRaderaUtrustning = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        btnRaderaUtrustning = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 475));
@@ -290,6 +310,74 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
 
         pnlBackground.add(pnlEmpty);
         pnlEmpty.setBounds(160, 20, 620, 410);
+
+        pnlAlienStart.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAlienStart.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlAlienStart.setForeground(new java.awt.Color(204, 204, 204));
+        pnlAlienStart.setMinimumSize(new java.awt.Dimension(620, 410));
+        pnlAlienStart.setLayout(null);
+
+        lblAlienStartTitel.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        lblAlienStartTitel.setForeground(new java.awt.Color(204, 204, 204));
+        lblAlienStartTitel.setText("Huvudsida");
+        pnlAlienStart.add(lblAlienStartTitel);
+        lblAlienStartTitel.setBounds(20, 10, 180, 40);
+
+        pnlAliensOmradesChef.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAliensOmradesChef.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        lblOmradesChefBild.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOmradesChefBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
+
+        lblAliensOmradesChef.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        lblAliensOmradesChef.setForeground(new java.awt.Color(204, 204, 204));
+        lblAliensOmradesChef.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAliensOmradesChef.setText("agentnamn");
+
+        javax.swing.GroupLayout pnlAliensOmradesChefLayout = new javax.swing.GroupLayout(pnlAliensOmradesChef);
+        pnlAliensOmradesChef.setLayout(pnlAliensOmradesChefLayout);
+        pnlAliensOmradesChefLayout.setHorizontalGroup(
+            pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAliensOmradesChefLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblOmradesChefBild, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAliensOmradesChef, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+        pnlAliensOmradesChefLayout.setVerticalGroup(
+            pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAliensOmradesChefLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(lblOmradesChefBild, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAliensOmradesChef)
+                .addContainerGap(82, Short.MAX_VALUE))
+        );
+
+        pnlAlienStart.add(pnlAliensOmradesChef);
+        pnlAliensOmradesChef.setBounds(350, 110, 180, 250);
+
+        jlAliensIMittOmrade.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrAlienListaOmrade.setViewportView(jlAliensIMittOmrade);
+
+        pnlAlienStart.add(jScrAlienListaOmrade);
+        jScrAlienListaOmrade.setBounds(100, 110, 160, 250);
+
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Aliens i ditt område:");
+        pnlAlienStart.add(jLabel3);
+        jLabel3.setBounds(120, 80, 120, 16);
+
+        lblOmradesChefTitel.setForeground(new java.awt.Color(204, 204, 204));
+        lblOmradesChefTitel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOmradesChefTitel.setText("Din områdeschef:");
+        pnlAlienStart.add(lblOmradesChefTitel);
+        lblOmradesChefTitel.setBounds(390, 80, 100, 16);
+
+        pnlBackground.add(pnlAlienStart);
+        pnlAlienStart.setBounds(160, 20, 620, 410);
 
         pnlAgentRegistrering.setBackground(new java.awt.Color(29, 29, 48));
         pnlAgentRegistrering.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -412,6 +500,11 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
 
         lblUtrustning.setForeground(new java.awt.Color(204, 204, 204));
         lblUtrustning.setText("Utrustning");
+        lblUtrustning.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblUtrustningMouseClicked(evt);
+            }
+        });
         pnlHuvudMeny.add(lblUtrustning);
         lblUtrustning.setBounds(10, 50, 100, 20);
 
@@ -433,18 +526,18 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnlAlienMeny.add(lblTillbaka);
         lblTillbaka.setBounds(10, 80, 100, 20);
 
-        lblSok.setForeground(new java.awt.Color(204, 204, 204));
-        lblSok.setText("Sök och ändra");
-        lblSok.setMaximumSize(new java.awt.Dimension(50, 15));
-        lblSok.setMinimumSize(new java.awt.Dimension(50, 15));
-        lblSok.setPreferredSize(new java.awt.Dimension(50, 15));
-        lblSok.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblAlienSokOchAndra.setForeground(new java.awt.Color(204, 204, 204));
+        lblAlienSokOchAndra.setText("Sök och ändra");
+        lblAlienSokOchAndra.setMaximumSize(new java.awt.Dimension(50, 15));
+        lblAlienSokOchAndra.setMinimumSize(new java.awt.Dimension(50, 15));
+        lblAlienSokOchAndra.setPreferredSize(new java.awt.Dimension(50, 15));
+        lblAlienSokOchAndra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSokMouseClicked(evt);
+                lblAlienSokOchAndraMouseClicked(evt);
             }
         });
-        pnlAlienMeny.add(lblSok);
-        lblSok.setBounds(10, 40, 100, 20);
+        pnlAlienMeny.add(lblAlienSokOchAndra);
+        lblAlienSokOchAndra.setBounds(10, 40, 100, 20);
 
         lblRegistrera.setForeground(new java.awt.Color(204, 204, 204));
         lblRegistrera.setText("Regístrera ny");
@@ -524,6 +617,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnlAlienAndra.add(lblAlienInformation);
         lblAlienInformation.setBounds(20, 0, 180, 40);
 
+        jcbAlienPlatsAndra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Örebro", "Västerås", "Vilhelmina", "Borås" }));
         pnlAlienAndra.add(jcbAlienPlatsAndra);
         jcbAlienPlatsAndra.setBounds(120, 150, 120, 26);
 
@@ -1098,73 +1192,90 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnlBackground.add(pnlSokOmradesChef);
         pnlSokOmradesChef.setBounds(160, 20, 620, 410);
 
-        pnlAlienStart.setBackground(new java.awt.Color(29, 29, 48));
-        pnlAlienStart.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlAlienStart.setForeground(new java.awt.Color(204, 204, 204));
-        pnlAlienStart.setMinimumSize(new java.awt.Dimension(620, 410));
-        pnlAlienStart.setLayout(null);
+        pnlUtrustningRegistrering.setBackground(new java.awt.Color(29, 29, 48));
+        pnlUtrustningRegistrering.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlUtrustningRegistrering.setForeground(new java.awt.Color(204, 204, 204));
+        pnlUtrustningRegistrering.setMinimumSize(new java.awt.Dimension(620, 410));
+        pnlUtrustningRegistrering.setLayout(null);
 
-        lblAlienStartTitel.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        lblAlienStartTitel.setForeground(new java.awt.Color(204, 204, 204));
-        lblAlienStartTitel.setText("Huvudsida");
-        pnlAlienStart.add(lblAlienStartTitel);
-        lblAlienStartTitel.setBounds(20, 10, 180, 40);
+        jcbUtrustningsKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teknik", "Vapen", "Kommunikation" }));
+        jcbUtrustningsKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbUtrustningsKategoriActionPerformed(evt);
+            }
+        });
+        pnlUtrustningRegistrering.add(jcbUtrustningsKategori);
+        jcbUtrustningsKategori.setBounds(150, 140, 120, 26);
 
-        pnlAliensOmradesChef.setBackground(new java.awt.Color(29, 29, 48));
-        pnlAliensOmradesChef.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        lblUtrustningTitel.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        lblUtrustningTitel.setForeground(new java.awt.Color(204, 204, 204));
+        lblUtrustningTitel.setText("Utrustning");
+        pnlUtrustningRegistrering.add(lblUtrustningTitel);
+        lblUtrustningTitel.setBounds(20, 10, 180, 40);
 
-        lblOmradesChefBild.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblOmradesChefBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
+        lblUtrustnigVal.setForeground(new java.awt.Color(204, 204, 204));
+        lblUtrustnigVal.setText("Registrera ny:");
+        pnlUtrustningRegistrering.add(lblUtrustnigVal);
+        lblUtrustnigVal.setBounds(30, 80, 90, 16);
+        pnlUtrustningRegistrering.add(txtSpecifikation);
+        txtSpecifikation.setBounds(150, 170, 120, 24);
+        pnlUtrustningRegistrering.add(txtUtrustningBenamning);
+        txtUtrustningBenamning.setBounds(150, 110, 120, 24);
 
-        lblAliensOmradesChef.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lblAliensOmradesChef.setForeground(new java.awt.Color(204, 204, 204));
-        lblAliensOmradesChef.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAliensOmradesChef.setText("agentnamn");
+        lblBenamning.setForeground(new java.awt.Color(204, 204, 204));
+        lblBenamning.setText("Benämning:");
+        pnlUtrustningRegistrering.add(lblBenamning);
+        lblBenamning.setBounds(30, 110, 70, 24);
 
-        javax.swing.GroupLayout pnlAliensOmradesChefLayout = new javax.swing.GroupLayout(pnlAliensOmradesChef);
-        pnlAliensOmradesChef.setLayout(pnlAliensOmradesChefLayout);
-        pnlAliensOmradesChefLayout.setHorizontalGroup(
-            pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAliensOmradesChefLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblOmradesChefBild, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAliensOmradesChef, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
-        pnlAliensOmradesChefLayout.setVerticalGroup(
-            pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAliensOmradesChefLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(lblOmradesChefBild, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAliensOmradesChef)
-                .addContainerGap(82, Short.MAX_VALUE))
-        );
+        lblSpecifikation.setForeground(new java.awt.Color(204, 204, 204));
+        lblSpecifikation.setText("Kraftkälla:");
+        pnlUtrustningRegistrering.add(lblSpecifikation);
+        lblSpecifikation.setBounds(30, 170, 110, 24);
 
-        pnlAlienStart.add(pnlAliensOmradesChef);
-        pnlAliensOmradesChef.setBounds(350, 110, 180, 250);
+        btnSparaUtrustning.setText("Spara");
+        btnSparaUtrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSparaUtrustningActionPerformed(evt);
+            }
+        });
+        pnlUtrustningRegistrering.add(btnSparaUtrustning);
+        btnSparaUtrustning.setBounds(190, 200, 77, 32);
 
-        jlAliensIMittOmrade.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrAlienListaOmrade.setViewportView(jlAliensIMittOmrade);
+        lblUtrustningKategori.setForeground(new java.awt.Color(204, 204, 204));
+        lblUtrustningKategori.setText("Kategori:");
+        pnlUtrustningRegistrering.add(lblUtrustningKategori);
+        lblUtrustningKategori.setBounds(30, 140, 60, 24);
 
-        pnlAlienStart.add(jScrAlienListaOmrade);
-        jScrAlienListaOmrade.setBounds(100, 110, 160, 250);
+        pnlRaderaUtrustning.setBackground(new java.awt.Color(29, 29, 48));
+        pnlRaderaUtrustning.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlRaderaUtrustning.setLayout(null);
 
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Aliens i ditt område:");
-        pnlAlienStart.add(jLabel3);
-        jLabel3.setBounds(120, 80, 120, 16);
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Radera utrusting:");
+        pnlRaderaUtrustning.add(jLabel5);
+        jLabel5.setBounds(80, 0, 100, 24);
 
-        lblOmradesChefTitel.setForeground(new java.awt.Color(204, 204, 204));
-        lblOmradesChefTitel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblOmradesChefTitel.setText("Din områdeschef:");
-        pnlAlienStart.add(lblOmradesChefTitel);
-        lblOmradesChefTitel.setBounds(390, 80, 100, 16);
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jList1);
 
-        pnlBackground.add(pnlAlienStart);
-        pnlAlienStart.setBounds(160, 20, 620, 410);
+        pnlRaderaUtrustning.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 30, 240, 230);
+
+        btnRaderaUtrustning.setText("Radera");
+        btnRaderaUtrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaderaUtrustningActionPerformed(evt);
+            }
+        });
+        pnlRaderaUtrustning.add(btnRaderaUtrustning);
+        btnRaderaUtrustning.setBounds(160, 270, 71, 32);
+
+        pnlUtrustningRegistrering.add(pnlRaderaUtrustning);
+        pnlRaderaUtrustning.setBounds(330, 70, 260, 310);
+
+        pnlBackground.add(pnlUtrustningRegistrering);
+        pnlUtrustningRegistrering.setBounds(160, 20, 620, 410);
 
         getContentPane().add(pnlBackground, java.awt.BorderLayout.CENTER);
 
@@ -1190,15 +1301,77 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         pnlListaAliens.setVisible(false);
         pnlAgentSokOchAndra.setVisible(false);
         pnlSokOmradesChef.setVisible(false);
+        pnlUtrustningRegistrering.setVisible(false);
+        pnlAlienStart.setVisible(false);
+        //pnlChefer.setVisible(true);
         pnl.setVisible(true);
 
     }
 
-    private void getOmradesChef() {
+    private String getOmradesChef() {
 
-        String namnOmradesChef;
+        String namnOmradesChef = "";
+        try {
+            String selectSats = "select namn from agent where agent_id like "
+                    + "(select agent_id from omradeschef where omrade like "
+                    + "(select omrades_id from omrade where omrades_id like "
+                    + "(select finns_i from plats where plats_id like "
+                    + "(select plats from alien where alien_id =" + anvandare.getId() + "))))";
+            System.out.println(selectSats);
+            namnOmradesChef = idb.fetchSingle(selectSats);
+
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+        return namnOmradesChef;
+    }
+
+    private void listaAliensIMittOmrade() {
 
     }
+
+    private void registreraUtrustning() {
+        try {
+            String autoIDUtrustning = idb.getAutoIncrement("utrustning", "utrustnings_id");
+
+            String benamning = txtUtrustningBenamning.getText();
+            String typAvUtrustning = jcbUtrustningsKategori.getSelectedItem().toString();
+            switch (typAvUtrustning) {
+                case "Teknik":
+
+                    String registreraUtrustningTeknik = txtSpecifikation.getText();
+
+                    idb.insert("insert into UTRUSTNING values(" + autoIDUtrustning + ", '" + benamning + "')");
+                    idb.insert("insert into TEKNIK values(" + autoIDUtrustning + ", '" + registreraUtrustningTeknik + "')");
+
+                    JOptionPane.showMessageDialog(null, "Du har lagt till en ny teknik.");
+                    break;
+
+                case "Vapen":
+
+                    String registreraUtrustningVapen = txtSpecifikation.getText();
+
+                    idb.insert("insert into UTRUSTNING values(" + autoIDUtrustning + ", '" + benamning + "')");
+                    idb.insert("insert into VAPEN values(" + autoIDUtrustning + ", '" + registreraUtrustningVapen + "')");
+
+                    JOptionPane.showMessageDialog(null, "Du har lagt till ett nytt vapen.");
+                    break;
+
+                case "Kommunikation":
+
+                    String registreraUtrustningKommunikation = txtSpecifikation.getText();
+
+                    idb.insert("insert into UTRUSTNING values(" + autoIDUtrustning + ", '" + benamning + "')");
+                    idb.insert("insert into KOMMUNIKATION values(" + autoIDUtrustning + ", '" + registreraUtrustningKommunikation + "')");
+
+                    JOptionPane.showMessageDialog(null, "Du har lagt till en ny kommunikation.");
+                    break;
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel.");
+        }
+    }
+
     private void lblLoggaUtAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoggaUtAgentMouseClicked
 
         if (Validering.kollaUtloggning()) {
@@ -1215,65 +1388,69 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     }//GEN-LAST:event_lblAndraLosenAgentMouseClicked
 
     private void andraLosenord() {
-        if (Validering.kollaTextRutaTom(txtNuvarandeLosenord) && Validering.kollaTextRutaTom(txtNyttLosenord)) {
-            if (txtNyttLosenord.getText().length() <= 6) {
-                try {
-                    String gammaltLosenord = idb.fetchSingle("select LOSENORD from " + anvandarTyp + " where " + anvandarTyp + "_ID = " + anvandare.getId());
-                    if (txtNuvarandeLosenord.getText().equals(gammaltLosenord)) {
-                        idb.update("Update " + anvandarTyp + " set LOSENORD = '" + txtNyttLosenord.getText() + "'" + " where " + anvandarTyp + "_ID = " + anvandare.getId());
-                        JOptionPane.showMessageDialog(null, "Du har ändrat ditt lösenord.");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Fel lösenord.");
-                    }
-                } catch (InfException ex) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel.");
+        if (Validering.kollaTextRutaTom(txtNuvarandeLosenord)
+                && Validering.kollaTextRutaTom(txtNyttLosenord)
+                && Validering.kollaLosenordLangd(txtNyttLosenord)) {
+
+            try {
+                String gammaltLosenord = idb.fetchSingle("select LOSENORD from " + anvandarTyp + " where " + anvandarTyp + "_ID = " + anvandare.getId());
+                if (txtNuvarandeLosenord.getText().equals(gammaltLosenord)) {
+                    idb.update("Update " + anvandarTyp + " set LOSENORD = '" + txtNyttLosenord.getText() + "'" + " where " + anvandarTyp + "_ID = " + anvandare.getId());
+                    JOptionPane.showMessageDialog(null, "Du har ändrat ditt lösenord.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Fel lösenord.");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Ditt lösenord får max vara 6 tecken långt.");
+            } catch (InfException ex) {
+                JOptionPane.showMessageDialog(null, "Något gick fel.");
             }
+
         }
     }
 
-    private void lblSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSokMouseClicked
+    private void lblAlienSokOchAndraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienSokOchAndraMouseClicked
 
         setPanelVisibility(pnlAlienSokOchAndra);
 
-        //visa och göm rätt labels och textfält
         lblAntalArmarAndra.setVisible(false);
         lblAntalBoogiesAndra.setVisible(false);
         txtAntalAndra.setVisible(false);
-        jlAlienLista.addListSelectionListener(this);
+        jlAlienLista.addListSelectionListener(new AlienListener());
         if (anvandare.getAdmin().equals("J")) {
             pnlRaderaAlien.setVisible(true);
         } else {
             pnlRaderaAlien.setVisible(false);
         }
+    }//GEN-LAST:event_lblAlienSokOchAndraMouseClicked
 
+    public class AgentListener implements ListSelectionListener {
 
-    }//GEN-LAST:event_lblSokMouseClicked
-
-    @Override
-    public void valueChanged(ListSelectionEvent listener) {
-        if (!listener.getValueIsAdjusting()) {
-
-            jlAlienLista = (JList<String>) listener.getSource();
-            jlAgentLista = (JList<String>) listener.getSource();
-
-            String alienval = jlAlienLista.getSelectedValue();
-            String agentval = jlAgentLista.getSelectedValue();
-
-            if (alienval != null) {
-
-                getAlienInfo(alienval);
-            }
-            if (agentval != null) {
-                getAgentInfo(agentval);
-
+        @Override
+        public void valueChanged(ListSelectionEvent listener) {
+            if (!listener.getValueIsAdjusting()) {
+                jlAgentLista = (JList<String>) listener.getSource();
+                String val = jlAgentLista.getSelectedValue();
+                if (val != null) {
+                    getAgentInfo(val);
+                }
             }
         }
     }
 
-    private void getAgentInfo(String info) {
+    public class AlienListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent listener) {
+            if (!listener.getValueIsAdjusting()) {
+                jlAlienLista = (JList<String>) listener.getSource();
+                String val = jlAlienLista.getSelectedValue();
+                if (val != null) {
+                    getAlienInfo(val);
+                }
+            }
+        }
+    }
+
+    public void getAgentInfo(String info) {
         try {
             String[] idOchNamn = info.split(" ");
             String id = idOchNamn[0];
@@ -1323,7 +1500,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
             String telefon = idb.fetchSingle("select TELEFON from ALIEN where ALIEN_ID = " + id);
             String losenord = idb.fetchSingle("select LOSENORD from ALIEN where ALIEN_ID = " + id);
             String platsId = idb.fetchSingle("select PLATS from ALIEN where ALIEN_ID = " + id);
-            String plats = platsId + " " + idb.fetchSingle("select BENAMNING from PLATS where PLATS_ID = " + platsId);
+            String plats = idb.fetchSingle("select BENAMNING from PLATS where PLATS_ID = " + platsId);
             String agentId = idb.fetchSingle("select ANSVARIG_AGENT from ALIEN where ALIEN_ID = " + id);
             String ansvarigAgent = agentId + " " + idb.fetchSingle("select NAMN from AGENT where AGENT_ID = " + agentId);
             String datum = idb.fetchSingle("select REGISTRERINGSDATUM from ALIEN where ALIEN_ID = " + id);
@@ -1366,9 +1543,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
             txtAlienLosenordAndra.setText(losenord);
             txtAlienTelefonAndra.setText(telefon);
 
-            jcbAlienPlatsAndra.removeAllItems();
             jcbAnsvarigAgentAndra.removeAllItems();
-            fyllComboBox(jcbAlienPlatsAndra, "PLATS_ID", "BENAMNING", "PLATS");
+
             fyllComboBox(jcbAnsvarigAgentAndra, "AGENT_ID", "NAMN", "AGENT");
             jcbAlienPlatsAndra.setSelectedItem(plats);
             jcbAnsvarigAgentAndra.setSelectedItem(ansvarigAgent);
@@ -1473,12 +1649,13 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
 
         if (Validering.kollaTextRutaTom(txtAlienNamnAndra)
                 && Validering.kollaTextRutaTom(txtAlienTelefonAndra)
-                && Validering.kollaTextRutaTom(txtAlienLosenordAndra)) {
+                && Validering.kollaTextRutaTom(txtAlienLosenordAndra)
+                && Validering.kollaLosenordLangd(txtAlienLosenordAndra)) {
             try {
 
                 String update = "update ALIEN set REGISTRERINGSDATUM = '" + datum + "', LOSENORD ='" + losenord + "', NAMN='" + namn + "', TELEFON ='" + telefon + "', PLATS=" + plats + ", ANSVARIG_AGENT=" + ansvarigAgent + " where ALIEN_ID=" + id;
-
-                idb.update(update);
+                System.out.println(update);
+                //idb.update(update);
                 if (!ras.equals(valdRas)) {
                     switch (ras) {
                         case "Boglodite":
@@ -1488,8 +1665,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into SQUID values (" + id + ", " + antal + ")");
-                                        break;
                                     }
+                                    break;
                                 case "Worm":
                                     idb.insert("insert into WORM values (" + id + ")");
                                     break;
@@ -1502,8 +1679,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into BOGLODITE values (" + id + ", " + antal + ")");
-                                        break;
                                     }
+                                    break;
                                 case "Worm":
                                     idb.insert("insert into WORM values (" + id + ")");
                                     break;
@@ -1516,14 +1693,14 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into BOGLODITE values (" + id + ", " + antal + ")");
-                                        break;
                                     }
+                                    break;
                                 case "Squid":
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into SQUID values (" + id + ", " + antal + ")");
-                                        break;
                                     }
+                                    break;
                             }
                             break;
                         case "Ospecificerat":
@@ -1532,19 +1709,18 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into BOGLODITE values (" + id + ", " + antal + ")");
-                                        break;
                                     }
+                                    break;
                                 case "Squid":
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into SQUID values (" + id + ", " + antal + ")");
-                                        break;
                                     }
+                                    break;
                                 case "Worm":
                                     idb.insert("insert into WORM values (" + id + ")");
                                     break;
                             }
-
                             break;
                     }
                 } else if (ras.equals(valdRas)) {
@@ -1553,20 +1729,21 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
                             if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                 int antal = Integer.parseInt(txtAntalAndra.getText());
                                 idb.update("update BOGLODITE set ANTAL_BOOGIES =" + antal + " where ALIEN_ID=" + id + ")");
-                                break;
                             }
+                            break;
                         case "Squid":
                             if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                 int antal = Integer.parseInt(txtAntalAndra.getText());
                                 idb.update("update SQUID set ANTAL_ARMAR = " + antal + " where ALIEN_ID =" + id + ")");
-                                break;
                             }
+                            break;
                         case "Worm":
                             break;
                         case "Ospecificerat":
                             break;
                     }
                 }
+                idb.update(update);
                 JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                 txtAlienNamnAndra.setText(null);
                 txtAlienTelefonAndra.setText(null);
@@ -1671,7 +1848,9 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         }
     }//GEN-LAST:event_jcbAlienRasActionPerformed
 
+
     private void btnSokAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokAlienActionPerformed
+
         fyllListaMedSokresultat(jlAlienLista, txtSokord.getText(), "ALIEN_ID", "NAMN", "ALIEN");
 
     }//GEN-LAST:event_btnSokAlienActionPerformed
@@ -1731,67 +1910,24 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
         jlListaAliens.setModel(listModel);
         listModel.removeAllElements();
         try {
-
+            boolean hittad = false;
             String valdRas = jcbAlienRasLista.getSelectedItem().toString();
-            ArrayList<String> allaBoglodites = idb.fetchColumn("select ALIEN_ID from BOGLODITE");
-            ArrayList<String> allaWorms = idb.fetchColumn("select ALIEN_ID from WORM");
-            ArrayList<String> allaSquids = idb.fetchColumn("select ALIEN_ID from SQUID");
             ArrayList<HashMap<String, String>> hittadeAliens;
             ArrayList<String> allaAliens = idb.fetchColumn("select ALIEN_ID from ALIEN");
-            switch (valdRas) {
-                case "Ospecificerat":
-                    for (String id : allaAliens) {
-                        if (!allaBoglodites.contains(id) && !allaWorms.contains(id) && !allaSquids.contains(id)) {
-                            hittadeAliens = idb.fetchRows("select ALIEN_ID, NAMN from ALIEN where ALIEN_ID = " + id);
-
-                            for (HashMap<String, String> enAlien : hittadeAliens) {
-
-                                String element = enAlien.get("ALIEN_ID") + " " + enAlien.get("NAMN");
-                                listModel.addElement(element);
-                            }
-                        }
+            for (String id : allaAliens) {
+                String ras = kollaRas(id);
+                if (valdRas.equals(ras)) {
+                    hittad = true;
+                    hittadeAliens = idb.fetchRows("select ALIEN_ID, NAMN from ALIEN where ALIEN_ID = " + id);
+                    for (HashMap<String, String> enAlien : hittadeAliens) {
+                        String element = enAlien.get("ALIEN_ID") + " " + enAlien.get("NAMN");
+                        listModel.addElement(element);
                     }
-                    break;
-                case "Boglodite":
-                    for (String id : allaBoglodites) {
-                        hittadeAliens = idb.fetchRows("select ALIEN_ID, NAMN from ALIEN where ALIEN_ID = " + id);
-
-                        for (HashMap<String, String> enAlien : hittadeAliens) {
-
-                            String element = enAlien.get("ALIEN_ID") + " " + enAlien.get("NAMN");
-                            listModel.addElement(element);
-                        }
-                    }
-                    break;
-
-                case "Squid":
-                    for (String id : allaSquids) {
-                        hittadeAliens = idb.fetchRows("select ALIEN_ID, NAMN from ALIEN where ALIEN_ID = " + id);
-
-                        for (HashMap<String, String> enAlien : hittadeAliens) {
-
-                            String element = enAlien.get("ALIEN_ID") + " " + enAlien.get("NAMN");
-                            listModel.addElement(element);
-                        }
-                    }
-                    break;
-
-                case "Worm":
-                    for (String id : allaWorms) {
-                        hittadeAliens = idb.fetchRows("select ALIEN_ID, NAMN from ALIEN where ALIEN_ID = " + id);
-
-                        for (HashMap<String, String> enAlien : hittadeAliens) {
-
-                            String element = enAlien.get("ALIEN_ID") + " " + enAlien.get("NAMN");
-                            listModel.addElement(element);
-                        }
-                    }
-                    break;
-
+                }
             }
-        } catch (NullPointerException ex) {
-            listModel.addElement("Det finns inga aliens med denna ras");
-
+            if (!hittad) {
+                listModel.addElement("Det finns inga aliens med denna ras");
+            }
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
@@ -1856,7 +1992,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
 
         if (Validering.kollaTextRutaTom(txtAgentNamn)
                 && Validering.kollaTextRutaTom(txtAgentTelefon)
-                && Validering.kollaTextRutaTom(txtAgentLosenord)) {
+                && Validering.kollaTextRutaTom(txtAgentLosenord)
+                && Validering.kollaLosenordLangd(txtAgentLosenord)) {
             try {
 
                 int nextIndexAgent = Integer.parseInt(idb.getAutoIncrement("AGENT", "AGENT_ID"));
@@ -1896,7 +2033,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
 
     private void lblAgentSokOchAndraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAgentSokOchAndraMouseClicked
         setPanelVisibility(pnlAgentSokOchAndra);
-        jlAgentLista.addListSelectionListener(this);
+        jlAgentLista.addListSelectionListener(new AgentListener());
         if (anvandare.getAdmin().equals("J")) {
             pnlRaderaAgent.setVisible(true);
         } else {
@@ -1918,6 +2055,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     }//GEN-LAST:event_lblAgenterMouseClicked
 
     private void btnSokAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokAgentActionPerformed
+
         fyllListaMedSokresultat(jlAgentLista, txtAgentAndraSokord.getText(), "AGENT_ID", "NAMN", "AGENT");
     }//GEN-LAST:event_btnSokAgentActionPerformed
 
@@ -1941,7 +2079,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
 
         if (Validering.kollaTextRutaTom(txtAgentNamnAndra)
                 && Validering.kollaTextRutaTom(txtAgentTelefonAndra)
-                && Validering.kollaTextRutaTom(txtAgentLosenordAndra)) {
+                && Validering.kollaTextRutaTom(txtAgentLosenordAndra)
+                && Validering.kollaLosenordLangd(txtAgentLosenord)) {
             try {
 
                 String update = "update AGENT set ANSTALLNINGSDATUM = '" + datum + "', LOSENORD ='" + losenord + "', NAMN='" + namn + "', TELEFON ='" + telefon + "', OMRADE=" + omrade + ", ADMINISTRATOR='" + admin + "' where AGENT_ID=" + id;
@@ -1964,6 +2103,37 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private void btnRaderaAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRaderaAgentMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRaderaAgentMouseClicked
+
+    private void jcbUtrustningsKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbUtrustningsKategoriActionPerformed
+        String typAvUtrustning = jcbUtrustningsKategori.getSelectedItem().toString();
+        switch (typAvUtrustning) {
+            case "Teknik":
+                lblSpecifikation.setText("Kraftkälla:");
+                txtSpecifikation.setVisible(true);
+                break;
+            case "Kommunikation":
+                lblSpecifikation.setText("Överföringsteknik:");
+                txtSpecifikation.setVisible(true);
+                break;
+            case "Vapen":
+                lblSpecifikation.setText("Kaliber:");
+                txtSpecifikation.setVisible(true);
+                break;
+        }
+
+    }//GEN-LAST:event_jcbUtrustningsKategoriActionPerformed
+
+    private void lblUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningMouseClicked
+        setPanelVisibility(pnlUtrustningRegistrering);
+    }//GEN-LAST:event_lblUtrustningMouseClicked
+
+    private void btnSparaUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaUtrustningActionPerformed
+        registreraUtrustning();
+    }//GEN-LAST:event_btnSparaUtrustningActionPerformed
+
+    private void btnRaderaUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaUtrustningActionPerformed
+        //raderaUtrustning();
+    }//GEN-LAST:event_btnRaderaUtrustningActionPerformed
 
     private void raderaAlien(String id) {
         DefaultListModel listModel = new DefaultListModel();
@@ -2065,12 +2235,9 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     }
 
     private String getPlatsFranComboBox(JComboBox jcb) {
-        /*String item[] = jcb.getSelectedItem().toString().split(" ");
-        String svar = item[n];
-         */
         String svar = "";
         String item = jcb.getSelectedItem().toString();
-
+        System.out.println(item);
         switch (item) {
             case "Örebro":
                 svar = "1";
@@ -2103,7 +2270,8 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
 
         if (Validering.kollaTextRutaTom(txtAlienNamn)
                 && Validering.kollaTextRutaTom(txtAlienTelefon)
-                && Validering.kollaTextRutaTom(txtAlienLosenord)) {
+                && Validering.kollaTextRutaTom(txtAlienLosenord)
+                && Validering.kollaLosenordLangd(txtAlienLosenord)) {
             try {
 
                 int nextIndexAlien = Integer.parseInt(idb.getAutoIncrement("ALIEN", "ALIEN_ID"));
@@ -2156,20 +2324,25 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JButton btnListaDatum;
     private javax.swing.JButton btnRaderaAgent;
     private javax.swing.JButton btnRaderaAlien;
+    private javax.swing.JButton btnRaderaUtrustning;
     private javax.swing.JButton btnSokAgent;
     private javax.swing.JButton btnSokAlien;
     private javax.swing.JButton btnSparaAgent;
     private javax.swing.JButton btnSparaAlien;
     private javax.swing.JButton btnSparaAlienAndra;
+    private javax.swing.JButton btnSparaUtrustning;
     private javax.swing.JCheckBox chkAdmin;
     private javax.swing.JCheckBox chkAgentAdminAndra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrAgentLista;
     private javax.swing.JScrollPane jScrAlienLista;
     private javax.swing.JScrollPane jScrAlienListaOmrade;
     private javax.swing.JScrollPane jScrListaAliens;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private org.jdesktop.swingx.JXDatePicker jXDFranDatum;
@@ -2188,6 +2361,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JComboBox<String> jcbAlienRasLista;
     private javax.swing.JComboBox<String> jcbAnsvarigAgent;
     private javax.swing.JComboBox<String> jcbAnsvarigAgentAndra;
+    private javax.swing.JComboBox<String> jcbUtrustningsKategori;
     private javax.swing.JList<String> jlAgentLista;
     private javax.swing.JList<String> jlAlienLista;
     private javax.swing.JList<String> jlAliensIMittOmrade;
@@ -2214,6 +2388,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JLabel lblAlienAndraId;
     private javax.swing.JLabel lblAlienInformation;
     private javax.swing.JLabel lblAlienPlatsAndra;
+    private javax.swing.JLabel lblAlienSokOchAndra;
     private javax.swing.JLabel lblAlienStartTitel;
     private javax.swing.JLabel lblAliens;
     private javax.swing.JLabel lblAliensOmradesChef;
@@ -2232,6 +2407,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JLabel lblAntalBoogies;
     private javax.swing.JLabel lblAntalBoogiesAndra;
     private javax.swing.JLabel lblAnvandaresNamn;
+    private javax.swing.JLabel lblBenamning;
     private javax.swing.JLabel lblBlankt;
     private javax.swing.JLabel lblFranDatum1;
     private javax.swing.JLabel lblIdNamn;
@@ -2258,15 +2434,18 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JLabel lblRegistreraAgent;
     private javax.swing.JLabel lblRegistreraTitel;
     private javax.swing.JLabel lblRegistreraTitel1;
-    private javax.swing.JLabel lblSok;
     private javax.swing.JLabel lblSokAgentNamn;
     private javax.swing.JLabel lblSokAlienNamn;
     private javax.swing.JLabel lblSokTitel;
+    private javax.swing.JLabel lblSpecifikation;
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTelefonAlienAndra;
     private javax.swing.JLabel lblTillDatum;
     private javax.swing.JLabel lblTillbaka;
+    private javax.swing.JLabel lblUtrustnigVal;
     private javax.swing.JLabel lblUtrustning;
+    private javax.swing.JLabel lblUtrustningKategori;
+    private javax.swing.JLabel lblUtrustningTitel;
     private javax.swing.JLabel lblValkommen;
     private javax.swing.JPanel pnlAgentInformation;
     private javax.swing.JPanel pnlAgentMeny;
@@ -2286,7 +2465,9 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JPanel pnlListaAliens;
     private javax.swing.JPanel pnlRaderaAgent;
     private javax.swing.JPanel pnlRaderaAlien;
+    private javax.swing.JPanel pnlRaderaUtrustning;
     private javax.swing.JPanel pnlSokOmradesChef;
+    private javax.swing.JPanel pnlUtrustningRegistrering;
     private javax.swing.JTextField txtAgentAndraSokord;
     private javax.swing.JTextField txtAgentIdAndra;
     private javax.swing.JTextField txtAgentLosenord;
@@ -2307,5 +2488,7 @@ public final class UserPage extends javax.swing.JFrame implements ListSelectionL
     private javax.swing.JTextField txtNuvarandeLosenord;
     private javax.swing.JTextField txtNyttLosenord;
     private javax.swing.JTextField txtSokord;
+    private javax.swing.JTextField txtSpecifikation;
+    private javax.swing.JTextField txtUtrustningBenamning;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,7 +20,7 @@ public class Validering {
 
         if (tf.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Du måste fylla i alla fält");
-            tf.requestFocus();
+            tf.requestFocusInWindow();
             svar = false;
         }
         return svar;
@@ -31,7 +31,17 @@ public class Validering {
 
         if (tf.getPassword().length == 0) {
             JOptionPane.showMessageDialog(null, "Du måste fylla i ett lösenord");
-            tf.requestFocus();
+            tf.requestFocusInWindow();
+            svar = false;
+        }
+        return svar;
+    }
+
+    public static boolean kollaLosenordLangd(JTextField tf) {
+        boolean svar = true;
+        if (tf.getText().length() > 6) {
+            JOptionPane.showMessageDialog(null, "Lösenordet får max vara 6 tecken långt.");
+            tf.requestFocusInWindow();
             svar = false;
         }
         return svar;
@@ -42,7 +52,7 @@ public class Validering {
 
         try {
             Integer.parseInt(tf.getText());
-            tf.requestFocus();
+            tf.requestFocusInWindow();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Vänligen ange ett heltal");
             svar = false;
