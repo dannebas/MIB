@@ -24,13 +24,19 @@ public class Start {
 
         try {
             String aktuellMapp = System.getProperty("user.dir");
-            String sokvagDatabas = aktuellMapp + ("\\db\\MIBDB.FDB"); 
+            String os = System.getProperty("os.name").toLowerCase();
+            String sokvagDatabas;
+            if (os.contains("mac")) {
+                sokvagDatabas = aktuellMapp + ("/db/MIBDB.FDB");
+            } else {
+                sokvagDatabas = aktuellMapp + ("\\db\\MIBDB.FDB");
+            }
             idb = new InfDB(sokvagDatabas);
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
         }
         new MainPage(idb).setVisible(true);
-        
+
     }
 
 }

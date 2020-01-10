@@ -5,6 +5,12 @@
  */
 package mib;
 
+import java.awt.Desktop;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -320,7 +326,7 @@ public final class UserPage extends javax.swing.JFrame {
         jLabel3.setBounds(210, 110, 210, 190);
 
         pnlBackground.add(pnlEmpty);
-        pnlEmpty.setBounds(160, 20, 620, 410);
+        pnlEmpty.setBounds(160, 20, 0, 0);
 
         pnlAlienStart.setBackground(new java.awt.Color(29, 29, 48));
         pnlAlienStart.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -350,11 +356,11 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAliensOmradesChefLayout.setHorizontalGroup(
             pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAliensOmradesChefLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(52, 52, 52)
                 .addGroup(pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblOmradesChefBild, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAliensOmradesChef, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         pnlAliensOmradesChefLayout.setVerticalGroup(
             pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,7 +415,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAgentRegistrering.add(lblAgentLosenord);
         lblAgentLosenord.setBounds(20, 120, 70, 24);
         pnlAgentRegistrering.add(jXDateAnstallningsDatum);
-        jXDateAnstallningsDatum.setBounds(140, 180, 141, 24);
+        jXDateAnstallningsDatum.setBounds(140, 180, 134, 24);
 
         lblAnkomstDatum1.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatum1.setText("Anställningsdatum:");
@@ -608,7 +614,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienAndra.add(lblLosenordAlienAndra);
         lblLosenordAlienAndra.setBounds(20, 120, 70, 20);
         pnlAlienAndra.add(jXDateAnkomstDatumAndra);
-        jXDateAnkomstDatumAndra.setBounds(120, 210, 141, 24);
+        jXDateAnkomstDatumAndra.setBounds(120, 210, 134, 24);
 
         lblAnkomstDatumAndra.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatumAndra.setText("Ankomstdatum:");
@@ -765,7 +771,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienRegistrering.add(lblLosenord);
         lblLosenord.setBounds(20, 120, 70, 20);
         pnlAlienRegistrering.add(jXDateAnkomstDatum);
-        jXDateAnkomstDatum.setBounds(120, 240, 141, 24);
+        jXDateAnkomstDatum.setBounds(120, 240, 134, 24);
 
         lblAnkomstDatum.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatum.setText("Ankomstdatum:");
@@ -1085,7 +1091,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAgentInformation.add(lblAgentLosenordAndra);
         lblAgentLosenordAndra.setBounds(20, 120, 70, 24);
         pnlAgentInformation.add(jXDateAnstDatumAndra);
-        jXDateAnstDatumAndra.setBounds(140, 180, 141, 24);
+        jXDateAnstDatumAndra.setBounds(140, 180, 134, 24);
 
         lblAnkomstDatumAndra1.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatumAndra1.setText("Anställningsdatum:");
@@ -1176,9 +1182,9 @@ public final class UserPage extends javax.swing.JFrame {
         pnlRaderaAgent.setLayout(null);
 
         btnRaderaAgent.setText("Radera");
-        btnRaderaAgent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRaderaAgentMouseClicked(evt);
+        btnRaderaAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaderaAgentActionPerformed(evt);
             }
         });
         pnlRaderaAgent.add(btnRaderaAgent);
@@ -1372,7 +1378,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlCheferOmrade.add(btnAndraKontorsChef);
         btnAndraKontorsChef.setBounds(270, 110, 80, 32);
         pnlCheferOmrade.add(jSepChefer);
-        jSepChefer.setBounds(20, 100, 360, 10);
+        jSepChefer.setBounds(20, 100, 360, 2);
 
         pnlChefer.add(pnlCheferOmrade);
         pnlCheferOmrade.setBounds(20, 70, 530, 160);
@@ -1437,7 +1443,7 @@ public final class UserPage extends javax.swing.JFrame {
             String omrade = idb.fetchSingle("select omrades_id from omrade where omrades_id like "
                     + "(select finns_i from plats where plats_id like "
                     + "(select plats from alien where alien_id =" + anvandare.getId() + "))");
-            System.out.println(omrade);
+            
 
             ArrayList<HashMap<String, String>> hittadeAliens = idb.fetchRows("select namn, telefon from alien where plats in "
                     + "(select plats_id from plats where finns_i like "
@@ -2235,10 +2241,6 @@ public final class UserPage extends javax.swing.JFrame {
         }
     }
 
-    private void btnRaderaAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRaderaAgentMouseClicked
-        raderaAgent();
-    }//GEN-LAST:event_btnRaderaAgentMouseClicked
-
     private void raderaAgent() {
         String valdAgent = jlAgentLista.getSelectedValue().split(" ")[0];
         ArrayList<String> kontorsChefAgentId;
@@ -2249,12 +2251,10 @@ public final class UserPage extends javax.swing.JFrame {
             omradesChefAgentId = idb.fetchColumn("select agent_id from omradeschef");
             alienAgentId = idb.fetchColumn("select ansvarig_agent from alien");
             if (Validering.kollaRadering()) {
-                if (omradesChefAgentId.contains(valdAgent)) {
-                    JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne är en områdeschef.");
-                } else if (kontorsChefAgentId.contains(valdAgent)) {
-                    JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne är en kontorschef.");
-                } else if (alienAgentId.contains(valdAgent)) {
-                    JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne ansvarar för minst en alien.");
+                if (omradesChefAgentId.contains(valdAgent) || kontorsChefAgentId.contains(valdAgent) || alienAgentId.contains(valdAgent)) {
+                    new bytOmradesChef(idb, valdAgent).setVisible(true);
+                   // JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne är en områdeschef.");
+                
                 } else {
                     idb.delete("delete from faltagent where agent_id = " + valdAgent);
                     idb.delete("delete from agent where agent_id = " + valdAgent);
@@ -2396,7 +2396,7 @@ public final class UserPage extends javax.swing.JFrame {
             String omradesChefId = idb.fetchSingle("select AGENT_ID from OMRADESCHEF where OMRADE =" + omradesId);
             String omradesChef = omradesChefId + " " + idb.fetchSingle("select NAMN from AGENT where AGENT_ID =" + omradesChefId);
             lblChefChef.setText("Chef: " + omradesChef);
-
+            jcbChefAgenter.removeAllItems();
             fyllComboBox(jcbChefAgenter, "AGENT_ID", "NAMN", "AGENT");
             jcbChefAgenter.setSelectedItem(omradesChef);
 
@@ -2428,6 +2428,10 @@ public final class UserPage extends javax.swing.JFrame {
     private void btnAndraKontorsChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraKontorsChefActionPerformed
         andraKontorsChef();
     }//GEN-LAST:event_btnAndraKontorsChefActionPerformed
+
+    private void btnRaderaAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaAgentActionPerformed
+        raderaAgent();
+    }//GEN-LAST:event_btnRaderaAgentActionPerformed
 
     private void andraKontorsChef() {
         try {
