@@ -5,28 +5,17 @@
  */
 package mib;
 
-import java.awt.Desktop;
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
-
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import org.jdesktop.swingx.JXDatePicker;
@@ -138,7 +127,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienMeny = new javax.swing.JPanel();
         lblTillbaka = new javax.swing.JLabel();
         lblAlienSokOchAndra = new javax.swing.JLabel();
-        lblRegistrera = new javax.swing.JLabel();
+        lblRegistreraAlien = new javax.swing.JLabel();
         lblListaAlla = new javax.swing.JLabel();
         pnlAlienSokOchAndra = new javax.swing.JPanel();
         txtSokord = new javax.swing.JTextField();
@@ -556,15 +545,15 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienMeny.add(lblAlienSokOchAndra);
         lblAlienSokOchAndra.setBounds(10, 40, 100, 20);
 
-        lblRegistrera.setForeground(new java.awt.Color(204, 204, 204));
-        lblRegistrera.setText("Regístrera ny");
-        lblRegistrera.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblRegistreraAlien.setForeground(new java.awt.Color(204, 204, 204));
+        lblRegistreraAlien.setText("Regístrera ny");
+        lblRegistreraAlien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblRegistreraMouseClicked(evt);
+                lblRegistreraAlienMouseClicked(evt);
             }
         });
-        pnlAlienMeny.add(lblRegistrera);
-        lblRegistrera.setBounds(10, 20, 100, 20);
+        pnlAlienMeny.add(lblRegistreraAlien);
+        lblRegistreraAlien.setBounds(10, 20, 100, 20);
 
         lblListaAlla.setForeground(new java.awt.Color(204, 204, 204));
         lblListaAlla.setText("Lista alla");
@@ -1391,6 +1380,11 @@ public final class UserPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Visar och gömmer menypanelerna
+     *
+     * @param pnl den panel som ska visas
+     */
     private void setMenuVisibility(JPanel pnl) {
         pnlHuvudMeny.setVisible(false);
         pnlHuvudMenyAlien.setVisible(false);
@@ -1400,6 +1394,11 @@ public final class UserPage extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Visar och gömmer huvudpaneler
+     *
+     * @param pnl den panel som ska visas
+     */
     private void setPanelVisibility(JPanel pnl) {
 
         pnlEmpty.setVisible(false);
@@ -1417,6 +1416,12 @@ public final class UserPage extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Hämtar information om vem som är områdeschef för en den alien som för
+     * tillfället är inloggad i systemet.
+     *
+     * @return Namnet på områdeschefen
+     */
     private String getOmradesChef() {
 
         String namnOmradesChef = "";
@@ -1435,15 +1440,18 @@ public final class UserPage extends javax.swing.JFrame {
         return namnOmradesChef;
     }
 
+    /**
+     * Listar alla aliens som finns i samma område som den alien som är
+     * inloggad.
+     */
     private void listaAliensIMittOmrade() {
 
-        DefaultListModel listmodel = new DefaultListModel<>();
+        DefaultListModel listmodel = new DefaultListModel<>(); //talar om vilken typ av lista som ska användas. behövs för att komma åt metoden .addElement()
         jlAliensIMittOmrade.setModel(listmodel);
         try {
             String omrade = idb.fetchSingle("select omrades_id from omrade where omrades_id like "
                     + "(select finns_i from plats where plats_id like "
                     + "(select plats from alien where alien_id =" + anvandare.getId() + "))");
-            
 
             ArrayList<HashMap<String, String>> hittadeAliens = idb.fetchRows("select namn, telefon from alien where plats in "
                     + "(select plats_id from plats where finns_i like "
@@ -1457,6 +1465,9 @@ public final class UserPage extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Lägger till ny utrustning i databasen.
+     */
     private void registreraUtrustning() {
         try {
             String autoIDUtrustning = idb.getAutoIncrement("utrustning", "utrustnings_id");
@@ -1514,6 +1525,9 @@ public final class UserPage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_lblAndraLosenAgentMouseClicked
 
+    /**
+     * Ändra lösenord på inloggad användare
+     */
     private void andraLosenord() {
         if (Validering.kollaTextRutaTom(txtNuvarandeLosenord)
                 && Validering.kollaTextRutaTom(txtNyttLosenord)
@@ -1541,7 +1555,7 @@ public final class UserPage extends javax.swing.JFrame {
         lblAntalArmarAndra.setVisible(false);
         lblAntalBoogiesAndra.setVisible(false);
         txtAntalAndra.setVisible(false);
-        jlAlienLista.addListSelectionListener(new AlienListener());
+        jlAlienLista.addListSelectionListener(new AlienListener()); //Lägger till en listener till listan så att den känner av när man klickar på den.
         if (anvandare.getAdmin().equals("J")) {
             pnlRaderaAlien.setVisible(true);
         } else {
@@ -1549,6 +1563,13 @@ public final class UserPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblAlienSokOchAndraMouseClicked
 
+    /**
+     * En intern klass AgentListener som används för att kunna hämta ut värden
+     * från en JList utan att använda en button. Just denna lyssnar bara på
+     * JListObjektet jlAgentLista. Om ett val har gjorts anropas metoden
+     * getAgentInfo.
+     *
+     */
     public class AgentListener implements ListSelectionListener {
 
         @Override
@@ -1563,6 +1584,13 @@ public final class UserPage extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * En intern klass AlienListener som används för att kunna hämta ut värden
+     * från en JList utan att använda en button. Just denna lyssnar bara på
+     * JListObjektet jlAlienLista. Om ett val har gjorts anropas metoden
+     * getAlienInfo.
+     *
+     */
     public class AlienListener implements ListSelectionListener {
 
         @Override
@@ -1577,10 +1605,17 @@ public final class UserPage extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Hämtar all information om en agent och visar det i textfält, comboboxar
+     * och en datepicker.
+     *
+     * @param info innehåller ett id och ett namn på agenten separerat med
+     * mellanslag.
+     */
     public void getAgentInfo(String info) {
         try {
             String[] idOchNamn = info.split(" ");
-            String id = idOchNamn[0];
+            String id = idOchNamn[0]; // hämta ut id:t på agenten.
             String namn = idb.fetchSingle("select NAMN from AGENT where AGENT_ID = " + id);
             String telefon = idb.fetchSingle("select TELEFON from AGENT where AGENT_ID = " + id);
             String losenord = idb.fetchSingle("select LOSENORD from AGENT where AGENT_ID = " + id);
@@ -1597,7 +1632,7 @@ public final class UserPage extends javax.swing.JFrame {
             fyllComboBox(jcbAgentOmradeAndra, "OMRADES_ID", "BENAMNING", "OMRADE");
             jcbAgentOmradeAndra.setSelectedItem(omrade);
             try {
-                Date anstDatum = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
+                Date anstDatum = new SimpleDateFormat("yyyy-MM-dd").parse(datum); //Gör om datumet till rätt format.
                 jXDateAnstDatumAndra.setDate(anstDatum);
                 jXDateAnstDatumAndra.getEditor().setEditable(false);
             } catch (ParseException ex) {
@@ -1618,6 +1653,13 @@ public final class UserPage extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Hämtar all information om en alien och visar det i textfält, comboboxar
+     * och en datepicker.
+     *
+     * @param info innehåller ett id och ett namn på alien separerat med
+     * mellanslag.
+     */
     private void getAlienInfo(String info) {
 
         try {
@@ -1631,7 +1673,7 @@ public final class UserPage extends javax.swing.JFrame {
             String agentId = idb.fetchSingle("select ANSVARIG_AGENT from ALIEN where ALIEN_ID = " + id);
             String ansvarigAgent = agentId + " " + idb.fetchSingle("select NAMN from AGENT where AGENT_ID = " + agentId);
             String datum = idb.fetchSingle("select REGISTRERINGSDATUM from ALIEN where ALIEN_ID = " + id);
-            String ras = kollaRas(id);
+            String ras = kollaRas(id); // hämtar vilken ras som alien tillhör.
             String antal = "";
 
             switch (ras) {
@@ -1670,9 +1712,9 @@ public final class UserPage extends javax.swing.JFrame {
             txtAlienLosenordAndra.setText(losenord);
             txtAlienTelefonAndra.setText(telefon);
 
-            jcbAnsvarigAgentAndra.removeAllItems();
+            jcbAnsvarigAgentAndra.removeAllItems(); //nollställer comboboxen
 
-            fyllComboBox(jcbAnsvarigAgentAndra, "AGENT_ID", "NAMN", "AGENT");
+            fyllComboBox(jcbAnsvarigAgentAndra, "AGENT_ID", "NAMN", "AGENT"); //fyller på comboboxen
             jcbAlienPlatsAndra.setSelectedItem(plats);
             jcbAnsvarigAgentAndra.setSelectedItem(ansvarigAgent);
 
@@ -1689,14 +1731,18 @@ public final class UserPage extends javax.swing.JFrame {
         }
 
     }
-
+/**
+ * Kollar vilken ras en specifik alien tillhör
+ * @param id id:t på en alien
+ * @return ras på alien.
+ */
     private String kollaRas(String id) {
         String ras = "";
         ArrayList<String> boglodites = new ArrayList<>();
         ArrayList<String> squids = new ArrayList<>();
         ArrayList<String> worms = new ArrayList<>();
         try {
-            if (kollaTabellTom("ALIEN_ID", "BOGLODITE")) {
+            if (kollaTabellTom("ALIEN_ID", "BOGLODITE")) { //kollar om det finns några aliens av denna ras. Undviker NullPointException.
                 boglodites = idb.fetchColumn("select ALIEN_ID from BOGLODITE");
             }
             if (kollaTabellTom("ALIEN_ID", "SQUID")) {
@@ -1724,6 +1770,9 @@ public final class UserPage extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Ändrar all information om en alien
+     */
     private void andraAlienInfo() {
         String id = txtAlienIdAndra.getText();
         String namn = txtAlienNamnAndra.getText();
@@ -1895,7 +1944,7 @@ public final class UserPage extends javax.swing.JFrame {
         setMenuVisibility(pnlHuvudMeny);
     }//GEN-LAST:event_lblTillbakaMouseClicked
 
-    private void lblRegistreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistreraMouseClicked
+    private void lblRegistreraAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistreraAlienMouseClicked
         setPanelVisibility(pnlAlienRegistrering);
 
         lblAntalArmar.setVisible(false);
@@ -1910,7 +1959,7 @@ public final class UserPage extends javax.swing.JFrame {
         Date dagensDatum = new Date();
         jXDateAnkomstDatum.setDate(dagensDatum);
 
-    }//GEN-LAST:event_lblRegistreraMouseClicked
+    }//GEN-LAST:event_lblRegistreraAlienMouseClicked
 
     private void btnSparaAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSparaAlienMouseClicked
         sparaAlien();
@@ -2252,9 +2301,9 @@ public final class UserPage extends javax.swing.JFrame {
             alienAgentId = idb.fetchColumn("select ansvarig_agent from alien");
             if (Validering.kollaRadering()) {
                 if (omradesChefAgentId.contains(valdAgent) || kontorsChefAgentId.contains(valdAgent) || alienAgentId.contains(valdAgent)) {
-                    new bytOmradesChef(idb, valdAgent).setVisible(true);
-                   // JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne är en områdeschef.");
-                
+                    new AndraPopupVidRadering(idb, valdAgent).setVisible(true);
+                    // JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne är en områdeschef.");
+
                 } else {
                     idb.delete("delete from faltagent where agent_id = " + valdAgent);
                     idb.delete("delete from agent where agent_id = " + valdAgent);
@@ -2771,8 +2820,8 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblRaderaAlien;
     private javax.swing.JLabel lblRas;
     private javax.swing.JLabel lblRasAndra;
-    private javax.swing.JLabel lblRegistrera;
     private javax.swing.JLabel lblRegistreraAgent;
+    private javax.swing.JLabel lblRegistreraAlien;
     private javax.swing.JLabel lblRegistreraTitel;
     private javax.swing.JLabel lblRegistreraTitel1;
     private javax.swing.JLabel lblSokAgentNamn;

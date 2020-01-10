@@ -17,7 +17,7 @@ import oru.inf.InfException;
  *
  * @author Daniel
  */
-public class bytOmradesChef extends javax.swing.JFrame {
+public class AndraPopupVidRadering extends javax.swing.JFrame {
 
     private final InfDB idb;
     private final String id;
@@ -25,7 +25,7 @@ public class bytOmradesChef extends javax.swing.JFrame {
     /**
      * Creates new form bytOmradesChef
      */
-    public bytOmradesChef(InfDB idb, String id) {
+    public AndraPopupVidRadering(InfDB idb, String id) {
 
         initComponents();
         this.idb = idb;

@@ -5,9 +5,7 @@
  */
 package mib;
 
-
 import oru.inf.InfDB;
-
 
 /**
  *
@@ -19,6 +17,7 @@ public class MainPage extends javax.swing.JFrame {
 
     /**
      * Creates new form MainPage
+     *
      * @param idb databaskopplingen
      */
     public MainPage(InfDB idb) {
@@ -106,13 +105,11 @@ public class MainPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblAgentInlogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAgentInlogMouseClicked
-        // TODO add your handling code here:
         new LoginForm(idb, "AGENT").setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_lblAgentInlogMouseClicked
 
     private void lblAlienInlogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienInlogMouseClicked
-        // TODO add your handling code here:
         new LoginForm(idb, "ALIEN").setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_lblAlienInlogMouseClicked

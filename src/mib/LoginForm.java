@@ -22,7 +22,7 @@ public class LoginForm extends javax.swing.JFrame {
     private final String info;
 
     /**
-     * Creates new form HuvudFonster
+     * Creates new form LoginForm
      *
      * @param idb databaskopplingen
      * @param info en sträng som håller information om vilken typ av användare
@@ -123,7 +123,7 @@ public class LoginForm extends javax.swing.JFrame {
         String convertedPassword = sb.append(password).toString(); //Själva konverteringen
         if (Validering.kollaTextRutaTom(txtUserName) && Validering.kollaHeltal(txtUserName) && Validering.kollaLosenOrd(txtPass)) {
             try {
-                ArrayList<String> allusers = idb.fetchColumn("select " + info + "_ID from " + info);
+                ArrayList<String> allusers = idb.fetchColumn("select " + info + "_ID from " + info); //hämtar alla aliens eller alla agenters id:n.
                 if (allusers.contains(userID)) {
                     //Hämtar det lagrade lösenordet frÃ¥n databasen.
                     String storedPassword = idb.fetchSingle("select LOSENORD from " + info + " where " + info + "_ID = " + userID);
@@ -133,8 +133,8 @@ public class LoginForm extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Välkommen " + userName + ". Du har nu loggat in");
                         switch (info) {
                             case "AGENT":
-                                User anvandare = new User(idb, userID, "AGENT");
-                                new UserPage(idb, anvandare).setVisible(true);
+                                User anvandare = new User(idb, userID, "AGENT"); //inloggad användare skapas
+                                new UserPage(idb, anvandare).setVisible(true);   
                                 this.dispose();
                                 break;
                             case "ALIEN":
