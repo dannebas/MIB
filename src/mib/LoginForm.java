@@ -33,6 +33,7 @@ public class LoginForm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.idb = idb;
         this.info = info;
+        txtUserName.requestFocusInWindow();
     }
 
     /**

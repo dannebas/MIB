@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JList;
@@ -60,22 +62,6 @@ public final class UserPage extends javax.swing.JFrame {
                 listaAliensIMittOmrade();
                 break;
         }
-
-        /*jlAgentLista.addListSelectionListener(this);
-        jlAlienLista.addListSelectionListener(this);
-
-        pnlEmpty.setVisible(true);
-        pnlAlienMeny.setVisible(false);
-        pnlAgentMeny.setVisible(false);
-        pnlAgentRegistrering.setVisible(false);
-        pnlAlienRegistrering.setVisible(false);
-        pnlAlienSokOchAndra.setVisible(false);
-        pnlAndraLosen.setVisible(false);
-        pnlListaAliens.setVisible(false);
-        pnlAgentSokOchAndra.setVisible(false);
-        pnlSokOmradesChef.setVisible(false);
-         */
-        //pnlUtrustningMeny.setVisible(false);
     }
 
     /**
@@ -96,13 +82,13 @@ public final class UserPage extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         pnlAlienStart = new javax.swing.JPanel();
         lblAlienStartTitel = new javax.swing.JLabel();
+        lblAliensIMittOmrade = new javax.swing.JLabel();
+        lblOmradesChefTitel = new javax.swing.JLabel();
         pnlAliensOmradesChef = new javax.swing.JPanel();
         lblOmradesChefBild = new javax.swing.JLabel();
         lblAliensOmradesChef = new javax.swing.JLabel();
         jScrAlienListaOmrade = new javax.swing.JScrollPane();
         jlAliensIMittOmrade = new javax.swing.JList<>();
-        lblAliensIMittOmrade = new javax.swing.JLabel();
-        lblOmradesChefTitel = new javax.swing.JLabel();
         pnlAgentRegistrering = new javax.swing.JPanel();
         lblAgentNamn = new javax.swing.JLabel();
         txtAgentNamn = new javax.swing.JTextField();
@@ -125,7 +111,7 @@ public final class UserPage extends javax.swing.JFrame {
         lblAliens = new javax.swing.JLabel();
         lblUtrustning = new javax.swing.JLabel();
         pnlAlienMeny = new javax.swing.JPanel();
-        lblTillbaka = new javax.swing.JLabel();
+        lblAlienTillbaka = new javax.swing.JLabel();
         lblAlienSokOchAndra = new javax.swing.JLabel();
         lblRegistreraAlien = new javax.swing.JLabel();
         lblListaAlla = new javax.swing.JLabel();
@@ -203,6 +189,7 @@ public final class UserPage extends javax.swing.JFrame {
         btnListaDatum = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
         pnlAndraLosen = new javax.swing.JPanel();
         txtNuvarandeLosenord = new javax.swing.JTextField();
         txtNyttLosenord = new javax.swing.JTextField();
@@ -273,6 +260,25 @@ public final class UserPage extends javax.swing.JFrame {
         lblKontorsChef = new javax.swing.JLabel();
         btnAndraKontorsChef = new javax.swing.JButton();
         jSepChefer = new javax.swing.JSeparator();
+        pnlUtrustningKvittering = new javax.swing.JPanel();
+        jcbUtrustningKvitteraAgenter = new javax.swing.JComboBox<>();
+        jscrUtrustningLedig = new javax.swing.JScrollPane();
+        jlUtrustningLedig = new javax.swing.JList<>();
+        lblUtrustningKvitteringTitel = new javax.swing.JLabel();
+        jscrUtrusningKvitterad = new javax.swing.JScrollPane();
+        jlUtrustningKvitterad = new javax.swing.JList<>();
+        lblUtrustingKvitteraAgentNamn = new javax.swing.JLabel();
+        lblUtrustningKvitterad = new javax.swing.JLabel();
+        lblUtrustningLedig = new javax.swing.JLabel();
+        btnKvitteraUt = new javax.swing.JButton();
+        btnAterlamna = new javax.swing.JButton();
+        lblKvitteraUt = new javax.swing.JLabel();
+        lblAterlamna = new javax.swing.JLabel();
+        btnUtrustningKvitteraHamta = new javax.swing.JButton();
+        pnlUtrustningMeny = new javax.swing.JPanel();
+        lblUtrustningTillbaka = new javax.swing.JLabel();
+        lblUtrustningKvittera = new javax.swing.JLabel();
+        lblUtrustningRegistrera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 475));
@@ -308,6 +314,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlEmpty.setBackground(new java.awt.Color(29, 29, 48));
         pnlEmpty.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnlEmpty.setForeground(new java.awt.Color(204, 204, 204));
+        pnlEmpty.setMinimumSize(new java.awt.Dimension(620, 410));
         pnlEmpty.setLayout(null);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/miblogo.png"))); // NOI18N
@@ -315,7 +322,7 @@ public final class UserPage extends javax.swing.JFrame {
         jLabel3.setBounds(210, 110, 210, 190);
 
         pnlBackground.add(pnlEmpty);
-        pnlEmpty.setBounds(160, 20, 0, 0);
+        pnlEmpty.setBounds(160, 20, 620, 410);
 
         pnlAlienStart.setBackground(new java.awt.Color(29, 29, 48));
         pnlAlienStart.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -329,47 +336,6 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienStart.add(lblAlienStartTitel);
         lblAlienStartTitel.setBounds(20, 10, 180, 40);
 
-        pnlAliensOmradesChef.setBackground(new java.awt.Color(29, 29, 48));
-        pnlAliensOmradesChef.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        lblOmradesChefBild.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblOmradesChefBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
-
-        lblAliensOmradesChef.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lblAliensOmradesChef.setForeground(new java.awt.Color(204, 204, 204));
-        lblAliensOmradesChef.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAliensOmradesChef.setText("agentnamn");
-
-        javax.swing.GroupLayout pnlAliensOmradesChefLayout = new javax.swing.GroupLayout(pnlAliensOmradesChef);
-        pnlAliensOmradesChef.setLayout(pnlAliensOmradesChefLayout);
-        pnlAliensOmradesChefLayout.setHorizontalGroup(
-            pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAliensOmradesChefLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblOmradesChefBild, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAliensOmradesChef, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
-        );
-        pnlAliensOmradesChefLayout.setVerticalGroup(
-            pnlAliensOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAliensOmradesChefLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(lblOmradesChefBild, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAliensOmradesChef)
-                .addContainerGap(82, Short.MAX_VALUE))
-        );
-
-        pnlAlienStart.add(pnlAliensOmradesChef);
-        pnlAliensOmradesChef.setBounds(380, 110, 180, 250);
-
-        jlAliensIMittOmrade.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrAlienListaOmrade.setViewportView(jlAliensIMittOmrade);
-
-        pnlAlienStart.add(jScrAlienListaOmrade);
-        jScrAlienListaOmrade.setBounds(50, 110, 260, 250);
-
         lblAliensIMittOmrade.setForeground(new java.awt.Color(204, 204, 204));
         lblAliensIMittOmrade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAliensIMittOmrade.setText("Andra aliens i ditt område:");
@@ -382,6 +348,33 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienStart.add(lblOmradesChefTitel);
         lblOmradesChefTitel.setBounds(420, 80, 100, 16);
 
+        pnlAliensOmradesChef.setBackground(new java.awt.Color(29, 29, 48));
+        pnlAliensOmradesChef.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlAliensOmradesChef.setLayout(null);
+
+        lblOmradesChefBild.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOmradesChefBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
+        pnlAliensOmradesChef.add(lblOmradesChefBild);
+        lblOmradesChefBild.setBounds(80, 30, 60, 100);
+
+        lblAliensOmradesChef.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        lblAliensOmradesChef.setForeground(new java.awt.Color(204, 204, 204));
+        lblAliensOmradesChef.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAliensOmradesChef.setText("agentnamn");
+        lblAliensOmradesChef.setMaximumSize(new java.awt.Dimension(120, 22));
+        lblAliensOmradesChef.setMinimumSize(new java.awt.Dimension(120, 22));
+        pnlAliensOmradesChef.add(lblAliensOmradesChef);
+        lblAliensOmradesChef.setBounds(50, 140, 120, 22);
+
+        pnlAlienStart.add(pnlAliensOmradesChef);
+        pnlAliensOmradesChef.setBounds(360, 110, 220, 250);
+
+        jlAliensIMittOmrade.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrAlienListaOmrade.setViewportView(jlAliensIMittOmrade);
+
+        pnlAlienStart.add(jScrAlienListaOmrade);
+        jScrAlienListaOmrade.setBounds(50, 110, 260, 250);
+
         pnlBackground.add(pnlAlienStart);
         pnlAlienStart.setBounds(160, 20, 620, 410);
 
@@ -393,30 +386,30 @@ public final class UserPage extends javax.swing.JFrame {
         lblAgentNamn.setForeground(new java.awt.Color(204, 204, 204));
         lblAgentNamn.setText("Namn:");
         pnlAgentRegistrering.add(lblAgentNamn);
-        lblAgentNamn.setBounds(20, 60, 36, 24);
+        lblAgentNamn.setBounds(20, 60, 120, 24);
         pnlAgentRegistrering.add(txtAgentNamn);
-        txtAgentNamn.setBounds(140, 60, 100, 24);
+        txtAgentNamn.setBounds(190, 60, 100, 24);
         pnlAgentRegistrering.add(txtAgentTelefon);
-        txtAgentTelefon.setBounds(140, 90, 100, 24);
+        txtAgentTelefon.setBounds(190, 90, 100, 24);
 
         lblAgentLosenord.setForeground(new java.awt.Color(204, 204, 204));
         lblAgentLosenord.setText("Lösenord:");
         pnlAgentRegistrering.add(lblAgentLosenord);
-        lblAgentLosenord.setBounds(20, 120, 70, 24);
+        lblAgentLosenord.setBounds(20, 120, 130, 24);
         pnlAgentRegistrering.add(jXDateAnstallningsDatum);
-        jXDateAnstallningsDatum.setBounds(140, 180, 134, 24);
+        jXDateAnstallningsDatum.setBounds(190, 180, 133, 24);
 
         lblAnkomstDatum1.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatum1.setText("Anställningsdatum:");
         pnlAgentRegistrering.add(lblAnkomstDatum1);
-        lblAnkomstDatum1.setBounds(20, 180, 110, 24);
+        lblAnkomstDatum1.setBounds(20, 180, 150, 24);
         pnlAgentRegistrering.add(txtAgentLosenord);
-        txtAgentLosenord.setBounds(140, 120, 100, 24);
+        txtAgentLosenord.setBounds(190, 120, 100, 24);
 
         lblAgentTelefon.setForeground(new java.awt.Color(204, 204, 204));
         lblAgentTelefon.setText("Telefon:");
         pnlAgentRegistrering.add(lblAgentTelefon);
-        lblAgentTelefon.setBounds(20, 90, 50, 24);
+        lblAgentTelefon.setBounds(20, 90, 130, 24);
 
         lblRegistreraTitel1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         lblRegistreraTitel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -425,12 +418,12 @@ public final class UserPage extends javax.swing.JFrame {
         lblRegistreraTitel1.setBounds(20, 10, 180, 40);
 
         pnlAgentRegistrering.add(jcbAgentOmrade);
-        jcbAgentOmrade.setBounds(140, 150, 120, 26);
+        jcbAgentOmrade.setBounds(190, 150, 120, 26);
 
         lblAgentOmrade.setForeground(new java.awt.Color(204, 204, 204));
         lblAgentOmrade.setText("Område:");
         pnlAgentRegistrering.add(lblAgentOmrade);
-        lblAgentOmrade.setBounds(20, 150, 60, 24);
+        lblAgentOmrade.setBounds(20, 150, 120, 24);
 
         btnSparaAgent.setText("Spara");
         btnSparaAgent.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -439,18 +432,18 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlAgentRegistrering.add(btnSparaAgent);
-        btnSparaAgent.setBounds(140, 240, 90, 32);
+        btnSparaAgent.setBounds(190, 240, 90, 32);
 
         chkAdmin.setAlignmentY(0.0F);
         chkAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         chkAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlAgentRegistrering.add(chkAdmin);
-        chkAdmin.setBounds(140, 210, 24, 24);
+        chkAdmin.setBounds(190, 210, 24, 24);
 
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Administratör:");
         pnlAgentRegistrering.add(jLabel2);
-        jLabel2.setBounds(20, 210, 90, 24);
+        jLabel2.setBounds(20, 210, 140, 24);
 
         pnlBackground.add(pnlAgentRegistrering);
         pnlAgentRegistrering.setBounds(160, 20, 620, 410);
@@ -522,15 +515,15 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienMeny.setMinimumSize(new java.awt.Dimension(150, 200));
         pnlAlienMeny.setLayout(null);
 
-        lblTillbaka.setForeground(new java.awt.Color(204, 204, 204));
-        lblTillbaka.setText("Tillbaka");
-        lblTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblAlienTillbaka.setForeground(new java.awt.Color(204, 204, 204));
+        lblAlienTillbaka.setText("Tillbaka");
+        lblAlienTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblTillbakaMouseClicked(evt);
+                lblAlienTillbakaMouseClicked(evt);
             }
         });
-        pnlAlienMeny.add(lblTillbaka);
-        lblTillbaka.setBounds(10, 80, 100, 20);
+        pnlAlienMeny.add(lblAlienTillbaka);
+        lblAlienTillbaka.setBounds(10, 80, 100, 20);
 
         lblAlienSokOchAndra.setForeground(new java.awt.Color(204, 204, 204));
         lblAlienSokOchAndra.setText("Sök och ändra");
@@ -603,7 +596,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienAndra.add(lblLosenordAlienAndra);
         lblLosenordAlienAndra.setBounds(20, 120, 70, 20);
         pnlAlienAndra.add(jXDateAnkomstDatumAndra);
-        jXDateAnkomstDatumAndra.setBounds(120, 210, 134, 24);
+        jXDateAnkomstDatumAndra.setBounds(120, 210, 133, 24);
 
         lblAnkomstDatumAndra.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatumAndra.setText("Ankomstdatum:");
@@ -749,30 +742,30 @@ public final class UserPage extends javax.swing.JFrame {
         lblNamn.setForeground(new java.awt.Color(204, 204, 204));
         lblNamn.setText("Namn:");
         pnlAlienRegistrering.add(lblNamn);
-        lblNamn.setBounds(20, 60, 36, 20);
+        lblNamn.setBounds(20, 60, 130, 20);
         pnlAlienRegistrering.add(txtAlienNamn);
-        txtAlienNamn.setBounds(120, 60, 100, 24);
+        txtAlienNamn.setBounds(180, 60, 100, 24);
         pnlAlienRegistrering.add(txtAlienTelefon);
-        txtAlienTelefon.setBounds(120, 90, 100, 24);
+        txtAlienTelefon.setBounds(180, 90, 100, 24);
 
         lblLosenord.setForeground(new java.awt.Color(204, 204, 204));
         lblLosenord.setText("Lösenord:");
         pnlAlienRegistrering.add(lblLosenord);
-        lblLosenord.setBounds(20, 120, 70, 20);
+        lblLosenord.setBounds(20, 120, 130, 20);
         pnlAlienRegistrering.add(jXDateAnkomstDatum);
-        jXDateAnkomstDatum.setBounds(120, 240, 134, 24);
+        jXDateAnkomstDatum.setBounds(180, 240, 133, 24);
 
         lblAnkomstDatum.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatum.setText("Ankomstdatum:");
         pnlAlienRegistrering.add(lblAnkomstDatum);
-        lblAnkomstDatum.setBounds(20, 240, 90, 20);
+        lblAnkomstDatum.setBounds(20, 240, 130, 20);
         pnlAlienRegistrering.add(txtAlienLosenord);
-        txtAlienLosenord.setBounds(120, 120, 100, 24);
+        txtAlienLosenord.setBounds(180, 120, 100, 24);
 
         lblTelefon.setForeground(new java.awt.Color(204, 204, 204));
         lblTelefon.setText("Telefon:");
         pnlAlienRegistrering.add(lblTelefon);
-        lblTelefon.setBounds(20, 90, 50, 20);
+        lblTelefon.setBounds(20, 90, 120, 20);
 
         lblRegistreraTitel.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         lblRegistreraTitel.setForeground(new java.awt.Color(204, 204, 204));
@@ -781,20 +774,20 @@ public final class UserPage extends javax.swing.JFrame {
         lblRegistreraTitel.setBounds(20, 10, 180, 40);
 
         pnlAlienRegistrering.add(jcbAlienPlats);
-        jcbAlienPlats.setBounds(120, 180, 120, 26);
+        jcbAlienPlats.setBounds(180, 180, 120, 26);
 
         lblPlats.setForeground(new java.awt.Color(204, 204, 204));
         lblPlats.setText("Plats:");
         pnlAlienRegistrering.add(lblPlats);
-        lblPlats.setBounds(20, 180, 60, 20);
+        lblPlats.setBounds(20, 180, 110, 20);
 
         pnlAlienRegistrering.add(jcbAnsvarigAgent);
-        jcbAnsvarigAgent.setBounds(120, 210, 120, 26);
+        jcbAnsvarigAgent.setBounds(180, 210, 120, 26);
 
         lblAnsvarigAgent.setForeground(new java.awt.Color(204, 204, 204));
         lblAnsvarigAgent.setText("Ansvarig agent:");
         pnlAlienRegistrering.add(lblAnsvarigAgent);
-        lblAnsvarigAgent.setBounds(20, 210, 88, 20);
+        lblAnsvarigAgent.setBounds(20, 210, 130, 20);
 
         btnSparaAlien.setText("Spara");
         btnSparaAlien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -803,12 +796,12 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlAlienRegistrering.add(btnSparaAlien);
-        btnSparaAlien.setBounds(140, 270, 90, 32);
+        btnSparaAlien.setBounds(200, 270, 90, 32);
 
         lblRas.setForeground(new java.awt.Color(204, 204, 204));
         lblRas.setText("Ras:");
         pnlAlienRegistrering.add(lblRas);
-        lblRas.setBounds(20, 150, 41, 20);
+        lblRas.setBounds(20, 150, 120, 20);
 
         jcbAlienRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ospecificerat", "Boglodite", "Squid", "Worm" }));
         jcbAlienRas.addActionListener(new java.awt.event.ActionListener() {
@@ -817,19 +810,19 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlAlienRegistrering.add(jcbAlienRas);
-        jcbAlienRas.setBounds(120, 150, 120, 26);
+        jcbAlienRas.setBounds(180, 150, 120, 26);
         pnlAlienRegistrering.add(txtAntal);
-        txtAntal.setBounds(340, 150, 100, 24);
+        txtAntal.setBounds(400, 150, 100, 24);
 
         lblAntalBoogies.setForeground(new java.awt.Color(204, 204, 204));
         lblAntalBoogies.setText("Antal boogies:");
         pnlAlienRegistrering.add(lblAntalBoogies);
-        lblAntalBoogies.setBounds(250, 150, 90, 20);
+        lblAntalBoogies.setBounds(310, 150, 90, 20);
 
         lblAntalArmar.setForeground(new java.awt.Color(204, 204, 204));
         lblAntalArmar.setText("Antal armar:");
         pnlAlienRegistrering.add(lblAntalArmar);
-        lblAntalArmar.setBounds(250, 150, 80, 20);
+        lblAntalArmar.setBounds(310, 150, 80, 20);
 
         pnlBackground.add(pnlAlienRegistrering);
         pnlAlienRegistrering.setBounds(160, 20, 620, 410);
@@ -883,6 +876,11 @@ public final class UserPage extends javax.swing.JFrame {
 
         jlListaAliens.setModel(new DefaultListModel());
         jlListaAliens.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jlListaAliens.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlListaAliensMouseClicked(evt);
+            }
+        });
         jScrListaAliens.setViewportView(jlListaAliens);
 
         pnlListaAliens.add(jScrListaAliens);
@@ -953,6 +951,12 @@ public final class UserPage extends javax.swing.JFrame {
         jSeparator1.setBounds(20, 115, 250, 2);
         pnlListaAliens.add(jSeparator2);
         jSeparator2.setBounds(20, 165, 250, 2);
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 2, 8)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel6.setText("(Dubbelklicka på en alien i listan för att redigera denna).");
+        pnlListaAliens.add(jLabel6);
+        jLabel6.setBounds(330, 20, 274, 16);
 
         pnlBackground.add(pnlListaAliens);
         pnlListaAliens.setBounds(160, 20, 620, 410);
@@ -1080,7 +1084,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAgentInformation.add(lblAgentLosenordAndra);
         lblAgentLosenordAndra.setBounds(20, 120, 70, 24);
         pnlAgentInformation.add(jXDateAnstDatumAndra);
-        jXDateAnstDatumAndra.setBounds(140, 180, 134, 24);
+        jXDateAnstDatumAndra.setBounds(140, 180, 133, 24);
 
         lblAnkomstDatumAndra1.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatumAndra1.setText("Anställningsdatum:");
@@ -1234,7 +1238,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlUtrustningRegistrering.add(lblUtrustnigVal);
         lblUtrustnigVal.setBounds(20, 60, 90, 16);
         pnlUtrustningRegistrering.add(txtSpecifikation);
-        txtSpecifikation.setBounds(290, 90, 120, 24);
+        txtSpecifikation.setBounds(350, 90, 120, 24);
         pnlUtrustningRegistrering.add(txtUtrustningBenamning);
         txtUtrustningBenamning.setBounds(100, 90, 120, 24);
 
@@ -1255,7 +1259,7 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlUtrustningRegistrering.add(btnSparaUtrustning);
-        btnSparaUtrustning.setBounds(330, 120, 77, 32);
+        btnSparaUtrustning.setBounds(390, 120, 77, 32);
 
         lblUtrustningKategori.setForeground(new java.awt.Color(204, 204, 204));
         lblUtrustningKategori.setText("Kategori:");
@@ -1312,7 +1316,7 @@ public final class UserPage extends javax.swing.JFrame {
         lblChefAgenter.setForeground(new java.awt.Color(204, 204, 204));
         lblChefAgenter.setText("Välj ny chef:");
         pnlCheferOmrade.add(lblChefAgenter);
-        lblChefAgenter.setBounds(20, 60, 71, 24);
+        lblChefAgenter.setBounds(20, 60, 100, 24);
 
         jcbChefAgenter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1320,12 +1324,12 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlCheferOmrade.add(jcbChefAgenter);
-        jcbChefAgenter.setBounds(110, 60, 140, 26);
+        jcbChefAgenter.setBounds(140, 60, 140, 26);
 
         lblChefOmrade.setForeground(new java.awt.Color(204, 204, 204));
         lblChefOmrade.setText("Område:");
         pnlCheferOmrade.add(lblChefOmrade);
-        lblChefOmrade.setBounds(20, 20, 60, 24);
+        lblChefOmrade.setBounds(20, 20, 100, 24);
 
         jcbChefOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Svealand", "Götaland", "Norrland" }));
         jcbChefOmrade.addActionListener(new java.awt.event.ActionListener() {
@@ -1334,12 +1338,12 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlCheferOmrade.add(jcbChefOmrade);
-        jcbChefOmrade.setBounds(110, 20, 140, 26);
+        jcbChefOmrade.setBounds(140, 20, 140, 26);
 
         lblChefChef.setForeground(new java.awt.Color(204, 204, 204));
         lblChefChef.setText("Chef:");
         pnlCheferOmrade.add(lblChefChef);
-        lblChefChef.setBounds(270, 20, 130, 24);
+        lblChefChef.setBounds(300, 20, 130, 24);
 
         btnAndraChef.setText("Ändra");
         btnAndraChef.addActionListener(new java.awt.event.ActionListener() {
@@ -1348,15 +1352,15 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlCheferOmrade.add(btnAndraChef);
-        btnAndraChef.setBounds(270, 60, 80, 32);
+        btnAndraChef.setBounds(300, 60, 80, 32);
 
         pnlCheferOmrade.add(jcbKontorsChef);
-        jcbKontorsChef.setBounds(110, 110, 140, 26);
+        jcbKontorsChef.setBounds(140, 110, 140, 26);
 
         lblKontorsChef.setForeground(new java.awt.Color(204, 204, 204));
         lblKontorsChef.setText("Kontorschef:");
         pnlCheferOmrade.add(lblKontorsChef);
-        lblKontorsChef.setBounds(20, 110, 80, 24);
+        lblKontorsChef.setBounds(20, 110, 110, 24);
 
         btnAndraKontorsChef.setText("Ändra");
         btnAndraKontorsChef.addActionListener(new java.awt.event.ActionListener() {
@@ -1365,7 +1369,7 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlCheferOmrade.add(btnAndraKontorsChef);
-        btnAndraKontorsChef.setBounds(270, 110, 80, 32);
+        btnAndraKontorsChef.setBounds(300, 110, 80, 32);
         pnlCheferOmrade.add(jSepChefer);
         jSepChefer.setBounds(20, 100, 360, 2);
 
@@ -1374,6 +1378,127 @@ public final class UserPage extends javax.swing.JFrame {
 
         pnlBackground.add(pnlChefer);
         pnlChefer.setBounds(160, 20, 620, 410);
+
+        pnlUtrustningKvittering.setBackground(new java.awt.Color(29, 29, 48));
+        pnlUtrustningKvittering.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlUtrustningKvittering.setForeground(new java.awt.Color(204, 204, 204));
+        pnlUtrustningKvittering.setMinimumSize(new java.awt.Dimension(620, 410));
+        pnlUtrustningKvittering.setLayout(null);
+
+        pnlUtrustningKvittering.add(jcbUtrustningKvitteraAgenter);
+        jcbUtrustningKvitteraAgenter.setBounds(90, 60, 130, 26);
+
+        jscrUtrustningLedig.setViewportView(jlUtrustningLedig);
+
+        pnlUtrustningKvittering.add(jscrUtrustningLedig);
+        jscrUtrustningLedig.setBounds(30, 140, 190, 250);
+
+        lblUtrustningKvitteringTitel.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        lblUtrustningKvitteringTitel.setForeground(new java.awt.Color(204, 204, 204));
+        lblUtrustningKvitteringTitel.setText("Kvittera ut utrustning");
+        pnlUtrustningKvittering.add(lblUtrustningKvitteringTitel);
+        lblUtrustningKvitteringTitel.setBounds(20, 10, 180, 40);
+
+        jscrUtrusningKvitterad.setViewportView(jlUtrustningKvitterad);
+
+        pnlUtrustningKvittering.add(jscrUtrusningKvitterad);
+        jscrUtrusningKvitterad.setBounds(320, 140, 280, 250);
+
+        lblUtrustingKvitteraAgentNamn.setForeground(new java.awt.Color(204, 204, 204));
+        lblUtrustingKvitteraAgentNamn.setText("Agent:");
+        pnlUtrustningKvittering.add(lblUtrustingKvitteraAgentNamn);
+        lblUtrustingKvitteraAgentNamn.setBounds(30, 60, 50, 24);
+
+        lblUtrustningKvitterad.setForeground(new java.awt.Color(204, 204, 204));
+        lblUtrustningKvitterad.setText("Agentens utkvitterade utrustning");
+        pnlUtrustningKvittering.add(lblUtrustningKvitterad);
+        lblUtrustningKvitterad.setBounds(320, 100, 190, 24);
+
+        lblUtrustningLedig.setForeground(new java.awt.Color(204, 204, 204));
+        lblUtrustningLedig.setText("Ledig utrustning");
+        pnlUtrustningKvittering.add(lblUtrustningLedig);
+        lblUtrustningLedig.setBounds(40, 100, 120, 24);
+
+        btnKvitteraUt.setText(">");
+        btnKvitteraUt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKvitteraUtActionPerformed(evt);
+            }
+        });
+        pnlUtrustningKvittering.add(btnKvitteraUt);
+        btnKvitteraUt.setBounds(240, 220, 60, 32);
+
+        btnAterlamna.setText("<");
+        btnAterlamna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAterlamnaActionPerformed(evt);
+            }
+        });
+        pnlUtrustningKvittering.add(btnAterlamna);
+        btnAterlamna.setBounds(240, 290, 60, 32);
+
+        lblKvitteraUt.setForeground(new java.awt.Color(204, 204, 204));
+        lblKvitteraUt.setText("Kvittera ut");
+        pnlUtrustningKvittering.add(lblKvitteraUt);
+        lblKvitteraUt.setBounds(240, 200, 70, 16);
+
+        lblAterlamna.setForeground(new java.awt.Color(204, 204, 204));
+        lblAterlamna.setText("Återlämna");
+        pnlUtrustningKvittering.add(lblAterlamna);
+        lblAterlamna.setBounds(240, 270, 70, 16);
+
+        btnUtrustningKvitteraHamta.setText("Hämta");
+        btnUtrustningKvitteraHamta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUtrustningKvitteraHamtaActionPerformed(evt);
+            }
+        });
+        pnlUtrustningKvittering.add(btnUtrustningKvitteraHamta);
+        btnUtrustningKvitteraHamta.setBounds(240, 60, 70, 24);
+
+        pnlBackground.add(pnlUtrustningKvittering);
+        pnlUtrustningKvittering.setBounds(160, 20, 620, 410);
+
+        pnlUtrustningMeny.setBackground(new java.awt.Color(29, 29, 48));
+        pnlUtrustningMeny.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlUtrustningMeny.setMinimumSize(new java.awt.Dimension(150, 200));
+        pnlUtrustningMeny.setLayout(null);
+
+        lblUtrustningTillbaka.setForeground(new java.awt.Color(204, 204, 204));
+        lblUtrustningTillbaka.setText("Tillbaka");
+        lblUtrustningTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblUtrustningTillbakaMouseClicked(evt);
+            }
+        });
+        pnlUtrustningMeny.add(lblUtrustningTillbaka);
+        lblUtrustningTillbaka.setBounds(10, 50, 100, 20);
+
+        lblUtrustningKvittera.setForeground(new java.awt.Color(204, 204, 204));
+        lblUtrustningKvittera.setText("Kvittera ut");
+        lblUtrustningKvittera.setMaximumSize(new java.awt.Dimension(50, 15));
+        lblUtrustningKvittera.setMinimumSize(new java.awt.Dimension(50, 15));
+        lblUtrustningKvittera.setPreferredSize(new java.awt.Dimension(50, 15));
+        lblUtrustningKvittera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblUtrustningKvitteraMouseClicked(evt);
+            }
+        });
+        pnlUtrustningMeny.add(lblUtrustningKvittera);
+        lblUtrustningKvittera.setBounds(10, 30, 100, 20);
+
+        lblUtrustningRegistrera.setForeground(new java.awt.Color(204, 204, 204));
+        lblUtrustningRegistrera.setText("Reg. ny / Radera");
+        lblUtrustningRegistrera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblUtrustningRegistreraMouseClicked(evt);
+            }
+        });
+        pnlUtrustningMeny.add(lblUtrustningRegistrera);
+        lblUtrustningRegistrera.setBounds(10, 10, 100, 20);
+
+        pnlBackground.add(pnlUtrustningMeny);
+        pnlUtrustningMeny.setBounds(20, 310, 120, 120);
 
         getContentPane().add(pnlBackground, java.awt.BorderLayout.CENTER);
 
@@ -1390,6 +1515,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlHuvudMenyAlien.setVisible(false);
         pnlAlienMeny.setVisible(false);
         pnlAgentMeny.setVisible(false);
+        pnlUtrustningMeny.setVisible(false);
         pnl.setVisible(true);
 
     }
@@ -1412,6 +1538,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlUtrustningRegistrering.setVisible(false);
         pnlAlienStart.setVisible(false);
         pnlChefer.setVisible(false);
+        pnlUtrustningKvittering.setVisible(false);
         pnl.setVisible(true);
 
     }
@@ -1731,11 +1858,13 @@ public final class UserPage extends javax.swing.JFrame {
         }
 
     }
-/**
- * Kollar vilken ras en specifik alien tillhör
- * @param id id:t på en alien
- * @return ras på alien.
- */
+
+    /**
+     * Kollar vilken ras en specifik alien tillhör
+     *
+     * @param id id:t på en alien
+     * @return ras på alien.
+     */
     private String kollaRas(String id) {
         String ras = "";
         ArrayList<String> boglodites = new ArrayList<>();
@@ -1940,9 +2069,9 @@ public final class UserPage extends javax.swing.JFrame {
         setMenuVisibility(pnlAlienMeny);
     }//GEN-LAST:event_lblAliensMouseClicked
 
-    private void lblTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTillbakaMouseClicked
+    private void lblAlienTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienTillbakaMouseClicked
         setMenuVisibility(pnlHuvudMeny);
-    }//GEN-LAST:event_lblTillbakaMouseClicked
+    }//GEN-LAST:event_lblAlienTillbakaMouseClicked
 
     private void lblRegistreraAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistreraAlienMouseClicked
         setPanelVisibility(pnlAlienRegistrering);
@@ -1966,7 +2095,7 @@ public final class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSparaAlienMouseClicked
 
     /**
-     * Denna metod används för att lista sökresultat
+     * Denna metod används för att lista sökresultat på tex Agenter och Aliens
      *
      * @param minLista
      * @param sokord
@@ -1994,6 +2123,52 @@ public final class UserPage extends javax.swing.JFrame {
         }
 
     }
+
+    private void fyllLedigUtrustningsLista(JList<String> minLista) {
+        DefaultListModel listModel = new DefaultListModel();
+        minLista.setModel(listModel);
+        listModel.removeAllElements();
+
+        String sokStrang = "select UTRUSTNINGS_ID, BENAMNING from UTRUSTNING where UTRUSTNINGS_ID not in (select UTRUSTNINGS_ID from INNEHAR_UTRUSTNING) order by UTRUSTNINGS_ID";
+
+        try {
+            ArrayList<HashMap<String, String>> allaObjekt = idb.fetchRows(sokStrang);
+
+            for (HashMap<String, String> ettObjekt : allaObjekt) {
+                String element = ettObjekt.get("UTRUSTNINGS_ID") + " " + ettObjekt.get("BENAMNING");
+                listModel.addElement(element);
+
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+
+    }
+
+    private void fyllUtrustningsLista(JList<String> minLista, String id) {
+        DefaultListModel listModel = new DefaultListModel();
+        minLista.setModel(listModel);
+        listModel.removeAllElements();
+
+        String sokStrang = "select UTRUSTNING.UTRUSTNINGS_ID, UTRUSTNING.BENAMNING, INNEHAR_UTRUSTNING.UTKVITTERINGSDATUM "
+                + "from UTRUSTNING join INNEHAR_UTRUSTNING on UTRUSTNING.UTRUSTNINGS_ID = INNEHAR_UTRUSTNING.UTRUSTNINGS_ID "
+                + "where INNEHAR_UTRUSTNING.AGENT_ID = " + id;
+
+        try {
+            ArrayList<HashMap<String, String>> allaObjekt = idb.fetchRows(sokStrang);
+
+            for (HashMap<String, String> ettObjekt : allaObjekt) {
+                String element = ettObjekt.get("UTRUSTNINGS_ID") + " " + ettObjekt.get("BENAMNING") + " \t " + ettObjekt.get("UTKVITTERINGSDATUM");
+                listModel.addElement(element);
+
+            }
+        } catch (NullPointerException ex) {
+            listModel.addElement("Agenten har ingen utkvitterad utrustning.");
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }
+
 
     private void btnSparaAlienAndraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSparaAlienAndraMouseClicked
         andraAlienInfo();
@@ -2108,6 +2283,12 @@ public final class UserPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jcbAlienRasListaActionPerformed
 
+    /**
+     * Hämtar ut aliens från en specifik plats som väljs i comboboxen och lägger
+     * in dem med id och namn i en JList
+     *
+     * @param evt
+     */
     private void jcbAlienPlatsListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAlienPlatsListaActionPerformed
         String id = getPlatsFranComboBox(jcbAlienPlatsLista);
         DefaultListModel listModel = new DefaultListModel();
@@ -2335,21 +2516,20 @@ public final class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbUtrustningsKategoriActionPerformed
 
     private void lblUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningMouseClicked
-
-        setPanelVisibility(pnlUtrustningRegistrering);
         if (anvandare.getAdmin().equals("J")) {
-            btnRaderaUtrustning.setVisible(true);
+            setMenuVisibility(pnlUtrustningMeny);
         } else {
+            setPanelVisibility(pnlUtrustningRegistrering);
             btnRaderaUtrustning.setVisible(false);
+            hamtaUtrustning();
         }
-        hamtaUtrustning();
     }//GEN-LAST:event_lblUtrustningMouseClicked
 
     private void hamtaUtrustning() {
         try {
             DefaultListModel listModel = new DefaultListModel<>();
             jlUtrustning.setModel(listModel);
-            ArrayList<HashMap<String, String>> allUtrustning = idb.fetchRows("select * from UTRUSTNING");
+            ArrayList<HashMap<String, String>> allUtrustning = idb.fetchRows("select * from UTRUSTNING order by UTRUSTNINGS_ID");
 
             for (HashMap<String, String> ettObjekt : allUtrustning) {
                 String id = ettObjekt.get("UTRUSTNINGS_ID");
@@ -2368,7 +2548,7 @@ public final class UserPage extends javax.swing.JFrame {
                         listModel.addElement(ettObjekt.get("UTRUSTNINGS_ID") + " " + ettObjekt.get("BENAMNING") + ", Kommunikation, Överföringsteknik: " + overforingsteknik);
                         break;
                 }
-                // listModel.addElement(ettObjekt.get("UTRUSTNINGS_ID") + " " + ettObjekt.get("BENAMNING"));
+
             }
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
@@ -2482,6 +2662,75 @@ public final class UserPage extends javax.swing.JFrame {
         raderaAgent();
     }//GEN-LAST:event_btnRaderaAgentActionPerformed
 
+    private void jlListaAliensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListaAliensMouseClicked
+        if (evt.getClickCount() == 2) {
+            String id = jlListaAliens.getSelectedValue().split(" ")[0];
+            setPanelVisibility(pnlAlienSokOchAndra);
+            getAlienInfo(id);
+        }
+    }//GEN-LAST:event_jlListaAliensMouseClicked
+
+    private void lblUtrustningTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningTillbakaMouseClicked
+        setMenuVisibility(pnlHuvudMeny);
+    }//GEN-LAST:event_lblUtrustningTillbakaMouseClicked
+
+    private void lblUtrustningKvitteraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningKvitteraMouseClicked
+        setPanelVisibility(pnlUtrustningKvittering);
+        jcbUtrustningKvitteraAgenter.removeAllItems();
+        fyllComboBox(jcbUtrustningKvitteraAgenter, "AGENT_ID", "NAMN", "AGENT");
+        fyllLedigUtrustningsLista(jlUtrustningLedig);
+
+    }//GEN-LAST:event_lblUtrustningKvitteraMouseClicked
+
+    private void lblUtrustningRegistreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningRegistreraMouseClicked
+        setPanelVisibility(pnlUtrustningRegistrering);
+        if (anvandare.getAdmin().equals("J")) {
+            btnRaderaUtrustning.setVisible(true);
+        } else {
+            btnRaderaUtrustning.setVisible(false);
+        }
+        hamtaUtrustning();
+
+    }//GEN-LAST:event_lblUtrustningRegistreraMouseClicked
+
+    private void btnUtrustningKvitteraHamtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUtrustningKvitteraHamtaActionPerformed
+        String id = jcbUtrustningKvitteraAgenter.getSelectedItem().toString().split(" ")[0];
+        fyllUtrustningsLista(jlUtrustningKvitterad, id);
+
+    }//GEN-LAST:event_btnUtrustningKvitteraHamtaActionPerformed
+
+    private void btnKvitteraUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKvitteraUtActionPerformed
+        try {
+            String uID = jlUtrustningLedig.getSelectedValue().split(" ")[0];
+            String aID = jcbUtrustningKvitteraAgenter.getSelectedItem().toString().split(" ")[0];
+            Date dagensDatum = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String datum = dateFormat.format(dagensDatum);
+            idb.insert("insert into INNEHAR_UTRUSTNING values (" + aID + ", " + uID + ", '" + datum + "')");
+            fyllUtrustningsLista(jlUtrustningKvitterad, aID);
+            fyllLedigUtrustningsLista(jlUtrustningLedig);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Du måste välja något i listan först.");
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Kunde inte kvittera ut.");
+        }
+    }//GEN-LAST:event_btnKvitteraUtActionPerformed
+
+    private void btnAterlamnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAterlamnaActionPerformed
+        try {
+            String uID = jlUtrustningKvitterad.getSelectedValue().split(" ")[0];
+            String aID = jcbUtrustningKvitteraAgenter.getSelectedItem().toString().split(" ")[0];
+            idb.delete("delete from INNEHAR_UTRUSTNING where UTRUSTNINGS_ID = " + uID);
+            fyllUtrustningsLista(jlUtrustningKvitterad, aID);
+            fyllLedigUtrustningsLista(jlUtrustningLedig);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Du måste välja något i listan först.");
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Kunde inte kvittera ut.");
+        }
+
+    }//GEN-LAST:event_btnAterlamnaActionPerformed
+
     private void andraKontorsChef() {
         try {
             String valdAgentId = jcbKontorsChef.getSelectedItem().toString().split(" ")[0];
@@ -2508,6 +2757,7 @@ public final class UserPage extends javax.swing.JFrame {
                         idb.delete("delete from KOMMUNIKATION where UTRUSTNINGS_ID = " + id);
                         break;
                 }
+                idb.delete("delete from INNEHAR_UTRUSTNING where UTRUSTNINGS_ID = " + id);
                 idb.delete("delete from UTRUSTNING where UTRUSTNINGS_ID = " + id);
                 JOptionPane.showMessageDialog(null, "Utrustning raderad");
 
@@ -2609,6 +2859,12 @@ public final class UserPage extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *
+     * @param jcb comboboxen som ska läsas av
+     * @param n vilken information i strängen man vill åt (0 är oftast id tex).
+     * @return
+     */
     private String getFranComboBox(JComboBox jcb, int n) {
         String item[] = jcb.getSelectedItem().toString().split(" ");
         String svar = item[n];
@@ -2616,6 +2872,13 @@ public final class UserPage extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Den här metoden används för att hämta värden från de combobxar där
+     * platser är hårdkodade alternativ
+     *
+     * @param jcb
+     * @return
+     */
     private String getPlatsFranComboBox(JComboBox jcb) {
         String svar = "";
         String item = jcb.getSelectedItem().toString();
@@ -2636,6 +2899,10 @@ public final class UserPage extends javax.swing.JFrame {
         return svar;
     }
 
+    /**
+     * Läser av all information som ska sparas på en alien och lägger in det i
+     * databasen.
+     */
     private void sparaAlien() {
 
         String namn = txtAlienNamn.getText();
@@ -2701,6 +2968,8 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JButton btnAndraChef;
     private javax.swing.JButton btnAndraKontorsChef;
     private javax.swing.JButton btnAndraLosen;
+    private javax.swing.JButton btnAterlamna;
+    private javax.swing.JButton btnKvitteraUt;
     private javax.swing.JButton btnListaDatum;
     private javax.swing.JButton btnRaderaAgent;
     private javax.swing.JButton btnRaderaAlien;
@@ -2711,11 +2980,13 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JButton btnSparaAlien;
     private javax.swing.JButton btnSparaAlienAndra;
     private javax.swing.JButton btnSparaUtrustning;
+    private javax.swing.JButton btnUtrustningKvitteraHamta;
     private javax.swing.JCheckBox chkAdmin;
     private javax.swing.JCheckBox chkAgentAdminAndra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrAgentLista;
     private javax.swing.JScrollPane jScrAlienLista;
     private javax.swing.JScrollPane jScrAlienListaOmrade;
@@ -2742,12 +3013,17 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbChefAgenter;
     private javax.swing.JComboBox<String> jcbChefOmrade;
     private javax.swing.JComboBox<String> jcbKontorsChef;
+    private javax.swing.JComboBox<String> jcbUtrustningKvitteraAgenter;
     private javax.swing.JComboBox<String> jcbUtrustningsKategori;
     private javax.swing.JList<String> jlAgentLista;
     private javax.swing.JList<String> jlAlienLista;
     private javax.swing.JList<String> jlAliensIMittOmrade;
     private javax.swing.JList<String> jlListaAliens;
     private javax.swing.JList<String> jlUtrustning;
+    private javax.swing.JList<String> jlUtrustningKvitterad;
+    private javax.swing.JList<String> jlUtrustningLedig;
+    private javax.swing.JScrollPane jscrUtrusningKvitterad;
+    private javax.swing.JScrollPane jscrUtrustningLedig;
     private javax.swing.JLabel lblAdministratorAndra;
     private javax.swing.JLabel lblAgentAndraNamn;
     private javax.swing.JLabel lblAgentBlankt;
@@ -2773,6 +3049,7 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblAlienSokOchAndra;
     private javax.swing.JLabel lblAlienStart;
     private javax.swing.JLabel lblAlienStartTitel;
+    private javax.swing.JLabel lblAlienTillbaka;
     private javax.swing.JLabel lblAliens;
     private javax.swing.JLabel lblAliensIMittOmrade;
     private javax.swing.JLabel lblAliensOmradesChef;
@@ -2792,6 +3069,7 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblAntalBoogies;
     private javax.swing.JLabel lblAntalBoogiesAndra;
     private javax.swing.JLabel lblAnvandaresNamn;
+    private javax.swing.JLabel lblAterlamna;
     private javax.swing.JLabel lblBenamning;
     private javax.swing.JLabel lblBlankt;
     private javax.swing.JLabel lblChefAgenter;
@@ -2801,6 +3079,7 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblFranDatum1;
     private javax.swing.JLabel lblIdNamn;
     private javax.swing.JLabel lblKontorsChef;
+    private javax.swing.JLabel lblKvitteraUt;
     private javax.swing.JLabel lblListaAliensTitel;
     private javax.swing.JLabel lblListaAlla;
     private javax.swing.JLabel lblListaPlats;
@@ -2831,10 +3110,16 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTelefonAlienAndra;
     private javax.swing.JLabel lblTillDatum;
-    private javax.swing.JLabel lblTillbaka;
+    private javax.swing.JLabel lblUtrustingKvitteraAgentNamn;
     private javax.swing.JLabel lblUtrustnigVal;
     private javax.swing.JLabel lblUtrustning;
     private javax.swing.JLabel lblUtrustningKategori;
+    private javax.swing.JLabel lblUtrustningKvittera;
+    private javax.swing.JLabel lblUtrustningKvitterad;
+    private javax.swing.JLabel lblUtrustningKvitteringTitel;
+    private javax.swing.JLabel lblUtrustningLedig;
+    private javax.swing.JLabel lblUtrustningRegistrera;
+    private javax.swing.JLabel lblUtrustningTillbaka;
     private javax.swing.JLabel lblUtrustningTitel;
     private javax.swing.JLabel lblValkommen;
     private javax.swing.JPanel pnlAgentInformation;
@@ -2859,6 +3144,8 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JPanel pnlRaderaAlien;
     private javax.swing.JPanel pnlRaderaUtrustning;
     private javax.swing.JPanel pnlSokOmradesChef;
+    private javax.swing.JPanel pnlUtrustningKvittering;
+    private javax.swing.JPanel pnlUtrustningMeny;
     private javax.swing.JPanel pnlUtrustningRegistrering;
     private javax.swing.JScrollPane scrUtrustning;
     private javax.swing.JTextField txtAgentAndraSokord;

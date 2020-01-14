@@ -7,8 +7,6 @@ package mib;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -63,7 +61,7 @@ public class AndraPopupVidRadering extends javax.swing.JFrame {
         try {
             /* Områdeschefer */
             String omrade = idb.fetchSingle("select BENAMNING from OMRADE where OMRADES_ID like (select OMRADE from OMRADESCHEF where AGENT_ID =" + id + ")");
-            System.out.print(omrade);
+
             lblValjNyOmradesChef.setText("Agenten är områdeschef för " + omrade + ", välj en ny områdeschef.");
             ArrayList<HashMap<String, String>> allaTillgangligaAgenterForOmradesChef;
             allaTillgangligaAgenterForOmradesChef = idb.fetchRows("select AGENT_ID, NAMN from AGENT where AGENT_ID not in(select AGENT_ID from OMRADESCHEF)");
@@ -243,13 +241,17 @@ public class AndraPopupVidRadering extends javax.swing.JFrame {
             idb.update("update OMRADESCHEF set AGENT_ID = " + nyOmradesChef + " where AGENT_ID = " + id);
             idb.update("update KONTORSCHEF set AGENT_ID = " + nyKontorsChef + " where AGENT_ID = " + id);
             idb.update("update ALIEN set ANSVARIG_AGENT = " + nyAnsvarigAgent + " where ANSVARIG_AGENT = " + id);
-            idb.delete("delete from AGENT where AGENT_ID = " + id);
             idb.delete("delete from FALTAGENT where AGENT_ID = " + id);
+            idb.delete("delete from INNEHAR_UTRUSTNING where AGENT_ID =" + id);
+            idb.delete("delete from INNEHAR_FORDON where AGENT_ID =" + id);
+            idb.delete("delete from AGENT where AGENT_ID = " + id);
 
             JOptionPane.showMessageDialog(null, "Informationen ändrad, agenten raderad.");
             this.dispose();
+
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel.");
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Kunde inte radera agenten.()");
         }
     }//GEN-LAST:event_btnBytOmradesChefActionPerformed
 
