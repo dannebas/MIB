@@ -106,12 +106,12 @@ public class MainPage extends javax.swing.JFrame {
 
     private void lblAgentInlogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAgentInlogMouseClicked
         new LoginForm(idb, "AGENT").setVisible(true);
-        setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_lblAgentInlogMouseClicked
 
     private void lblAlienInlogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienInlogMouseClicked
         new LoginForm(idb, "ALIEN").setVisible(true);
-        setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_lblAlienInlogMouseClicked
 
 

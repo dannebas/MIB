@@ -89,6 +89,11 @@ public class LoginForm extends javax.swing.JFrame {
 
         txtPass.setMinimumSize(new java.awt.Dimension(15, 24));
         txtPass.setPreferredSize(new java.awt.Dimension(15, 24));
+        txtPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassActionPerformed(evt);
+            }
+        });
         pnlBackground.add(txtPass);
         txtPass.setBounds(210, 350, 110, 24);
 
@@ -114,6 +119,14 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        inloggning();
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
+        inloggning();
+    }//GEN-LAST:event_txtPassActionPerformed
+
+    private void inloggning() {
         String userID = txtUserName.getText();
         /* Följande rader är för att hantera lösenordet
         som skrivs in i ett lösenordsfält och hämtas ut som en array av char.
@@ -134,13 +147,13 @@ public class LoginForm extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Välkommen " + userName + ". Du har nu loggat in");
                         switch (info) {
                             case "AGENT":
-                                User anvandare = new User(idb, userID, "AGENT"); //inloggad användare skapas
-                                new UserPage(idb, anvandare).setVisible(true);   
+                                User anvandare = new User(idb, userID, "AGENT"); //instansiering av ett anvandarobjekt.
+                                new UserPage(idb, anvandare).setVisible(true);   //instansiering av själva huvudsidan, anvandarobjektet skickas med som parameter.
                                 this.dispose();
                                 break;
                             case "ALIEN":
                                 anvandare = new User(idb, userID, "ALIEN");
-                                new UserPage(idb,anvandare).setVisible(true);
+                                new UserPage(idb, anvandare).setVisible(true);
                                 this.dispose();
                                 break;
                         }
@@ -160,8 +173,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         }
 
-    }//GEN-LAST:event_btnLoginActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

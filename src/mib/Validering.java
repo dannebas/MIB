@@ -62,13 +62,13 @@ public class Validering {
 
     public static boolean kollaUtloggning() {
         boolean svar = false;
-        String[] val = {"Ja", "Nej"};
+        String[] val = {"Ja", "Nej"};       //används för att kunna skriva egna alternativ på svenska.
         int n = JOptionPane.showOptionDialog(null,
                 "Är du säker på att du vill logga ut?",
                 "Logga ut",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
-                null, val, val[0]);
+                null, val, val[0]);             
         if (n == JOptionPane.YES_OPTION) {
             svar = true;
         } else if (n == JOptionPane.NO_OPTION) {

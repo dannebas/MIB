@@ -231,7 +231,6 @@ public final class UserPage extends javax.swing.JFrame {
         pnlRaderaAgent = new javax.swing.JPanel();
         btnRaderaAgent = new javax.swing.JButton();
         lblRaderaAgent = new javax.swing.JLabel();
-        pnlSokOmradesChef = new javax.swing.JPanel();
         pnlUtrustningRegistrering = new javax.swing.JPanel();
         jcbUtrustningsKategori = new javax.swing.JComboBox<>();
         lblUtrustningTitel = new javax.swing.JLabel();
@@ -397,7 +396,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAgentRegistrering.add(lblAgentLosenord);
         lblAgentLosenord.setBounds(20, 120, 130, 24);
         pnlAgentRegistrering.add(jXDateAnstallningsDatum);
-        jXDateAnstallningsDatum.setBounds(190, 180, 133, 24);
+        jXDateAnstallningsDatum.setBounds(190, 180, 141, 24);
 
         lblAnkomstDatum1.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatum1.setText("Anställningsdatum:");
@@ -596,7 +595,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienAndra.add(lblLosenordAlienAndra);
         lblLosenordAlienAndra.setBounds(20, 120, 70, 20);
         pnlAlienAndra.add(jXDateAnkomstDatumAndra);
-        jXDateAnkomstDatumAndra.setBounds(120, 210, 133, 24);
+        jXDateAnkomstDatumAndra.setBounds(120, 210, 141, 24);
 
         lblAnkomstDatumAndra.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatumAndra.setText("Ankomstdatum:");
@@ -687,9 +686,9 @@ public final class UserPage extends javax.swing.JFrame {
         lblSokTitel.setBounds(20, 10, 180, 40);
 
         lblSokAlienNamn.setForeground(new java.awt.Color(204, 204, 204));
-        lblSokAlienNamn.setText("Aliens namn:");
+        lblSokAlienNamn.setText("Aliens namn eller id:");
         pnlAlienSokOchAndra.add(lblSokAlienNamn);
-        lblSokAlienNamn.setBounds(20, 60, 100, 20);
+        lblSokAlienNamn.setBounds(20, 60, 130, 20);
 
         jlAlienLista.setModel(new DefaultListModel());
         jScrAlienLista.setViewportView(jlAlienLista);
@@ -753,7 +752,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienRegistrering.add(lblLosenord);
         lblLosenord.setBounds(20, 120, 130, 20);
         pnlAlienRegistrering.add(jXDateAnkomstDatum);
-        jXDateAnkomstDatum.setBounds(180, 240, 133, 24);
+        jXDateAnkomstDatum.setBounds(180, 240, 141, 24);
 
         lblAnkomstDatum.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatum.setText("Ankomstdatum:");
@@ -1084,7 +1083,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAgentInformation.add(lblAgentLosenordAndra);
         lblAgentLosenordAndra.setBounds(20, 120, 70, 24);
         pnlAgentInformation.add(jXDateAnstDatumAndra);
-        jXDateAnstDatumAndra.setBounds(140, 180, 133, 24);
+        jXDateAnstDatumAndra.setBounds(140, 180, 141, 24);
 
         lblAnkomstDatumAndra1.setForeground(new java.awt.Color(204, 204, 204));
         lblAnkomstDatumAndra1.setText("Anställningsdatum:");
@@ -1147,9 +1146,9 @@ public final class UserPage extends javax.swing.JFrame {
         lblAgentSokTitel.setBounds(20, 10, 180, 40);
 
         lblSokAgentNamn.setForeground(new java.awt.Color(204, 204, 204));
-        lblSokAgentNamn.setText("Agentens namn:");
+        lblSokAgentNamn.setText("Agentens namn eller id:");
         pnlAgentSokOchAndra.add(lblSokAgentNamn);
-        lblSokAgentNamn.setBounds(20, 60, 100, 20);
+        lblSokAgentNamn.setBounds(20, 60, 170, 20);
 
         jlAgentLista.setModel(new DefaultListModel());
         jScrAgentLista.setViewportView(jlAgentLista);
@@ -1193,24 +1192,6 @@ public final class UserPage extends javax.swing.JFrame {
 
         pnlBackground.add(pnlAgentSokOchAndra);
         pnlAgentSokOchAndra.setBounds(160, 20, 620, 410);
-
-        pnlSokOmradesChef.setBackground(new java.awt.Color(29, 29, 48));
-        pnlSokOmradesChef.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlSokOmradesChef.setForeground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout pnlSokOmradesChefLayout = new javax.swing.GroupLayout(pnlSokOmradesChef);
-        pnlSokOmradesChef.setLayout(pnlSokOmradesChefLayout);
-        pnlSokOmradesChefLayout.setHorizontalGroup(
-            pnlSokOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 614, Short.MAX_VALUE)
-        );
-        pnlSokOmradesChefLayout.setVerticalGroup(
-            pnlSokOmradesChefLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
-        );
-
-        pnlBackground.add(pnlSokOmradesChef);
-        pnlSokOmradesChef.setBounds(160, 20, 620, 410);
 
         pnlUtrustningRegistrering.setBackground(new java.awt.Color(29, 29, 48));
         pnlUtrustningRegistrering.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1318,11 +1299,6 @@ public final class UserPage extends javax.swing.JFrame {
         pnlCheferOmrade.add(lblChefAgenter);
         lblChefAgenter.setBounds(20, 60, 100, 24);
 
-        jcbChefAgenter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbChefAgenterActionPerformed(evt);
-            }
-        });
         pnlCheferOmrade.add(jcbChefAgenter);
         jcbChefAgenter.setBounds(140, 60, 140, 26);
 
@@ -1534,7 +1510,6 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAndraLosen.setVisible(false);
         pnlListaAliens.setVisible(false);
         pnlAgentSokOchAndra.setVisible(false);
-        pnlSokOmradesChef.setVisible(false);
         pnlUtrustningRegistrering.setVisible(false);
         pnlAlienStart.setVisible(false);
         pnlChefer.setVisible(false);
@@ -1682,7 +1657,7 @@ public final class UserPage extends javax.swing.JFrame {
         lblAntalArmarAndra.setVisible(false);
         lblAntalBoogiesAndra.setVisible(false);
         txtAntalAndra.setVisible(false);
-        jlAlienLista.addListSelectionListener(new AlienListener()); //Lägger till en listener till listan så att den känner av när man klickar på den.
+        jlAlienLista.addListSelectionListener(new AlienListener()); //Lägger till en listener till listan så att den känner av när man klickar på den eller "pilar upp och ner" i den.
         if (anvandare.getAdmin().equals("J")) {
             pnlRaderaAlien.setVisible(true);
         } else {
@@ -1741,8 +1716,7 @@ public final class UserPage extends javax.swing.JFrame {
      */
     public void getAgentInfo(String info) {
         try {
-            String[] idOchNamn = info.split(" ");
-            String id = idOchNamn[0]; // hämta ut id:t på agenten.
+            String id = info.split(" ")[0];
             String namn = idb.fetchSingle("select NAMN from AGENT where AGENT_ID = " + id);
             String telefon = idb.fetchSingle("select TELEFON from AGENT where AGENT_ID = " + id);
             String losenord = idb.fetchSingle("select LOSENORD from AGENT where AGENT_ID = " + id);
@@ -1790,8 +1764,7 @@ public final class UserPage extends javax.swing.JFrame {
     private void getAlienInfo(String info) {
 
         try {
-            String[] idOchNamn = info.split(" ");
-            String id = idOchNamn[0];
+            String id = info.split(" ")[0];
             String namn = idb.fetchSingle("select NAMN from ALIEN where ALIEN_ID = " + id);
             String telefon = idb.fetchSingle("select TELEFON from ALIEN where ALIEN_ID = " + id);
             String losenord = idb.fetchSingle("select LOSENORD from ALIEN where ALIEN_ID = " + id);
@@ -1901,6 +1874,7 @@ public final class UserPage extends javax.swing.JFrame {
 
     /**
      * Ändrar all information om en alien
+     *
      */
     private void andraAlienInfo() {
         String id = txtAlienIdAndra.getText();
@@ -1908,7 +1882,7 @@ public final class UserPage extends javax.swing.JFrame {
         String telefon = txtAlienTelefonAndra.getText();
         String losenord = txtAlienLosenordAndra.getText();
         String plats = getPlatsFranComboBox(jcbAlienPlatsAndra);
-        String ansvarigAgent = getFranComboBox(jcbAnsvarigAgentAndra, 0);
+        String ansvarigAgent = jcbAnsvarigAgentAndra.getSelectedItem().toString().split(" ")[0];
         String datum = getDatum(jXDateAnkomstDatumAndra);
         String valdRas = jcbAlienRasAndra.getSelectedItem().toString();
         String ras = kollaRas(id);
@@ -1919,11 +1893,17 @@ public final class UserPage extends javax.swing.JFrame {
                 && Validering.kollaLosenordLangd(txtAlienLosenordAndra)) {
             try {
                 String update = "update ALIEN set REGISTRERINGSDATUM = '" + datum + "', LOSENORD ='" + losenord + "', NAMN='" + namn + "', TELEFON ='" + telefon + "', PLATS=" + plats + ", ANSVARIG_AGENT=" + ansvarigAgent + " where ALIEN_ID=" + id;
+                /*
+                nedanstående uppdaterar databasen om det är 
+                så att man vill byta ras helt och hållet.
+                först tar vi reda på vilken ras alien hade från början,
+                sen är det en separat case/switch-sats för varje möjligt byte
+                 */
                 if (!ras.equals(valdRas)) {
                     switch (ras) {
-                        case "Boglodite":
+                        case "Boglodite": //alien var av rasen boglodite
                             switch (valdRas) {
-                                case "Squid":
+                                case "Squid": //alien ska ändras till squid
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into SQUID values (" + id + ", " + antal + ")");
@@ -1932,22 +1912,22 @@ public final class UserPage extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     }
                                     break;
-                                case "Worm":
+                                case "Worm": //alien ska ändras till worm
                                     idb.insert("insert into WORM values (" + id + ")");
                                     idb.update(update);
                                     idb.delete("delete from BOGLODITE where ALIEN_ID=" + id);
                                     JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     break;
-                                case "Ospecificerat":
+                                case "Ospecificerat": //ska ändras till ospecificerat
                                     idb.update(update);
                                     idb.delete("delete from BOGLODITE where ALIEN_ID=" + id);
                                     JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     break;
                             }
                             break;
-                        case "Squid":
+                        case "Squid": //alien var av rasen squid
                             switch (valdRas) {
-                                case "Boglodite":
+                                case "Boglodite": //alien ska ändras till boglodite.
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into BOGLODITE values (" + id + ", " + antal + ")");
@@ -1956,22 +1936,22 @@ public final class UserPage extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     }
                                     break;
-                                case "Worm":
+                                case "Worm": //alien ska ändras till worm
                                     idb.insert("insert into WORM values (" + id + ")");
                                     idb.update(update);
                                     idb.delete("delete from SQUID where ALIEN_ID=" + id);
                                     JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     break;
-                                case "Ospecificerat":
+                                case "Ospecificerat": //alien ska ändras till ospecificerat.
                                     idb.update(update);
                                     idb.delete("delete from SQUID where ALIEN_ID=" + id);
                                     JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     break;
                             }
                             break;
-                        case "Worm":
+                        case "Worm": //alien var av rasen worm
                             switch (valdRas) {
-                                case "Boglodite":
+                                case "Boglodite": //alien ska ändras till boglodite
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into BOGLODITE values (" + id + ", " + antal + ")");
@@ -1980,7 +1960,7 @@ public final class UserPage extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     }
                                     break;
-                                case "Squid":
+                                case "Squid": //alien ska ändras till squid
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into SQUID values (" + id + ", " + antal + ")");
@@ -1989,16 +1969,16 @@ public final class UserPage extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     }
                                     break;
-                                case "Ospecificerat":
+                                case "Ospecificerat": //alien ska ändras till ospecificerat
                                     idb.update(update);
                                     idb.delete("delete from WORM where ALIEN_ID=" + id);
                                     JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     break;
                             }
                             break;
-                        case "Ospecificerat":
+                        case "Ospecificerat": // alien var av rasen ospecificerat
                             switch (valdRas) {
-                                case "Boglodite":
+                                case "Boglodite": //alien ska ändras till boglodite
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into BOGLODITE values (" + id + ", " + antal + ")");
@@ -2006,7 +1986,7 @@ public final class UserPage extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     }
                                     break;
-                                case "Squid":
+                                case "Squid": //alien ska ändras till squid
                                     if (Validering.kollaTextRutaTom(txtAntalAndra) && Validering.kollaHeltal(txtAntalAndra)) {
                                         int antal = Integer.parseInt(txtAntalAndra.getText());
                                         idb.insert("insert into SQUID values (" + id + ", " + antal + ")");
@@ -2014,7 +1994,7 @@ public final class UserPage extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "Alien uppdaterad");
                                     }
                                     break;
-                                case "Worm":
+                                case "Worm": //alien ska ändras till worm
                                     idb.insert("insert into WORM values (" + id + ")");
                                     idb.update(update);
                                     JOptionPane.showMessageDialog(null, "Alien uppdaterad");
@@ -2022,6 +2002,10 @@ public final class UserPage extends javax.swing.JFrame {
                             }
                             break;
                     }
+                    /*
+                    Här sker databashanteringen i de fall där man inte vill byta ras, 
+                    men kanske byta antalet boogies på en boglodite eller armar på en squid.
+                     */
                 } else if (ras.equals(valdRas)) {
                     switch (ras) {
                         case "Boglodite":
@@ -2050,18 +2034,15 @@ public final class UserPage extends javax.swing.JFrame {
                             break;
                     }
                 }
-
                 txtAlienNamnAndra.setText(null);
                 txtAlienTelefonAndra.setText(null);
                 txtAlienLosenordAndra.setText(null);
                 txtAntalAndra.setText(null);
                 txtAlienIdAndra.setText(null);
                 jcbAlienRasAndra.setSelectedItem("Ospecificerat");
-
             } catch (InfException ex) {
                 JOptionPane.showMessageDialog(null, "Det gick inte att uppdatera informationen.");
             }
-
         }
     }
 
@@ -2087,7 +2068,6 @@ public final class UserPage extends javax.swing.JFrame {
         jXDateAnkomstDatum.getEditor().setEditable(false);
         Date dagensDatum = new Date();
         jXDateAnkomstDatum.setDate(dagensDatum);
-
     }//GEN-LAST:event_lblRegistreraAlienMouseClicked
 
     private void btnSparaAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSparaAlienMouseClicked
@@ -2097,23 +2077,22 @@ public final class UserPage extends javax.swing.JFrame {
     /**
      * Denna metod används för att lista sökresultat på tex Agenter och Aliens
      *
-     * @param minLista
-     * @param sokord
-     * @param kolumn1
-     * @param kolumn2
-     * @param tabell
+     *
+     * @param minLista listan där sökresultatet ska visas
+     * @param sokord självförklarande
+     * @param kolumn1 den första kolummen som ska sökas i och hämtas
+     * @param kolumn2 den andra kolumnen som ska sökas i och hämtas
+     * @param tabell den tabell som sökningen avser.
      */
     private void fyllListaMedSokresultat(JList<String> minLista, String sokord, String kolumn1, String kolumn2, String tabell) {
         DefaultListModel listModel = new DefaultListModel();
         minLista.setModel(listModel);
         listModel.removeAllElements();
-
         String sokStrang = "select " + kolumn1 + ", " + kolumn2 + " from " + tabell;
         try {
             ArrayList<HashMap<String, String>> allaObjekt = idb.fetchRows(sokStrang);
-
             for (HashMap<String, String> ettObjekt : allaObjekt) {
-                if (ettObjekt.get(kolumn2).toLowerCase().contains(sokord.toLowerCase())) {
+                if (ettObjekt.get(kolumn2).toLowerCase().contains(sokord.toLowerCase()) || ettObjekt.get(kolumn1).toLowerCase().contains(sokord.toLowerCase())) {
                     String element = ettObjekt.get(kolumn1) + " " + ettObjekt.get(kolumn2);
                     listModel.addElement(element);
                 }
@@ -2121,30 +2100,39 @@ public final class UserPage extends javax.swing.JFrame {
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
-
     }
 
+    /**
+     * Hämtar information om vilken utrustning som just nu inte är utkvitterad
+     * av någon agent.
+     *
+     * @param minLista listan där resultatet visas
+     */
     private void fyllLedigUtrustningsLista(JList<String> minLista) {
         DefaultListModel listModel = new DefaultListModel();
         minLista.setModel(listModel);
         listModel.removeAllElements();
-
         String sokStrang = "select UTRUSTNINGS_ID, BENAMNING from UTRUSTNING where UTRUSTNINGS_ID not in (select UTRUSTNINGS_ID from INNEHAR_UTRUSTNING) order by UTRUSTNINGS_ID";
-
         try {
             ArrayList<HashMap<String, String>> allaObjekt = idb.fetchRows(sokStrang);
-
             for (HashMap<String, String> ettObjekt : allaObjekt) {
                 String element = ettObjekt.get("UTRUSTNINGS_ID") + " " + ettObjekt.get("BENAMNING");
                 listModel.addElement(element);
-
             }
+        } catch (NullPointerException ex) {
+            listModel.addElement("Det finns ingen ledig utrustning.");
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
-
     }
 
+    /**
+     * Hämtar all utrustning som en agent för tillfället har utkvitterat, ihop
+     * med datumet som utrustningen kvitterades ut.
+     *
+     * @param minLista listan där resultatet visas.
+     * @param id agentens id.
+     */
     private void fyllUtrustningsLista(JList<String> minLista, String id) {
         DefaultListModel listModel = new DefaultListModel();
         minLista.setModel(listModel);
@@ -2153,14 +2141,11 @@ public final class UserPage extends javax.swing.JFrame {
         String sokStrang = "select UTRUSTNING.UTRUSTNINGS_ID, UTRUSTNING.BENAMNING, INNEHAR_UTRUSTNING.UTKVITTERINGSDATUM "
                 + "from UTRUSTNING join INNEHAR_UTRUSTNING on UTRUSTNING.UTRUSTNINGS_ID = INNEHAR_UTRUSTNING.UTRUSTNINGS_ID "
                 + "where INNEHAR_UTRUSTNING.AGENT_ID = " + id;
-
         try {
             ArrayList<HashMap<String, String>> allaObjekt = idb.fetchRows(sokStrang);
-
             for (HashMap<String, String> ettObjekt : allaObjekt) {
                 String element = ettObjekt.get("UTRUSTNINGS_ID") + " " + ettObjekt.get("BENAMNING") + " \t " + ettObjekt.get("UTKVITTERINGSDATUM");
                 listModel.addElement(element);
-
             }
         } catch (NullPointerException ex) {
             listModel.addElement("Agenten har ingen utkvitterad utrustning.");
@@ -2168,7 +2153,6 @@ public final class UserPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
     }
-
 
     private void btnSparaAlienAndraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSparaAlienAndraMouseClicked
         andraAlienInfo();
@@ -2201,9 +2185,7 @@ public final class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbAlienRasActionPerformed
 
     private void btnSokAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokAlienActionPerformed
-
         fyllListaMedSokresultat(jlAlienLista, txtSokord.getText(), "ALIEN_ID", "NAMN", "ALIEN");
-
     }//GEN-LAST:event_btnSokAlienActionPerformed
 
     private void jcbAlienRasAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAlienRasAndraActionPerformed
@@ -2233,7 +2215,6 @@ public final class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbAlienRasAndraActionPerformed
 
     private void lblLoggaUtAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoggaUtAlienMouseClicked
-
         if (Validering.kollaUtloggning()) {
             this.dispose();
             new MainPage(idb).setVisible(true);
@@ -2252,7 +2233,6 @@ public final class UserPage extends javax.swing.JFrame {
         Date dagensDatum = new Date();
         jXDFranDatum.setDate(dagensDatum);
         jXDTillDatum.setDate(dagensDatum);
-
     }//GEN-LAST:event_lblListaAllaMouseClicked
 
     private void jcbAlienRasListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAlienRasListaActionPerformed
@@ -2295,18 +2275,12 @@ public final class UserPage extends javax.swing.JFrame {
         jlListaAliens.setModel(listModel);
         listModel.removeAllElements();
         ArrayList<HashMap<String, String>> hittadeAliens;
-
         try {
-
             hittadeAliens = idb.fetchRows("select ALIEN_ID, NAMN from ALIEN where PLATS = " + id);
-
             for (HashMap<String, String> enAlien : hittadeAliens) {
-
                 String element = enAlien.get("ALIEN_ID") + " " + enAlien.get("NAMN");
                 listModel.addElement(element);
-
             }
-
         } catch (NullPointerException ex) {
             listModel.addElement("Det finns inga aliens på denna plats");
         } catch (InfException ex) {
@@ -2324,8 +2298,7 @@ public final class UserPage extends javax.swing.JFrame {
 
     private void btnRaderaAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRaderaAlienMouseClicked
         String val = jlAlienLista.getSelectedValue();
-        String[] idOchNamn = val.split(" ");
-        String id = idOchNamn[0];
+        String id = val.split(" ")[0];
         raderaAlien(id);
     }//GEN-LAST:event_btnRaderaAlienMouseClicked
 
@@ -2337,7 +2310,7 @@ public final class UserPage extends javax.swing.JFrame {
         String namn = txtAgentNamn.getText();
         String telefon = txtAgentTelefon.getText();
         String losenord = txtAgentLosenord.getText();
-        String omrade = getFranComboBox(jcbAgentOmrade, 0);
+        String omrade = jcbAgentOmrade.getSelectedItem().toString().split(" ")[0];
         String datum = getDatum(jXDateAnstallningsDatum);
         String admin = "";
         if (chkAdmin.isSelected()) {
@@ -2351,26 +2324,19 @@ public final class UserPage extends javax.swing.JFrame {
                 && Validering.kollaTextRutaTom(txtAgentLosenord)
                 && Validering.kollaLosenordLangd(txtAgentLosenord)) {
             try {
-
                 int nextIndexAgent = Integer.parseInt(idb.getAutoIncrement("AGENT", "AGENT_ID"));
-
                 String insert1 = "insert into AGENT values (" + nextIndexAgent + ", '" + namn + "', " + "'" + telefon + "', " + "'" + datum + "', " + "'" + admin + "', '" + losenord + "', " + omrade + ")";
-                System.out.println(insert1);
                 String insert2 = "insert into FALTAGENT values (" + nextIndexAgent + ")";
-                System.out.println(insert2);
                 idb.insert(insert1);
                 idb.insert(insert2);
                 JOptionPane.showMessageDialog(null, "Agent sparad");
                 txtAgentNamn.setText(null);
                 txtAgentTelefon.setText(null);
                 txtAgentLosenord.setText(null);
-
             } catch (InfException ex) {
                 JOptionPane.showMessageDialog(null, "Det gick inte att spara.");
             }
-
         }
-
     }
 
     private void lblAgentTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAgentTillbakaMouseClicked
@@ -2431,7 +2397,6 @@ public final class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAgenterMouseClicked
 
     private void btnSokAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokAgentActionPerformed
-
         fyllListaMedSokresultat(jlAgentLista, txtAgentAndraSokord.getText(), "AGENT_ID", "NAMN", "AGENT");
     }//GEN-LAST:event_btnSokAgentActionPerformed
 
@@ -2444,7 +2409,7 @@ public final class UserPage extends javax.swing.JFrame {
         String namn = txtAgentNamnAndra.getText();
         String telefon = txtAgentTelefonAndra.getText();
         String losenord = txtAgentLosenordAndra.getText();
-        String omrade = getFranComboBox(jcbAgentOmradeAndra, 0);
+        String omrade = jcbAgentOmradeAndra.getSelectedItem().toString().split(" ")[0];
         String datum = getDatum(jXDateAnstDatumAndra);
         String admin = "";
         if (chkAgentAdminAndra.isSelected()) {
@@ -2467,7 +2432,6 @@ public final class UserPage extends javax.swing.JFrame {
             } catch (InfException ex) {
                 JOptionPane.showMessageDialog(null, "Det gick inte att uppdatera informationen.");
             }
-
         }
     }
 
@@ -2477,17 +2441,17 @@ public final class UserPage extends javax.swing.JFrame {
         ArrayList<String> omradesChefAgentId;
         ArrayList<String> alienAgentId;
         try {
-            kontorsChefAgentId = idb.fetchColumn("select agent_id from kontorschef");
-            omradesChefAgentId = idb.fetchColumn("select agent_id from omradeschef");
-            alienAgentId = idb.fetchColumn("select ansvarig_agent from alien");
+            kontorsChefAgentId = idb.fetchColumn("select AGENT_ID from KONTORSCHEF");
+            omradesChefAgentId = idb.fetchColumn("select AGENT_ID from OMRADESCHEF");
+            alienAgentId = idb.fetchColumn("select ANSVARIG_AGENT from ALIEN");
             if (Validering.kollaRadering()) {
                 if (omradesChefAgentId.contains(valdAgent) || kontorsChefAgentId.contains(valdAgent) || alienAgentId.contains(valdAgent)) {
-                    new AndraPopupVidRadering(idb, valdAgent).setVisible(true);
-                    // JOptionPane.showMessageDialog(null, "Kan inte raderas eftersom denne är en områdeschef.");
-
+                    new AndraPopupVidRadering(idb, valdAgent).setVisible(true); //instansierar en ny JFrame där man får välja vem som ska ta över agentens roller.
                 } else {
-                    idb.delete("delete from faltagent where agent_id = " + valdAgent);
-                    idb.delete("delete from agent where agent_id = " + valdAgent);
+                    idb.delete("delete from INNEHAR_UTRUSTNING where AGENT_ID =" + valdAgent);
+                    idb.delete("delete from INNEHAR_FORDON where AGENT_ID =" + valdAgent);
+                    idb.delete("delete from FALTAGENT where AGENT_ID = " + valdAgent);
+                    idb.delete("delete from AGENT where AGENT_ID = " + valdAgent);
                     JOptionPane.showMessageDialog(null, "Agenten är nu raderad.");
                 }
             }
@@ -2512,7 +2476,6 @@ public final class UserPage extends javax.swing.JFrame {
                 txtSpecifikation.setVisible(true);
                 break;
         }
-
     }//GEN-LAST:event_jcbUtrustningsKategoriActionPerformed
 
     private void lblUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningMouseClicked
@@ -2524,13 +2487,15 @@ public final class UserPage extends javax.swing.JFrame {
             hamtaUtrustning();
         }
     }//GEN-LAST:event_lblUtrustningMouseClicked
-
+    /**
+     * Hämtar all infomation om utrustning som finns i systemet och visar det i
+     * en JList
+     */
     private void hamtaUtrustning() {
+        DefaultListModel listModel = new DefaultListModel<>();
+        jlUtrustning.setModel(listModel);
         try {
-            DefaultListModel listModel = new DefaultListModel<>();
-            jlUtrustning.setModel(listModel);
             ArrayList<HashMap<String, String>> allUtrustning = idb.fetchRows("select * from UTRUSTNING order by UTRUSTNINGS_ID");
-
             for (HashMap<String, String> ettObjekt : allUtrustning) {
                 String id = ettObjekt.get("UTRUSTNINGS_ID");
                 String typ = kollaUtrustningsTyp(id);
@@ -2548,13 +2513,20 @@ public final class UserPage extends javax.swing.JFrame {
                         listModel.addElement(ettObjekt.get("UTRUSTNINGS_ID") + " " + ettObjekt.get("BENAMNING") + ", Kommunikation, Överföringsteknik: " + overforingsteknik);
                         break;
                 }
-
             }
+        } catch (NullPointerException ex) {
+            listModel.addElement("Det finns ingen utrustning registrerad");
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
     }
 
+    /**
+     * Kollar vilken typ en utrustning är av
+     *
+     * @param id utrustningens id
+     * @return typ av utrustning
+     */
     private String kollaUtrustningsTyp(String id) {
         String typ = "";
         ArrayList<String> teknik = new ArrayList<>();
@@ -2579,13 +2551,19 @@ public final class UserPage extends javax.swing.JFrame {
                 typ = "Kommunikation";
             }
         } catch (InfException ex) {
-
             JOptionPane.showMessageDialog(null, "Det gick inte att hämta utrustningstyp");
         }
-
         return typ;
     }
 
+    /**
+     * En metod som används för att fånga upp NullPointerExceptions i händelse
+     * av att en tabell man vill hämta värden ifrån inte innehåller någonting
+     *
+     * @param id idkolumnen som ska hämtas
+     * @param tabell den tabell man vill kolla
+     * @return true om tabellen inte är tom, annars false.
+     */
     private boolean kollaTabellTom(String id, String tabell) {
         try {
             ArrayList<String> allaIdn = idb.fetchColumn("select " + id + " from " + tabell);
@@ -2604,8 +2582,7 @@ public final class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSparaUtrustningActionPerformed
 
     private void btnRaderaUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaUtrustningActionPerformed
-        String valdUtrustning = jlUtrustning.getSelectedValue();
-        String id = valdUtrustning.split(" ")[0];
+        String id = jlUtrustning.getSelectedValue().split(" ")[0];
         raderaUtrustning(id);
         hamtaUtrustning();
     }//GEN-LAST:event_btnRaderaUtrustningActionPerformed
@@ -2613,11 +2590,12 @@ public final class UserPage extends javax.swing.JFrame {
     private void lblAlienStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienStartMouseClicked
         setPanelVisibility(pnlAlienStart);
     }//GEN-LAST:event_lblAlienStartMouseClicked
-
-    private void jcbChefAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbChefAgenterActionPerformed
-
-    }//GEN-LAST:event_jcbChefAgenterActionPerformed
-
+    /**
+     * Hämtar id och namn på den som är områdeschef för ett valt område och
+     * visar det i en JLabel.
+     *
+     * @param evt
+     */
     private void jcbChefOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbChefOmradeActionPerformed
         try {
             String valtOmrade = jcbChefOmrade.getSelectedItem().toString();
@@ -2679,7 +2657,6 @@ public final class UserPage extends javax.swing.JFrame {
         jcbUtrustningKvitteraAgenter.removeAllItems();
         fyllComboBox(jcbUtrustningKvitteraAgenter, "AGENT_ID", "NAMN", "AGENT");
         fyllLedigUtrustningsLista(jlUtrustningLedig);
-
     }//GEN-LAST:event_lblUtrustningKvitteraMouseClicked
 
     private void lblUtrustningRegistreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningRegistreraMouseClicked
@@ -2690,7 +2667,6 @@ public final class UserPage extends javax.swing.JFrame {
             btnRaderaUtrustning.setVisible(false);
         }
         hamtaUtrustning();
-
     }//GEN-LAST:event_lblUtrustningRegistreraMouseClicked
 
     private void btnUtrustningKvitteraHamtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUtrustningKvitteraHamtaActionPerformed
@@ -2726,9 +2702,8 @@ public final class UserPage extends javax.swing.JFrame {
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Du måste välja något i listan först.");
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Kunde inte kvittera ut.");
+            JOptionPane.showMessageDialog(null, "Kunde inte återlämna.");
         }
-
     }//GEN-LAST:event_btnAterlamnaActionPerformed
 
     private void andraKontorsChef() {
@@ -2739,7 +2714,6 @@ public final class UserPage extends javax.swing.JFrame {
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Kunde inte ändra kontorschef");
         }
-
     }
 
     private void raderaUtrustning(String id) {
@@ -2813,20 +2787,15 @@ public final class UserPage extends javax.swing.JFrame {
             ArrayList<HashMap<String, String>> hittadeAliens;
 
             for (HashMap<String, String> enReggad : allaReg) {
-
                 Date regDatum = dateFormat.parse(enReggad.get("REGISTRERINGSDATUM"));
                 if (regDatum.compareTo(datumFran) >= 0 && regDatum.compareTo(datumTill) <= 0) {
                     String id = enReggad.get("ALIEN_ID");
-
                     hittadeAliens = idb.fetchRows("select ALIEN_ID, NAMN from ALIEN where ALIEN_ID =" + id);
                     for (HashMap<String, String> enAlien : hittadeAliens) {
-
                         String element = enAlien.get("ALIEN_ID") + " " + enAlien.get("NAMN");
                         listModel.addElement(element);
-
                     }
                 }
-
             }
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Kunde inte hämta datum");
@@ -2836,12 +2805,13 @@ public final class UserPage extends javax.swing.JFrame {
     }
 
     /**
-     * Den här metoden används för att fylla på med värden till comboboxar
+     * Den här metoden används för att fylla på med värden till comboboxar i de
+     * fall man vill hämta information från 2 kolumner i en tabell i databasen.
      *
      *
      * @param jcb ComboBoxen som ska få värden
-     * @param kolumn1 första kolumnen
-     * @param kolumn2 andra kolumnen
+     * @param kolumn1 första kolumnen som ska hämtas
+     * @param kolumn2 andra kolumnen som ska hämtas
      * @param tabell från vilken databastabell ska kolumnerna hämtas.
      *
      */
@@ -2860,21 +2830,8 @@ public final class UserPage extends javax.swing.JFrame {
     }
 
     /**
-     *
-     * @param jcb comboboxen som ska läsas av
-     * @param n vilken information i strängen man vill åt (0 är oftast id tex).
-     * @return
-     */
-    private String getFranComboBox(JComboBox jcb, int n) {
-        String item[] = jcb.getSelectedItem().toString().split(" ");
-        String svar = item[n];
-        return svar;
-
-    }
-
-    /**
-     * Den här metoden används för att hämta värden från de combobxar där
-     * platser är hårdkodade alternativ
+     * Den här metoden används för att hämta värden från de comboboxar där
+     * platser är hårdkodade alternativ utan id.
      *
      * @param jcb
      * @return
@@ -2908,8 +2865,8 @@ public final class UserPage extends javax.swing.JFrame {
         String namn = txtAlienNamn.getText();
         String telefon = txtAlienTelefon.getText();
         String losenord = txtAlienLosenord.getText();
-        String plats = getFranComboBox(jcbAlienPlats, 0);
-        String ansvarigAgent = getFranComboBox(jcbAnsvarigAgent, 0);
+        String plats = jcbAlienPlats.getSelectedItem().toString().split(" ")[0];
+        String ansvarigAgent = jcbAnsvarigAgent.getSelectedItem().toString().split(" ")[0];
         String datum = getDatum(jXDateAnkomstDatum);
         String valdRas = jcbAlienRas.getSelectedItem().toString();
 
@@ -3143,7 +3100,6 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JPanel pnlRaderaAgent;
     private javax.swing.JPanel pnlRaderaAlien;
     private javax.swing.JPanel pnlRaderaUtrustning;
-    private javax.swing.JPanel pnlSokOmradesChef;
     private javax.swing.JPanel pnlUtrustningKvittering;
     private javax.swing.JPanel pnlUtrustningMeny;
     private javax.swing.JPanel pnlUtrustningRegistrering;
