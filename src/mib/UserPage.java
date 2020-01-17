@@ -5,6 +5,10 @@
  */
 package mib;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,6 +82,15 @@ public final class UserPage extends javax.swing.JFrame {
         lblValkommen = new javax.swing.JLabel();
         lblMeny = new javax.swing.JLabel();
         lblAnvandaresNamn = new javax.swing.JLabel();
+        pnlStatistik = new javax.swing.JPanel();
+        lblSokTitel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taStatistik = new javax.swing.JTextArea();
+        jcbToppTre = new javax.swing.JComboBox<>();
+        btnSkrivUtStatistik = new javax.swing.JButton();
+        btnVisaToppTre = new javax.swing.JButton();
+        jcbStatistik = new javax.swing.JComboBox<>();
+        btnVisaStatistik = new javax.swing.JButton();
         pnlEmpty = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         pnlAlienStart = new javax.swing.JPanel();
@@ -87,6 +100,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAliensOmradesChef = new javax.swing.JPanel();
         lblOmradesChefBild = new javax.swing.JLabel();
         lblAliensOmradesChef = new javax.swing.JLabel();
+        lblKontaktaOmradesChef = new javax.swing.JLabel();
         jScrAlienListaOmrade = new javax.swing.JScrollPane();
         jlAliensIMittOmrade = new javax.swing.JList<>();
         pnlAgentRegistrering = new javax.swing.JPanel();
@@ -202,6 +216,7 @@ public final class UserPage extends javax.swing.JFrame {
         lblAgentChefer = new javax.swing.JLabel();
         lblRegistreraAgent = new javax.swing.JLabel();
         lblAgentSokOchAndra = new javax.swing.JLabel();
+        lblStatistik = new javax.swing.JLabel();
         pnlAgentSokOchAndra = new javax.swing.JPanel();
         txtAgentAndraSokord = new javax.swing.JTextField();
         btnSokAgent = new javax.swing.JButton();
@@ -281,7 +296,6 @@ public final class UserPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 475));
-        setPreferredSize(new java.awt.Dimension(800, 475));
         setResizable(false);
 
         pnlBackground.setBackground(new java.awt.Color(29, 29, 48));
@@ -309,6 +323,58 @@ public final class UserPage extends javax.swing.JFrame {
         lblAnvandaresNamn.setText("Anvandarnamn");
         pnlBackground.add(lblAnvandaresNamn);
         lblAnvandaresNamn.setBounds(20, 130, 110, 40);
+
+        pnlStatistik.setBackground(new java.awt.Color(29, 29, 48));
+        pnlStatistik.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlStatistik.setForeground(new java.awt.Color(204, 204, 204));
+        pnlStatistik.setMinimumSize(new java.awt.Dimension(620, 410));
+        pnlStatistik.setLayout(null);
+
+        lblSokTitel1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        lblSokTitel1.setForeground(new java.awt.Color(204, 204, 204));
+        lblSokTitel1.setText("Statistik");
+        pnlStatistik.add(lblSokTitel1);
+        lblSokTitel1.setBounds(20, 10, 180, 40);
+
+        taStatistik.setColumns(20);
+        taStatistik.setRows(5);
+        jScrollPane1.setViewportView(taStatistik);
+
+        pnlStatistik.add(jScrollPane1);
+        jScrollPane1.setBounds(20, 130, 580, 260);
+
+        jcbToppTre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Topp 3 agenter", "Svealand", "Götaland", "Norrland" }));
+        pnlStatistik.add(jcbToppTre);
+        jcbToppTre.setBounds(20, 60, 180, 26);
+
+        btnSkrivUtStatistik.setText("Skriv ut");
+        pnlStatistik.add(btnSkrivUtStatistik);
+        btnSkrivUtStatistik.setBounds(510, 90, 90, 30);
+
+        btnVisaToppTre.setText("Visa");
+        btnVisaToppTre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisaToppTreActionPerformed(evt);
+            }
+        });
+        pnlStatistik.add(btnVisaToppTre);
+        btnVisaToppTre.setBounds(220, 60, 77, 24);
+
+        jcbStatistik.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sammanfattande statistik" }));
+        pnlStatistik.add(jcbStatistik);
+        jcbStatistik.setBounds(20, 90, 180, 26);
+
+        btnVisaStatistik.setText("Visa");
+        btnVisaStatistik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisaStatistikActionPerformed(evt);
+            }
+        });
+        pnlStatistik.add(btnVisaStatistik);
+        btnVisaStatistik.setBounds(220, 90, 77, 24);
+
+        pnlBackground.add(pnlStatistik);
+        pnlStatistik.setBounds(160, 20, 620, 410);
 
         pnlEmpty.setBackground(new java.awt.Color(29, 29, 48));
         pnlEmpty.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -354,7 +420,7 @@ public final class UserPage extends javax.swing.JFrame {
         lblOmradesChefBild.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblOmradesChefBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/headicon.png"))); // NOI18N
         pnlAliensOmradesChef.add(lblOmradesChefBild);
-        lblOmradesChefBild.setBounds(80, 30, 60, 100);
+        lblOmradesChefBild.setBounds(80, 20, 60, 100);
 
         lblAliensOmradesChef.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         lblAliensOmradesChef.setForeground(new java.awt.Color(204, 204, 204));
@@ -364,6 +430,17 @@ public final class UserPage extends javax.swing.JFrame {
         lblAliensOmradesChef.setMinimumSize(new java.awt.Dimension(120, 22));
         pnlAliensOmradesChef.add(lblAliensOmradesChef);
         lblAliensOmradesChef.setBounds(50, 140, 120, 22);
+
+        lblKontaktaOmradesChef.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblKontaktaOmradesChef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/images/mailicon2.png"))); // NOI18N
+        lblKontaktaOmradesChef.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblKontaktaOmradesChef.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblKontaktaOmradesChefMouseClicked(evt);
+            }
+        });
+        pnlAliensOmradesChef.add(lblKontaktaOmradesChef);
+        lblKontaktaOmradesChef.setBounds(80, 180, 60, 50);
 
         pnlAlienStart.add(pnlAliensOmradesChef);
         pnlAliensOmradesChef.setBounds(360, 110, 220, 250);
@@ -1010,7 +1087,7 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlAgentMeny.add(lblAgentTillbaka);
-        lblAgentTillbaka.setBounds(10, 80, 100, 20);
+        lblAgentTillbaka.setBounds(10, 90, 100, 20);
 
         lblAgentChefer.setForeground(new java.awt.Color(204, 204, 204));
         lblAgentChefer.setText("Hantera chefer");
@@ -1023,7 +1100,7 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlAgentMeny.add(lblAgentChefer);
-        lblAgentChefer.setBounds(10, 40, 100, 20);
+        lblAgentChefer.setBounds(10, 30, 100, 20);
 
         lblRegistreraAgent.setForeground(new java.awt.Color(204, 204, 204));
         lblRegistreraAgent.setText("Regístrera ny");
@@ -1033,7 +1110,7 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlAgentMeny.add(lblRegistreraAgent);
-        lblRegistreraAgent.setBounds(10, 20, 100, 20);
+        lblRegistreraAgent.setBounds(10, 10, 100, 20);
 
         lblAgentSokOchAndra.setForeground(new java.awt.Color(204, 204, 204));
         lblAgentSokOchAndra.setText("Sök och ändra");
@@ -1043,7 +1120,16 @@ public final class UserPage extends javax.swing.JFrame {
             }
         });
         pnlAgentMeny.add(lblAgentSokOchAndra);
-        lblAgentSokOchAndra.setBounds(10, 60, 100, 20);
+        lblAgentSokOchAndra.setBounds(10, 50, 100, 20);
+
+        lblStatistik.setText("Statistik");
+        lblStatistik.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblStatistikMouseClicked(evt);
+            }
+        });
+        pnlAgentMeny.add(lblStatistik);
+        lblStatistik.setBounds(10, 70, 100, 20);
 
         pnlBackground.add(pnlAgentMeny);
         pnlAgentMeny.setBounds(20, 310, 120, 120);
@@ -1514,6 +1600,7 @@ public final class UserPage extends javax.swing.JFrame {
         pnlAlienStart.setVisible(false);
         pnlChefer.setVisible(false);
         pnlUtrustningKvittering.setVisible(false);
+        pnlStatistik.setVisible(false);
         pnl.setVisible(true);
 
     }
@@ -2706,6 +2793,61 @@ public final class UserPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAterlamnaActionPerformed
 
+    private void lblKontaktaOmradesChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKontaktaOmradesChefMouseClicked
+        String[] agentNamn = getOmradesChef().toLowerCase().split(" ");
+        String epost = "";
+        for (int i = 0; i < agentNamn.length; i++) {
+            epost = epost + agentNamn[i];
+        }
+        try {
+            Desktop desktop = Desktop.getDesktop();
+            desktop.mail(new URI("mailto:" + epost + "@mib.org"));
+        } catch (URISyntaxException | IOException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }//GEN-LAST:event_lblKontaktaOmradesChefMouseClicked
+
+    private void btnVisaToppTreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaToppTreActionPerformed
+        try {
+            String omrade = jcbToppTre.getSelectedItem().toString();
+            if (omrade.equals("Topp 3 agenter")) {
+                taStatistik.setText("Var god välj ett område.");
+            } else {
+                taStatistik.setText("");
+                taStatistik.append("ID \t Namn \t Antal aliens");
+                String sokStrang = "select first 3 count(ansvarig_agent) as antal, agent.agent_id, agent.namn from alien "
+                        + "join agent on alien.ansvarig_agent = agent.agent_id "
+                        + "where ansvarig_agent in (select agent_id from agent "
+                        + "where omrade like (select omrades_id from omrade "
+                        + "where benamning = '" + omrade + "')) "
+                        + "group by agent_id, namn "
+                        + "order by count (ansvarig_agent) desc";
+
+                ArrayList<HashMap<String, String>> toppAgenter = idb.fetchRows(sokStrang);
+                for (HashMap<String, String> enAgent : toppAgenter) {
+
+                    String antal = enAgent.get("ANTAL");
+                    String agentid = enAgent.get("AGENT_ID");
+                    String agentNamn = enAgent.get("NAMN");
+
+                    taStatistik.append("\n" + agentid + "\t" + agentNamn + "\t" + antal);
+                }
+            }
+        } catch (NullPointerException ex) {
+            taStatistik.setText("Det finns inga agenter i det området.");
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel.");
+        }
+    }//GEN-LAST:event_btnVisaToppTreActionPerformed
+
+    private void btnVisaStatistikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaStatistikActionPerformed
+        String raknaAliensIOmrade = "select count(alien_id) from alien where plats in (select plats_id from plats where finns_i like (select omrades_id from omrade where benamning like 'Svealand'))";
+    }//GEN-LAST:event_btnVisaStatistikActionPerformed
+
+    private void lblStatistikMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblStatistikMouseClicked
+        setPanelVisibility(pnlStatistik);
+    }//GEN-LAST:event_lblStatistikMouseClicked
+
     private void andraKontorsChef() {
         try {
             String valdAgentId = jcbKontorsChef.getSelectedItem().toString().split(" ")[0];
@@ -2931,6 +3073,7 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JButton btnRaderaAgent;
     private javax.swing.JButton btnRaderaAlien;
     private javax.swing.JButton btnRaderaUtrustning;
+    private javax.swing.JButton btnSkrivUtStatistik;
     private javax.swing.JButton btnSokAgent;
     private javax.swing.JButton btnSokAlien;
     private javax.swing.JButton btnSparaAgent;
@@ -2938,6 +3081,8 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JButton btnSparaAlienAndra;
     private javax.swing.JButton btnSparaUtrustning;
     private javax.swing.JButton btnUtrustningKvitteraHamta;
+    private javax.swing.JButton btnVisaStatistik;
+    private javax.swing.JButton btnVisaToppTre;
     private javax.swing.JCheckBox chkAdmin;
     private javax.swing.JCheckBox chkAgentAdminAndra;
     private javax.swing.JLabel jLabel1;
@@ -2948,6 +3093,7 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrAlienLista;
     private javax.swing.JScrollPane jScrAlienListaOmrade;
     private javax.swing.JScrollPane jScrListaAliens;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSepChefer;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -2970,6 +3116,8 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbChefAgenter;
     private javax.swing.JComboBox<String> jcbChefOmrade;
     private javax.swing.JComboBox<String> jcbKontorsChef;
+    private javax.swing.JComboBox<String> jcbStatistik;
+    private javax.swing.JComboBox<String> jcbToppTre;
     private javax.swing.JComboBox<String> jcbUtrustningKvitteraAgenter;
     private javax.swing.JComboBox<String> jcbUtrustningsKategori;
     private javax.swing.JList<String> jlAgentLista;
@@ -3035,6 +3183,7 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblChefTitel;
     private javax.swing.JLabel lblFranDatum1;
     private javax.swing.JLabel lblIdNamn;
+    private javax.swing.JLabel lblKontaktaOmradesChef;
     private javax.swing.JLabel lblKontorsChef;
     private javax.swing.JLabel lblKvitteraUt;
     private javax.swing.JLabel lblListaAliensTitel;
@@ -3063,7 +3212,9 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblSokAgentNamn;
     private javax.swing.JLabel lblSokAlienNamn;
     private javax.swing.JLabel lblSokTitel;
+    private javax.swing.JLabel lblSokTitel1;
     private javax.swing.JLabel lblSpecifikation;
+    private javax.swing.JLabel lblStatistik;
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTelefonAlienAndra;
     private javax.swing.JLabel lblTillDatum;
@@ -3100,10 +3251,12 @@ public final class UserPage extends javax.swing.JFrame {
     private javax.swing.JPanel pnlRaderaAgent;
     private javax.swing.JPanel pnlRaderaAlien;
     private javax.swing.JPanel pnlRaderaUtrustning;
+    private javax.swing.JPanel pnlStatistik;
     private javax.swing.JPanel pnlUtrustningKvittering;
     private javax.swing.JPanel pnlUtrustningMeny;
     private javax.swing.JPanel pnlUtrustningRegistrering;
     private javax.swing.JScrollPane scrUtrustning;
+    private javax.swing.JTextArea taStatistik;
     private javax.swing.JTextField txtAgentAndraSokord;
     private javax.swing.JTextField txtAgentIdAndra;
     private javax.swing.JTextField txtAgentLosenord;
